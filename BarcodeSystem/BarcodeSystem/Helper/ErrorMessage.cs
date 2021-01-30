@@ -26,16 +26,10 @@ namespace BarcodeSystem.Helper
         public static string OwnerContactNoExists = "Owner Contact No is already exist";
         public static string FirmContactNoExists = "Firm Contact No is already exist";
         // Client Portal Messages
-
-
+         
         // Folder Directory Path
-        public static string HomeDirectoryPath = "/Images/HomeMedia/";
-        public static string AdminUserDirectoryPath = "/Images/AdminUserMedia/";
-        public static string CategoryDirectoryPath = "/Images/CategoryMedia/";
-        public static string ProductItemDirectoryPath = "/Images/ProductItemMedia/";
-        public static string DefaultImagePath = "/Images/default_image.jpg";
-        public static string HappyCustomerDirectoryPath = "/Images/HappyCustomerMedia/";
-        public static string AdvertiseDirectoryPath = "/Images/AdvertiseMedia/";
-        public static string UsersDocumentsDirectoryPath = "/Images/UsersDocuments/";
+        public static string HomeDirectoryPath = "/Images/HomeMedia/"; 
+        public static string ProductDirectoryPath = "/Images/ProductMedia/";
+        public static string DefaultImagePath = "/Images/default_image.jpg"; 
     }
 }

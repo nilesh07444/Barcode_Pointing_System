@@ -51,6 +51,8 @@ D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSyste
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\roslyn\VBCSCompiler.exe
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\roslyn\VBCSCompiler.exe.config
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\Antlr3.Runtime.dll
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.dll
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.SqlServer.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\Microsoft.Web.Infrastructure.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\Newtonsoft.Json.dll
@@ -62,6 +64,8 @@ D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSyste
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.WebPages.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.WebPages.Razor.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\WebGrease.dll
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.xml
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.SqlServer.xml
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.Helpers.xml
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.Mvc.xml
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.Optimization.xml
@@ -77,7 +81,3 @@ D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSyste
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.pdb
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.csprojAssemblyReference.cache
-D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.dll
-D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.SqlServer.dll
-D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.xml
-D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\EntityFramework.SqlServer.xml

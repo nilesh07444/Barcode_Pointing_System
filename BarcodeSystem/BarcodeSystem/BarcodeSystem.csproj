@@ -72,6 +72,8 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
@@ -163,7 +165,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeImagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\WebApi\WebApiAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\AdminPermissionAttribute.cs" />
@@ -176,11 +180,40 @@
     <Compile Include="Helper\Enums.cs" />
     <Compile Include="Helper\ErrorMessage.cs" />
     <Compile Include="Helper\ResponseDataModel.cs" />
+    <Compile Include="Models\BarcodeSystem.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BarcodeSystem.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BarcodeSystem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BarcodeSystem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BarcodeSystem.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\clsAdminSession.cs" />
     <Compile Include="Models\clsCommon.cs" />
+    <Compile Include="Models\tbl_AdminRoles.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_AdminUsers.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_HomeImages.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Product.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DashboardCountVM.cs" />
+    <Compile Include="ViewModel\HomeImageVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="ViewModel\ProductVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\css\admin.css" />
@@ -1398,9 +1431,6 @@
     <Content Include="Content\assets\images\game\pro\7.jpg" />
     <Content Include="Content\assets\images\game\pro\8.jpg" />
     <Content Include="Content\assets\images\game\pro\9.jpg" />
-    <Content Include="Content\assets\images\game\pro\playerunknown-039-s-battlegrounds-1920x1080-playerunknowns-battlegrounds-pubg-mobile-game-hd-16808.jpg" />
-    <Content Include="Content\assets\images\game\pro\pubg-1920x1080-playerunknowns-battlegrounds-4k-16970.jpg" />
-    <Content Include="Content\assets\images\game\pro\the-amazing-spider-man-2-1920x1080-spider-man-electro-rhino-4k-1828.jpg" />
     <Content Include="Content\assets\images\game\star_wars_battlefront_electronic_arts_105865_2560x1440.jpg" />
     <Content Include="Content\assets\images\game\top.png" />
     <Content Include="Content\assets\images\game\world_of_tanks_wargaming_net_wot_wg_wz_111_99171_2560x1440.jpg" />
@@ -3451,6 +3481,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\default_image.jpg" />
+    <Content Include="Images\default_image.png" />
+    <Content Include="Images\default_user_image.png" />
+    <Content Include="Models\BarcodeSystem.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BarcodeSystem.edmx</DependentUpon>
+      <LastGenOutput>BarcodeSystem.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BarcodeSystem.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BarcodeSystem.edmx</DependentUpon>
+      <LastGenOutput>BarcodeSystem.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -3763,6 +3807,19 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <EntityDeploy Include="Models\BarcodeSystem.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BarcodeSystem.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BarcodeSystem.edmx.diagram">
+      <DependentUpon>BarcodeSystem.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeImages\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeImages\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeImages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />
@@ -3819,7 +3876,8 @@
     <Folder Include="Areas\WebApi\Controllers\" />
     <Folder Include="Areas\WebApi\Data\" />
     <Folder Include="Areas\WebApi\Views\Shared\" />
-    <Folder Include="Images\" />
+    <Folder Include="Images\HomeMedia\" />
+    <Folder Include="Images\ProductMedia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -3833,6 +3891,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

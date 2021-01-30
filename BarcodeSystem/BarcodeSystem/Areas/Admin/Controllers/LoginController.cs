@@ -10,16 +10,17 @@ using BarcodeSystem.Helper;
 using BarcodeSystem.Model;
 using BarcodeSystem.ViewModel;
 using Newtonsoft.Json;
+using BarcodeSystem.Models;
 
 namespace BarcodeSystem.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
 
-        //private readonly krupagallarydbEntities _db;
+        private readonly BarcodeSystemDbEntities _db;
         public LoginController()
         {
-            //_db = new krupagallarydbEntities();
+            _db = new BarcodeSystemDbEntities();
         }
 
         public ActionResult Index()
@@ -33,7 +34,60 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(LoginVM userLogin)
         {
-            return RedirectToAction("Index", "Dashboard"); 
+            try
+            {                
+                var data = _db.tbl_AdminUsers.Where(x => x.MobileNo == userLogin.MobileNo && x.Password == userLogin.Password).FirstOrDefault();
+
+                if (data != null)
+                {
+                    if (data.AdminRoleId == (int)AdminRoles.Agent || data.AdminRoleId == (int)AdminRoles.DeliveryUser || data.AdminRoleId == (int)AdminRoles.ChannelPartner)
+                    {
+                        TempData["LoginError"] = "You are not authorize to access Admin panel";
+                        return View();
+                    }
+
+                    //if (!data.IsActive)
+                    //{
+                    //    TempData["LoginError"] = "Your Account is not active. Please contact administrator.";
+                    //    return View();
+                    //}
+
+                    var roleData = _db.tbl_AdminRoles.Where(x => x.AdminRoleId == data.AdminRoleId).FirstOrDefault();
+
+                    if (!roleData.IsActive)
+                    {
+                        TempData["LoginError"] = "Your Role is not active. Please contact administrator.";
+                        return View();
+                    }
+
+                    if (roleData.IsDelete)
+                    {
+                        TempData["LoginError"] = "Your Role is deleted. Please contact administrator.";
+                        return View();
+                    }
+
+                    clsAdminSession.SessionID = Session.SessionID;
+                    clsAdminSession.UserID = data.AdminUserId;
+                    clsAdminSession.RoleID = data.AdminRoleId;
+                    clsAdminSession.RoleName = roleData.AdminRoleName;
+                    clsAdminSession.UserName = data.FirstName + " " + data.LastName;
+                    clsAdminSession.ImagePath = ""; //data.ProfilePicture;
+                    clsAdminSession.MobileNumber = data.MobileNo;
+
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else
+                {
+                    TempData["LoginError"] = "Invalid Mobile or Password";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = ex.Message.ToString();
+            }
+
+            return View();
         }
 
         public string SendOTP(string MobileNumber)
@@ -85,11 +139,11 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         }
 
         public ActionResult Signout()
-        {            
+        {
             clsAdminSession.SessionID = "";
             clsAdminSession.UserID = 0;
             return RedirectToAction("Index");
         }
-         
+
     }
 }

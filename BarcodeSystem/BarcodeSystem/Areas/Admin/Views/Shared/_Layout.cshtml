@@ -12,8 +12,8 @@
     <meta name="description" content="Eon Corporation">
     <meta name="keywords" content="Eon Corporation">
     <meta name="author" content="Eon Corporation">
-    <link rel="icon" href="~/Content/assets/images/dashboard/fav.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="~/Content/assets/images/dashboard/fav.ico" type="image/x-icon">
+    <link rel="icon" href="~/Content/assets/images/dashboard/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="~/Content/assets/images/dashboard/favicon.ico" type="image/x-icon">
     <title>Eon Corporation</title>
 
     <!-- Google font-->
@@ -72,7 +72,7 @@
         <div class="page-main-header">
             <div class="main-header-right row">
                 <div class="main-header-left d-lg-none">
-                    <div class="logo-wrapper"><a href="/admin/dashboard"><img style="width: 80px; height: 50px;" class="blur-up lazyloaded" src="~/Content/assets/images/kbg/logo.png" alt=""></a></div>
+                    <div class="logo-wrapper"><a href="/admin/dashboard"><img style="width: 80px; height: 50px;" class="blur-up lazyloaded" src="~/Content/assets/images/eon/logo.png" alt=""></a></div>
                 </div>
                 <div class="mobile-sidebar">
                     <div class="media-body text-right switch-sm">
@@ -116,12 +116,12 @@
                                 </ul>
                             </li>*@
 
-                        <li style="border-right:1px solid #eff0f1;">
-                            <a title="Live Chat" target="_blank" href="/admin/chat">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square right_side_toggle"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                                <span class="dot"></span>
-                            </a>
-                        </li>
+                        @*<li style="border-right:1px solid #eff0f1;">
+                                <a title="Live Chat" target="_blank" href="/admin/chat">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square right_side_toggle"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                    <span class="dot"></span>
+                                </a>
+                            </li>*@
 
                         <li class="onhover-dropdown">
                             <div class="media align-items-center">
@@ -161,7 +161,7 @@
                 <div class="main-header-left d-none d-lg-block">
                     <div class="logo-wrapper">
                         <a href="/admin/dashboard">
-                            <img style="width: 170px; height: 60px; border-radius : 10px;" class="blur-up lazyloaded" src="~/Content/assets/images/kbg/logo.png" alt="">
+                            <img style="width: 92px; height: 60px; border-radius : 10px;" class="blur-up lazyloaded" src="~/Content/assets/images/eon/logo.jpeg" alt="">
                         </a>
                     </div>
                 </div>
@@ -188,11 +188,12 @@
                         <li>
                             <a class="sidebar-header" href=""><i data-feather="lock"></i><span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                             <ul class="sidebar-submenu">
-                                <li class="@(ViewBag.Title == "Product" ? "active" : "")"><a href="/admin/product/add"><i class="fa fa-circle"></i>Product</a></li>
-                                <li><a href="/admin/product"><i class="fa fa-circle"></i>Product List</a></li>
+                                <li class="@(ViewBag.Title == "AddNewProduct" ? "active" : "")"><a href="/admin/product/add"><i class="fa fa-circle"></i>Add New Product</a></li>
+                                <li class="@(ViewBag.Title == "ProductList" ? "active" : "")"><a href="/admin/product"><i class="fa fa-circle"></i>Product List</a></li>
                             </ul>
                         </li>
 
+                        <li><a class="sidebar-header" href="/admin/homeimages"><i data-feather="home"></i><span>Home Images</span></a></li>
 
                     </ul>
                 </div>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BarcodeSystemDbModelStoreContainer" CdmEntityContainer="BarcodeSystemDbEntities">
+    <EntitySetMapping Name="tbl_AdminRoles">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_AdminRoles">
+        <MappingFragment StoreEntitySet="tbl_AdminRoles">
+          <ScalarProperty Name="IsDefaultRole" ColumnName="IsDefaultRole" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="AdminRoleDescription" ColumnName="AdminRoleDescription" />
+          <ScalarProperty Name="AdminRoleName" ColumnName="AdminRoleName" />
+          <ScalarProperty Name="AdminRoleId" ColumnName="AdminRoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_AdminUsers">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_AdminUsers">
+        <MappingFragment StoreEntitySet="tbl_AdminUsers">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="AdminRoleId" ColumnName="AdminRoleId" />
+          <ScalarProperty Name="AdminUserId" ColumnName="AdminUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_HomeImages">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_HomeImages">
+        <MappingFragment StoreEntitySet="tbl_HomeImages">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="HomeImageName" ColumnName="HomeImageName" />
+          <ScalarProperty Name="HomeImageId" ColumnName="HomeImageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Product">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_Product">
+        <MappingFragment StoreEntitySet="tbl_Product">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

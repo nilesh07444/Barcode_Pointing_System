@@ -10,15 +10,15 @@ using System.Web.Mvc;
 
 namespace BarcodeSystem.Areas.Admin.Controllers
 {
-    //[CustomAuthorize]
+    [CustomAuthorize]
     public class DashboardController : Controller
     {
-        //private readonly krupagallarydbEntities _db;
+        private readonly BarcodeSystemDbEntities _db;
         public DashboardController()
         {
-            //_db = new krupagallarydbEntities();
+            _db = new BarcodeSystemDbEntities();
         }
-         
+
         public ActionResult Index()
         {
             DashboardCountVM obj = new DashboardCountVM();

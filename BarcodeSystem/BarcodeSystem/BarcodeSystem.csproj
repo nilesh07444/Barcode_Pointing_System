@@ -52,7 +52,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="QRCoder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -72,6 +79,8 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
       <Private>True</Private>
@@ -153,17 +162,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QrCodeController.cs" />
     <Compile Include="Areas\WebApi\WebApiAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\AdminPermissionAttribute.cs" />
@@ -178,6 +183,36 @@
     <Compile Include="Helper\ResponseDataModel.cs" />
     <Compile Include="Models\clsAdminSession.cs" />
     <Compile Include="Models\clsCommon.cs" />
+    <Compile Include="Models\EonQrCode.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EonQrCode.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EonQrCode.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EonQrCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EonQrCode.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EonQrCode.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_AdminUsers.cs">
+      <DependentUpon>EonQrCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_Barcodes.cs">
+      <DependentUpon>EonQrCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_BarcodeSet.cs">
+      <DependentUpon>EonQrCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_BarcodeUsers.cs">
+      <DependentUpon>EonQrCode.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_ClientUsers.cs">
+      <DependentUpon>EonQrCode.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DashboardCountVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
@@ -3451,6 +3486,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\EonQrCode.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EonQrCode.edmx</DependentUpon>
+      <LastGenOutput>EonQrCode.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EonQrCode.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EonQrCode.edmx</DependentUpon>
+      <LastGenOutput>EonQrCode.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -3763,6 +3808,16 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <EntityDeploy Include="Models\EonQrCode.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EonQrCode.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EonQrCode.edmx.diagram">
+      <DependentUpon>EonQrCode.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\QrCode\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QrCode\CreateQrCodes.cshtml" />
+    <Content Include="Areas\Admin\Views\QrCode\DisplayBarcodes.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />
@@ -3833,6 +3888,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Display Barcodes";
+    Layout = null;
+    List<string> lstStr = ViewData["lstBarcodesstr"] as List<string>;
+    List<string> lstStrImg = ViewData["lstBarcodesstrImage"] as List<string>;
+}
+
+<h2>Barcodes For Amount: @ViewBag.Amount</h2>
+
+@for (int J = 0; J < lstStr.Count(); J++)
+{
+    <div style="display:inline-block;margin-right:10px;border:1px solid;margin-bottom:10px;padding:2px;">
+        <div style="text-align:center;">
+            <img src="@lstStrImg[J]" alt="" style="height:60px;width:60px;margin-right:10px;" />
+            <br/>
+            <span>@lstStr[J]</span>
+        </div>                
+        
+    </div>
+}

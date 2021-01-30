@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BarcodeSystem.Helper;
 using BarcodeSystem.Model;
+using BarcodeSystem.Models;
 using BarcodeSystem.ViewModel;
 using Newtonsoft.Json;
 
@@ -16,16 +17,14 @@ namespace BarcodeSystem.Areas.Admin.Controllers
     public class LoginController : Controller
     {
 
-        //private readonly krupagallarydbEntities _db;
+        private readonly EonBarcodeEntities _db;
         public LoginController()
         {
-            //_db = new krupagallarydbEntities();
+           _db = new EonBarcodeEntities();
         }
 
         public ActionResult Index()
         {
-
-
 
             return View();
         }
@@ -33,7 +32,56 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Index(LoginVM userLogin)
         {
-            return RedirectToAction("Index", "Dashboard"); 
+            try
+            {
+                string EncyptedPassword = userLogin.Password; // Encrypt(userLogin.Password);
+
+                var data = _db.tbl_AdminUsers.Where(x => x.MobileNo == userLogin.MobileNo && x.Password == EncyptedPassword && !x.IsDeleted).FirstOrDefault();
+
+                if (data != null)
+                {  
+
+                    if (!data.IsActive)
+                    {
+                        TempData["LoginError"] = "Your Account is not active. Please contact administrator.";
+                        return View();
+                    }
+
+                    //var roleData = _db.tbl_AdminRoles.Where(x => x.AdminRoleId == data.AdminRoleId).FirstOrDefault();
+
+                    //if (!roleData.IsActive)
+                    //{
+                    //    TempData["LoginError"] = "Your Role is not active. Please contact administrator.";
+                    //    return View();
+                    //}
+
+                    //if (roleData.IsDelete)
+                    //{
+                    //    TempData["LoginError"] = "Your Role is deleted. Please contact administrator.";
+                    //    return View();
+                    //}
+
+                    clsAdminSession.SessionID = Session.SessionID;
+                    clsAdminSession.UserID = data.AdminUserId;
+                    clsAdminSession.RoleID = data.AdminRoleId;                    
+                    clsAdminSession.UserName = data.FirstName + " " + data.LastName;
+                    clsAdminSession.ImagePath = data.ProfilePicture;
+                    clsAdminSession.MobileNumber = data.MobileNo;
+                    
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else
+                {
+                    TempData["LoginError"] = "Invalid Mobile or Password";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = ex.Message.ToString();
+            }
+
+            return View();
         }
 
         public string SendOTP(string MobileNumber)

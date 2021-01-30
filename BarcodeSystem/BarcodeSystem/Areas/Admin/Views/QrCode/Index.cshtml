@@ -1,0 +1,95 @@
+﻿@using Newtonsoft.Json;
+@using BarcodeSystem.Models;
+@{
+    ViewBag.Title = "QR Codes";
+
+    int counter = 1;
+    List<tbl_Barcodes> lstBarcodes = ViewData["lstBarcodes"] as List<tbl_Barcodes>;
+}
+
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h3>
+                            QR Code List
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ol class="breadcrumb pull-right">
+                        <li class="breadcrumb-item"><a href="/"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item">QR Codes</li>
+                        <li class="breadcrumb-item active">QR Code List</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h5>QR Code List</h5>
+            </div>
+            <div class="card-body vendor-table">
+                <div class="btn-popup pull-right">
+                    <button type="button" class="btn btn-primary" id="btnAddBarcode">Create New QR Codes</button>
+                </div>
+                <table class="display" id="basic-1">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>QR Code Number</th>
+                            <th>Amount</th>
+                            <th>Created Date</th>
+                            <th width="15%;">Active</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (lstBarcodes != null && lstBarcodes.Count > 0)
+                        {
+                            foreach (var obj in lstBarcodes)
+                            {
+                                <tr class="gradeX">
+                                    <td>@counter.</td>
+                                    <td>@obj.BarcodeNumber</td>
+                                    <td>@obj.Amount</td>
+                                    <td>@obj.CreatedDate.Value.ToString("dd/MM/yyyy")</td>                                    
+                                    @if (obj.IsActive == true)
+                                    {
+                                        <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive">Active</span></td>
+                                    }
+                                    else
+                                    {
+                                        <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active">InActive</span></td>
+                                    }
+                                    <td>
+                                        <a href="/admin/qrcode/detail/@obj.BarcodeId"><i class="fa fa-eye font-success"></i></a>
+                                    </td>
+                                </tr>
+                                counter++;
+                            }
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+</div>
+<script>
+   
+    $(document).on("click", "#btnAddBarcode", function () {
+        window.location.href = "/admin/qrcode/CreateQrCodes";
+    });
+    
+</script>

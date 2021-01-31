@@ -55,5 +55,68 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Barcodes">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_Barcodes">
+        <MappingFragment StoreEntitySet="tbl_Barcodes">
+          <ScalarProperty Name="SetId" ColumnName="SetId" />
+          <ScalarProperty Name="UsedBy" ColumnName="UsedBy" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="BarcodeNumber" ColumnName="BarcodeNumber" />
+          <ScalarProperty Name="BarcodeId" ColumnName="BarcodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_BarcodeSet">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_BarcodeSet">
+        <MappingFragment StoreEntitySet="tbl_BarcodeSet">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="BarcodeSetId" ColumnName="BarcodeSetId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_BarcodeUsers">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_BarcodeUsers">
+        <MappingFragment StoreEntitySet="tbl_BarcodeUsers">
+          <ScalarProperty Name="SettledBy" ColumnName="SettledBy" />
+          <ScalarProperty Name="SettledDate" ColumnName="SettledDate" />
+          <ScalarProperty Name="IsAmountSettled" ColumnName="IsAmountSettled" />
+          <ScalarProperty Name="ScanDate" ColumnName="ScanDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="BarcodeId" ColumnName="BarcodeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="BarcodeUserId" ColumnName="BarcodeUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ClientUsers">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_ClientUsers">
+        <MappingFragment StoreEntitySet="tbl_ClientUsers">
+          <ScalarProperty Name="WalletAmt" ColumnName="WalletAmt" />
+          <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+          <ScalarProperty Name="AlternateMobileNo" ColumnName="AlternateMobileNo" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="ClientRoleId" ColumnName="ClientRoleId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ClientUserId" ColumnName="ClientUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

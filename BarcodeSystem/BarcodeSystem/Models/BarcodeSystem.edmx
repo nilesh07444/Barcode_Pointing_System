@@ -28,6 +28,65 @@
           <Property Name="MobileNo" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="tbl_Barcodes">
+          <Key>
+            <PropertyRef Name="BarcodeId" />
+          </Key>
+          <Property Name="BarcodeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BarcodeNumber" Type="nvarchar" MaxLength="60" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsUsed" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="UsedBy" Type="bigint" />
+          <Property Name="SetId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_BarcodeSet">
+          <Key>
+            <PropertyRef Name="BarcodeSetId" />
+          </Key>
+          <Property Name="BarcodeSetId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_BarcodeUsers">
+          <Key>
+            <PropertyRef Name="BarcodeUserId" />
+          </Key>
+          <Property Name="BarcodeUserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="BarcodeId" Type="bigint" />
+          <Property Name="Amount" Type="bigint" />
+          <Property Name="ScanDate" Type="datetime" />
+          <Property Name="IsAmountSettled" Type="bit" />
+          <Property Name="SettledDate" Type="datetime" />
+          <Property Name="SettledBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="tbl_ClientUsers">
+          <Key>
+            <PropertyRef Name="ClientUserId" />
+          </Key>
+          <Property Name="ClientUserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClientRoleId" Type="bigint" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProfilePicture" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="bigint" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="AlternateMobileNo" Type="nvarchar(max)" />
+          <Property Name="Prefix" Type="nvarchar" MaxLength="10" />
+          <Property Name="WalletAmt" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="tbl_HomeImages">
           <Key>
             <PropertyRef Name="HomeImageId" />
@@ -58,6 +117,10 @@
         <EntityContainer Name="BarcodeSystemDbModelStoreContainer">
           <EntitySet Name="tbl_AdminRoles" EntityType="Self.tbl_AdminRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_AdminUsers" EntityType="Self.tbl_AdminUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Barcodes" EntityType="Self.tbl_Barcodes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_BarcodeSet" EntityType="Self.tbl_BarcodeSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_BarcodeUsers" EntityType="Self.tbl_BarcodeUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_ClientUsers" EntityType="Self.tbl_ClientUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_HomeImages" EntityType="Self.tbl_HomeImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -70,6 +133,10 @@
           <EntitySet Name="tbl_AdminUsers" EntityType="BarcodeSystemDbModel.tbl_AdminUsers" />
           <EntitySet Name="tbl_HomeImages" EntityType="BarcodeSystemDbModel.tbl_HomeImages" />
           <EntitySet Name="tbl_Product" EntityType="BarcodeSystemDbModel.tbl_Product" />
+          <EntitySet Name="tbl_Barcodes" EntityType="BarcodeSystemDbModel.tbl_Barcodes" />
+          <EntitySet Name="tbl_BarcodeSet" EntityType="BarcodeSystemDbModel.tbl_BarcodeSet" />
+          <EntitySet Name="tbl_BarcodeUsers" EntityType="BarcodeSystemDbModel.tbl_BarcodeUsers" />
+          <EntitySet Name="tbl_ClientUsers" EntityType="BarcodeSystemDbModel.tbl_ClientUsers" />
         </EntityContainer>
         <EntityType Name="tbl_AdminRoles">
           <Key>
@@ -120,6 +187,65 @@
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UpdatedBy" Type="Int64" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Barcodes">
+          <Key>
+            <PropertyRef Name="BarcodeId" />
+          </Key>
+          <Property Name="BarcodeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BarcodeNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsUsed" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="UsedBy" Type="Int64" />
+          <Property Name="SetId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="tbl_BarcodeSet">
+          <Key>
+            <PropertyRef Name="BarcodeSetId" />
+          </Key>
+          <Property Name="BarcodeSetId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_BarcodeUsers">
+          <Key>
+            <PropertyRef Name="BarcodeUserId" />
+          </Key>
+          <Property Name="BarcodeUserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="BarcodeId" Type="Int64" />
+          <Property Name="Amount" Type="Int64" />
+          <Property Name="ScanDate" Type="DateTime" Precision="3" />
+          <Property Name="IsAmountSettled" Type="Boolean" />
+          <Property Name="SettledDate" Type="DateTime" Precision="3" />
+          <Property Name="SettledBy" Type="Int64" />
+        </EntityType>
+        <EntityType Name="tbl_ClientUsers">
+          <Key>
+            <PropertyRef Name="ClientUserId" />
+          </Key>
+          <Property Name="ClientUserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientRoleId" Type="Int64" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProfilePicture" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+          <Property Name="AlternateMobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prefix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="WalletAmt" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -178,6 +304,69 @@
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductTitle" ColumnName="ProductTitle" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Barcodes">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_Barcodes">
+              <MappingFragment StoreEntitySet="tbl_Barcodes">
+                <ScalarProperty Name="SetId" ColumnName="SetId" />
+                <ScalarProperty Name="UsedBy" ColumnName="UsedBy" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="BarcodeNumber" ColumnName="BarcodeNumber" />
+                <ScalarProperty Name="BarcodeId" ColumnName="BarcodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_BarcodeSet">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_BarcodeSet">
+              <MappingFragment StoreEntitySet="tbl_BarcodeSet">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="BarcodeSetId" ColumnName="BarcodeSetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_BarcodeUsers">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_BarcodeUsers">
+              <MappingFragment StoreEntitySet="tbl_BarcodeUsers">
+                <ScalarProperty Name="SettledBy" ColumnName="SettledBy" />
+                <ScalarProperty Name="SettledDate" ColumnName="SettledDate" />
+                <ScalarProperty Name="IsAmountSettled" ColumnName="IsAmountSettled" />
+                <ScalarProperty Name="ScanDate" ColumnName="ScanDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="BarcodeId" ColumnName="BarcodeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="BarcodeUserId" ColumnName="BarcodeUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_ClientUsers">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_ClientUsers">
+              <MappingFragment StoreEntitySet="tbl_ClientUsers">
+                <ScalarProperty Name="WalletAmt" ColumnName="WalletAmt" />
+                <ScalarProperty Name="Prefix" ColumnName="Prefix" />
+                <ScalarProperty Name="AlternateMobileNo" ColumnName="AlternateMobileNo" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProfilePicture" ColumnName="ProfilePicture" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ClientRoleId" ColumnName="ClientRoleId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ClientUserId" ColumnName="ClientUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

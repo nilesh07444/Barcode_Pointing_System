@@ -186,6 +186,14 @@
                         <li><a class="sidebar-header" href="/admin/dashboard"><i data-feather="home"></i><span>Dashboard</span></a></li>
 
                         <li>
+                            <a class="sidebar-header" href=""><i data-feather="lock"></i><span>QR Code</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li class="@(ViewBag.Title == "AddNewQRCode" ? "active" : "")"><a href="/admin/qrcode/add"><i class="fa fa-circle"></i>Add New QR Code</a></li>
+                                <li class="@(ViewBag.Title == "QRCodeList" ? "active" : "")"><a href="/admin/qrcode"><i class="fa fa-circle"></i>QR Code List</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
                             <a class="sidebar-header" href=""><i data-feather="lock"></i><span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                             <ul class="sidebar-submenu">
                                 <li class="@(ViewBag.Title == "AddNewProduct" ? "active" : "")"><a href="/admin/product/add"><i class="fa fa-circle"></i>Add New Product</a></li>

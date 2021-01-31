@@ -12,14 +12,15 @@ using System.Web.Mvc;
 
 namespace BarcodeSystem.Areas.Admin.Controllers
 {
+    [CustomAuthorize]
     public class QrCodeController : Controller
     {
-        private readonly EonBarcodeEntities _db;
+        private readonly BarcodeSystemDbEntities _db;
         public QrCodeController()
         {
-            _db = new EonBarcodeEntities();
+            _db = new BarcodeSystemDbEntities();
         }
-        // GET: Admin/QrCode
+        
         public ActionResult Index()
         {
             List<tbl_Barcodes> lstBarcodes = _db.tbl_Barcodes.OrderByDescending(x => x.CreatedDate).ToList();
@@ -32,7 +33,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             return View();
         }
 
-        public string SaveBarcodes(string Amount,string Qty)
+        public string SaveBarcodes(string Amount, string Qty)
         {
             try
             {
@@ -60,12 +61,13 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 }
                 return "Success^" + objSet.BarcodeSetId;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return e.Message;
             }
-            
+
         }
+
         public ActionResult DisplayBarcodes(int Id)
         {
             List<tbl_Barcodes> lstBarcodes = _db.tbl_Barcodes.Where(o => o.SetId == Id).ToList();
@@ -79,11 +81,15 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 {
                     lstBarcodesstr.Add(objBar.BarcodeNumber);
                     QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                    QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(objBar.BarcodeNumber, QRCodeGenerator.ECCLevel.Q);
+                    //QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(objBar.BarcodeNumber, QRCodeGenerator.ECCLevel.Q);
+
+                    QRCodeData qrCodeData = qrGenerator.CreateQrCode(objBar.BarcodeNumber, QRCodeGenerator.ECCLevel.Q);
+                    QRCode qrCode = new QRCode(qrCodeData);
+
                     using (Bitmap bitMap = qrCode.GetGraphic(20))
                     {
                         bitMap.Save(ms, ImageFormat.Png);
-                        lstBarcodesstrImage.Add("data:image/png;base64," + Convert.ToBase64String(ms.ToArray()));                        
+                        lstBarcodesstrImage.Add("data:image/png;base64," + Convert.ToBase64String(ms.ToArray()));
                     }
                 }
             }
@@ -93,5 +99,6 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             ViewBag.Amount = Amount;
             return View();
         }
+
     }
 }

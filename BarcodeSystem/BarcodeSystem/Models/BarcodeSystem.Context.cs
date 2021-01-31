@@ -29,5 +29,9 @@ namespace BarcodeSystem.Models
         public virtual DbSet<tbl_AdminUsers> tbl_AdminUsers { get; set; }
         public virtual DbSet<tbl_HomeImages> tbl_HomeImages { get; set; }
         public virtual DbSet<tbl_Product> tbl_Product { get; set; }
+        public virtual DbSet<tbl_Barcodes> tbl_Barcodes { get; set; }
+        public virtual DbSet<tbl_BarcodeSet> tbl_BarcodeSet { get; set; }
+        public virtual DbSet<tbl_BarcodeUsers> tbl_BarcodeUsers { get; set; }
+        public virtual DbSet<tbl_ClientUsers> tbl_ClientUsers { get; set; }
     }
 }

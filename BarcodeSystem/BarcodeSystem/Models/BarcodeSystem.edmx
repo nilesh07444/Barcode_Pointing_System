@@ -51,6 +51,18 @@
           <Property Name="BarcodeSetId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbl_BarcodeTransactions">
+          <Key>
+            <PropertyRef Name="BarcodeTransactionId" />
+          </Key>
+          <Property Name="BarcodeTransactionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="QRCodeId" Type="bigint" />
+          <Property Name="IsDebit" Type="bit" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="550" />
+          <Property Name="TransactionDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="tbl_BarcodeUsers">
           <Key>
             <PropertyRef Name="BarcodeUserId" />
@@ -124,6 +136,7 @@
           <EntitySet Name="tbl_AdminUsers" EntityType="Self.tbl_AdminUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Barcodes" EntityType="Self.tbl_Barcodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_BarcodeSet" EntityType="Self.tbl_BarcodeSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_BarcodeTransactions" EntityType="Self.tbl_BarcodeTransactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_BarcodeUsers" EntityType="Self.tbl_BarcodeUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_ClientUsers" EntityType="Self.tbl_ClientUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_HomeImages" EntityType="Self.tbl_HomeImages" Schema="dbo" store:Type="Tables" />
@@ -142,6 +155,7 @@
           <EntitySet Name="tbl_BarcodeSet" EntityType="BarcodeSystemDbModel.tbl_BarcodeSet" />
           <EntitySet Name="tbl_BarcodeUsers" EntityType="BarcodeSystemDbModel.tbl_BarcodeUsers" />
           <EntitySet Name="tbl_ClientUsers" EntityType="BarcodeSystemDbModel.tbl_ClientUsers" />
+          <EntitySet Name="tbl_BarcodeTransactions" EntityType="BarcodeSystemDbModel.tbl_BarcodeTransactions" />
         </EntityContainer>
         <EntityType Name="tbl_AdminRoles">
           <Key>
@@ -256,6 +270,18 @@
           <Property Name="Pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="City" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_BarcodeTransactions">
+          <Key>
+            <PropertyRef Name="BarcodeTransactionId" />
+          </Key>
+          <Property Name="BarcodeTransactionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="QRCodeId" Type="Int64" />
+          <Property Name="IsDebit" Type="Boolean" />
+          <Property Name="Remarks" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -382,6 +408,19 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="ClientUserId" ColumnName="ClientUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_BarcodeTransactions">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_BarcodeTransactions">
+              <MappingFragment StoreEntitySet="tbl_BarcodeTransactions">
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="IsDebit" ColumnName="IsDebit" />
+                <ScalarProperty Name="QRCodeId" ColumnName="QRCodeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="BarcodeTransactionId" ColumnName="BarcodeTransactionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

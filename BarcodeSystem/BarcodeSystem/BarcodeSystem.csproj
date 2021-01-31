@@ -226,6 +226,9 @@
     <Compile Include="Models\tbl_BarcodeSet.cs">
       <DependentUpon>BarcodeSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_BarcodeTransactions.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_BarcodeUsers.cs">
       <DependentUpon>BarcodeSystem.tt</DependentUpon>
     </Compile>
@@ -241,10 +244,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\ClientUserVM.cs" />
     <Compile Include="ViewModel\DashboardCountVM.cs" />
+    <Compile Include="ViewModel\GeneralVM.cs" />
     <Compile Include="ViewModel\HomeImageVM.cs" />
+    <Compile Include="ViewModel\HomePageVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\OtpVM.cs" />
     <Compile Include="ViewModel\ProductVM.cs" />
+    <Compile Include="ViewModel\QrCodeVM.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@
         <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_BarcodeSet" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_BarcodeUsers" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_ClientUsers" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_BarcodeTransactions" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

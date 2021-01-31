@@ -63,7 +63,7 @@
                                     <td>
                                         @if (!string.IsNullOrEmpty(obj.ProductImage))
                                         {
-                                            if (File.Exists(Server.MapPath(ErrorMessage.HomeDirectoryPath + obj.ProductImage)))
+                                            if (File.Exists(Server.MapPath(ErrorMessage.ProductDirectoryPath + obj.ProductImage)))
                                             {
                                                 <img src="@ErrorMessage.ProductDirectoryPath/@obj.ProductImage" alt="" class="img-fluid img-40 blur-up lazyloaded" style="width: 40px; height:40px;" />
                                             }

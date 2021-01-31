@@ -30,3 +30,4 @@
 *.exe
 *.out
 *.app
+/BarcodeSystem/BarcodeSystem/bin/BarcodeSystem.pdb

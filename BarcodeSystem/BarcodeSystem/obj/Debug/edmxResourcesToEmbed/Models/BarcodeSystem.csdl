@@ -118,5 +118,10 @@
     <Property Name="AlternateMobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Prefix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="WalletAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Birthdate" Type="DateTime" Precision="3" />
+    <Property Name="AdharNumber" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

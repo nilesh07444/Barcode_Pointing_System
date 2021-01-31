@@ -32,5 +32,10 @@ namespace BarcodeSystem.Models
         public string AlternateMobileNo { get; set; }
         public string Prefix { get; set; }
         public Nullable<decimal> WalletAmt { get; set; }
+        public Nullable<System.DateTime> Birthdate { get; set; }
+        public string AdharNumber { get; set; }
+        public string Pincode { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
     }
 }

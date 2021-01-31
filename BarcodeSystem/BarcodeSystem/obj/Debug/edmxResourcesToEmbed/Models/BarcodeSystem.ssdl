@@ -81,6 +81,11 @@
     <Property Name="AlternateMobileNo" Type="nvarchar(max)" />
     <Property Name="Prefix" Type="nvarchar" MaxLength="10" />
     <Property Name="WalletAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Birthdate" Type="datetime" />
+    <Property Name="AdharNumber" Type="nvarchar" MaxLength="26" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="6" />
+    <Property Name="City" Type="nvarchar" MaxLength="60" />
+    <Property Name="State" Type="nvarchar" MaxLength="60" />
   </EntityType>
   <EntityType Name="tbl_HomeImages">
     <Key>

@@ -86,6 +86,11 @@
           <Property Name="AlternateMobileNo" Type="nvarchar(max)" />
           <Property Name="Prefix" Type="nvarchar" MaxLength="10" />
           <Property Name="WalletAmt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Birthdate" Type="datetime" />
+          <Property Name="AdharNumber" Type="nvarchar" MaxLength="26" />
+          <Property Name="Pincode" Type="nvarchar" MaxLength="6" />
+          <Property Name="City" Type="nvarchar" MaxLength="60" />
+          <Property Name="State" Type="nvarchar" MaxLength="60" />
         </EntityType>
         <EntityType Name="tbl_HomeImages">
           <Key>
@@ -246,6 +251,11 @@
           <Property Name="AlternateMobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Prefix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="WalletAmt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Birthdate" Type="DateTime" Precision="3" />
+          <Property Name="AdharNumber" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+          <Property Name="Pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -349,6 +359,11 @@
           <EntitySetMapping Name="tbl_ClientUsers">
             <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_ClientUsers">
               <MappingFragment StoreEntitySet="tbl_ClientUsers">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="AdharNumber" ColumnName="AdharNumber" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
                 <ScalarProperty Name="WalletAmt" ColumnName="WalletAmt" />
                 <ScalarProperty Name="Prefix" ColumnName="Prefix" />
                 <ScalarProperty Name="AlternateMobileNo" ColumnName="AlternateMobileNo" />

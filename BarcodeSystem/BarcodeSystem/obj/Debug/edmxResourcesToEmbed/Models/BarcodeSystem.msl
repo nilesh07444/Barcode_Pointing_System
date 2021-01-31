@@ -97,6 +97,11 @@
     <EntitySetMapping Name="tbl_ClientUsers">
       <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_ClientUsers">
         <MappingFragment StoreEntitySet="tbl_ClientUsers">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="AdharNumber" ColumnName="AdharNumber" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
           <ScalarProperty Name="WalletAmt" ColumnName="WalletAmt" />
           <ScalarProperty Name="Prefix" ColumnName="Prefix" />
           <ScalarProperty Name="AlternateMobileNo" ColumnName="AlternateMobileNo" />

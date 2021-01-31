@@ -16,7 +16,7 @@ namespace BarcodeSystem.Areas.WebApi
         {
             context.MapRoute(
                 "WebApi_default",
-                "WebApi/{controller}/{action}/{id}",
+                "api/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

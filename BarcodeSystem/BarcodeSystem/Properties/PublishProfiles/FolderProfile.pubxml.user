@@ -8,7 +8,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/Admin/Views/Dashboard/Index.cshtml">
-      <publishTime>01/30/2021 22:23:12</publishTime>
+      <publishTime>01/30/2021 23:50:35</publishTime>
     </File>
     <File Include="Areas/Admin/Views/HomeImages/Add.cshtml">
       <publishTime>01/30/2021 22:43:34</publishTime>
@@ -22,11 +22,26 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Areas/Admin/Views/Login/Index.cshtml">
       <publishTime>01/30/2021 17:02:26</publishTime>
     </File>
+    <File Include="Areas/Admin/Views/Product/Add.cshtml">
+      <publishTime>01/30/2021 23:53:29</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Product/Edit.cshtml">
+      <publishTime>01/30/2021 23:13:54</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/Product/Index.cshtml">
-      <publishTime>01/30/2021 22:24:33</publishTime>
+      <publishTime>01/31/2021 00:59:57</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/QrCode/CreateQrCodes.cshtml">
+      <publishTime>01/31/2021 01:03:12</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/QrCode/DisplayBarcodes.cshtml">
+      <publishTime>01/31/2021 01:03:12</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/QrCode/Index.cshtml">
+      <publishTime>01/31/2021 01:03:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/_Layout.cshtml">
-      <publishTime>01/30/2021 22:45:50</publishTime>
+      <publishTime>01/31/2021 11:33:16</publishTime>
     </File>
     <File Include="Areas/Admin/Views/web.config">
       <publishTime>01/30/2021 16:27:06</publishTime>
@@ -44,10 +59,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.dll">
-      <publishTime>01/30/2021 23:10:53</publishTime>
+      <publishTime>01/31/2021 11:36:50</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.pdb">
-      <publishTime>01/30/2021 23:10:53</publishTime>
+      <publishTime>01/31/2021 11:36:50</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
@@ -63,6 +78,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>04/22/2019 01:06:16</publishTime>
+    </File>
+    <File Include="bin/QRCoder.dll">
+      <publishTime>11/17/2020 16:57:42</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>
@@ -10973,7 +10991,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/05/2021 18:39:52</publishTime>
     </File>
     <File Include="Models/BarcodeSystem.edmx.diagram">
-      <publishTime>01/30/2021 22:52:10</publishTime>
+      <publishTime>01/31/2021 01:13:52</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>01/05/2021 18:39:52</publishTime>
@@ -11108,7 +11126,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/30/2021 16:18:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/30/2021 23:03:58</publishTime>
+      <publishTime>01/31/2021 11:35:56</publishTime>
     </File>
   </ItemGroup>
 </Project>

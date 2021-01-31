@@ -170,6 +170,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeImagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
@@ -229,6 +230,7 @@
       <DependentUpon>BarcodeSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ClientUserVM.cs" />
     <Compile Include="ViewModel\DashboardCountVM.cs" />
     <Compile Include="ViewModel\HomeImageVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
@@ -1731,8 +1733,6 @@
     <Content Include="Content\assets\images\jewellery\pro\8.jpg" />
     <Content Include="Content\assets\images\jewellery\pro\9.jpg" />
     <Content Include="Content\assets\images\js-grid.png" />
-    <Content Include="Content\assets\images\kbg\footer-logo.png" />
-    <Content Include="Content\assets\images\kbg\logo.png" />
     <Content Include="Content\assets\images\kids\1.jpg" />
     <Content Include="Content\assets\images\kids\2.jpg" />
     <Content Include="Content\assets\images\kids\product\1.jpg" />
@@ -3842,6 +3842,7 @@
     <Content Include="Areas\Admin\Views\QrCode\CreateQrCodes.cshtml" />
     <Content Include="Areas\Admin\Views\QrCode\DisplayBarcodes.cshtml" />
     <Content Include="Areas\Admin\Views\QrCode\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />

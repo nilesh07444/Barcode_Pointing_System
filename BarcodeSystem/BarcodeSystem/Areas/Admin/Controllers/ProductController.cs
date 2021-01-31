@@ -33,7 +33,8 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                                    ProductTitle = c.ProductTitle,
                                    ProductName = c.ProductName,
                                    ProductImage = c.ProductImage,
-                                   IsActive = c.IsActive
+                                   IsActive = c.IsActive,
+                                   IsDeleted = c.IsDeleted
                                }).Where(x => !x.IsDeleted).OrderByDescending(x => x.ProductId).ToList();
 
             }
@@ -147,13 +148,15 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     long LoggedInUserId = Int64.Parse(clsAdminSession.UserID.ToString());
-
-                    string fileName = string.Empty;
+                     
                     string path = Server.MapPath(ProductDirectoryPath);
 
                     bool folderExists = Directory.Exists(path);
                     if (!folderExists)
                         Directory.CreateDirectory(path);
+
+                    tbl_Product objProduct = _db.tbl_Product.Where(x => x.ProductId == productVM.ProductId).FirstOrDefault();
+                    string fileName = objProduct.ProductImage;
 
                     if (ProductImageFile != null)
                     {
@@ -166,16 +169,10 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         }
 
                         // Save file in folder
-                        fileName = Guid.NewGuid().ToString();
+                        fileName = Guid.NewGuid().ToString() + ext;
                         ProductImageFile.SaveAs(path + fileName);
                     }
-                    else
-                    {
-                        ModelState.AddModelError("ProductImageFile", ErrorMessage.ImageRequired);
-                        return View(productVM);
-                    }
-
-                    tbl_Product objProduct = _db.tbl_Product.Where(x => x.ProductId == productVM.ProductId).FirstOrDefault();
+                       
                     objProduct.ProductTitle = productVM.ProductTitle;
                     objProduct.ProductName = productVM.ProductName;
                     objProduct.ProductImage = fileName; 

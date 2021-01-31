@@ -81,3 +81,4 @@ D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSyste
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Release\BarcodeSystem.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Release\BarcodeSystem.pdb
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Release\BarcodeSystem.csprojAssemblyReference.cache
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\QRCoder.dll

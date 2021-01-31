@@ -22,17 +22,10 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         public ActionResult Index()
         {
             DashboardCountVM obj = new DashboardCountVM();
-
-            //List<tbl_ClientUsers> lstUsers = _db.tbl_ClientUsers.Where(x => x.IsActive && !x.IsDelete).ToList();
-
-            //obj.TotalCustomers = lstUsers.Where(x => x.ClientRoleId == (int)ClientRoles.Customer).ToList().Count;
-            //obj.TotalDistributors = lstUsers.Where(x => x.ClientRoleId == (int)ClientRoles.Distributor).ToList().Count;
-            //obj.TotalOrders = _db.tbl_Orders.Where(x => x.IsActive && !x.IsDelete).ToList().Count;
-            //obj.TotalProductItems = _db.tbl_ProductItems.Where(x => x.IsActive && !x.IsDelete).ToList().Count;
-            //obj.TotalNewOrder = _db.tbl_Orders.Where(x => x.IsActive && !x.IsDelete && x.OrderStatusId == 1).ToList().Count;
-            //obj.TotalConfirmOrder = _db.tbl_Orders.Where(x => x.IsActive && !x.IsDelete && x.OrderStatusId == 2).ToList().Count;
-            //obj.TotalDispatchedOrder = _db.tbl_Orders.Where(x => x.IsActive && !x.IsDelete && x.OrderStatusId == 3).ToList().Count;
-            //obj.TotalPendingDistributorRequest = _db.tbl_DistributorRequestDetails.Where(x => x.Status == 0).ToList().Count;
+              
+            obj.TotalCustomers = _db.tbl_ClientUsers.Where(x => x.IsActive && !x.IsDelete).ToList().Count;  
+            obj.TotalHomeImages = _db.tbl_HomeImages.Where(x => x.IsActive).ToList().Count;
+            obj.TotalProducts = _db.tbl_Product.Where(x => x.IsActive && !x.IsDeleted).ToList().Count; 
 
             return View(obj);
         }

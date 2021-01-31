@@ -9,6 +9,10 @@
         <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_AdminUsers" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_HomeImages" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_Product" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_Barcodes" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_BarcodeSet" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_BarcodeUsers" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BarcodeSystemDbModel.tbl_ClientUsers" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

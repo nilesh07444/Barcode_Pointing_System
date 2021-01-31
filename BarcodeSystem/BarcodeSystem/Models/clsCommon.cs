@@ -1,4 +1,5 @@
-﻿using BarcodeSystem.ViewModel;
+﻿using BarcodeSystem.Models;
+using BarcodeSystem.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,6 +10,7 @@ using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using System.Web.Configuration;
 
 namespace BarcodeSystem.Model
 {
@@ -179,23 +181,14 @@ namespace BarcodeSystem.Model
                 FinYear = PreYear + "-" + CurYear;
             return FinYear.Trim();
         }
-    
-        /*
-        public string GetSmsContent(int Id)
+
+
+        public static string GetSMSUrl()
         {
-            krupagallarydbEntities _db = new krupagallarydbEntities();
-            var objSms = _db.tbl_SMSContent.Where(o => o.SMSContentId == Id).FirstOrDefault();
-            if(objSms != null)
-            {
-                return objSms.SMSDescription.ToString();
-            }
-            else
-            {
-                return "";
-            }
+            string smsurl = WebConfigurationManager.AppSettings["SMSUrl"];
+            return smsurl;
         }
-        */
-          
+        
     }
      
     enum OrderStatus

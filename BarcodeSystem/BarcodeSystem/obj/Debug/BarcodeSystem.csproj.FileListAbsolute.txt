@@ -81,3 +81,4 @@ D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSyste
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.csproj.CopyComplete
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.dll
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.pdb
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.csprojAssemblyReference.cache

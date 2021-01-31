@@ -1,6 +1,4 @@
-﻿@using BarcodeSystem.Model;
-@using BarcodeSystem.Helper;
-@using Newtonsoft.Json;
+﻿@using BarcodeSystem.Model; 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -175,8 +173,7 @@
                             else
                             {
                                 <img class="img-60 rounded-circle lazyloaded blur-up" src="~/Images/default_user_image.png" alt="#">
-                            }
-
+                            } 
                         </div>
                         <h6 class="mt-3 f-14">@clsAdminSession.UserName</h6>
                         <p>@clsAdminSession.RoleName</p>
@@ -184,7 +181,7 @@
                     <ul class="sidebar-menu">
 
                         <li><a class="sidebar-header" href="/admin/dashboard"><i data-feather="home"></i><span>Dashboard</span></a></li>
-
+                        @*<li><a class="sidebar-header" href="/admin/customer"><i data-feather="home"></i><span>Customers</span></a></li>*@
                         <li>
                             <a class="sidebar-header" href=""><i data-feather="lock"></i><span>QR Code</span><i class="fa fa-angle-right pull-right"></i></a>
                             <ul class="sidebar-submenu">
@@ -193,15 +190,21 @@
                             </ul>
                         </li>
 
-                        <li>
+                        @*<li>
                             <a class="sidebar-header" href=""><i data-feather="lock"></i><span>Products</span><i class="fa fa-angle-right pull-right"></i></a>
                             <ul class="sidebar-submenu">
                                 <li class="@(ViewBag.Title == "AddNewProduct" ? "active" : "")"><a href="/admin/product/add"><i class="fa fa-circle"></i>Add New Product</a></li>
                                 <li class="@(ViewBag.Title == "ProductList" ? "active" : "")"><a href="/admin/product"><i class="fa fa-circle"></i>Product List</a></li>
                             </ul>
-                        </li>
+                        </li>*@
 
-                        <li><a class="sidebar-header" href="/admin/homeimages"><i data-feather="home"></i><span>Home Images</span></a></li>
+                        <li>
+                            <a class="sidebar-header" href=""><i data-feather="lock"></i><span>Home Images</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li class="@(ViewBag.Title == "AddNewHomeImage" ? "active" : "")"><a href="/admin/homeimages/add"><i class="fa fa-circle"></i>Add New Home Image</a></li>
+                                <li class="@(ViewBag.Title == "HomeImagesList" ? "active" : "")"><a href="/admin/homeimages"><i class="fa fa-circle"></i>Home Images List</a></li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </div>

@@ -1,33 +1,12 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-/BarcodeSystem/BarcodeSystem/bin/BarcodeSystem.pdb
+BarcodeSystem/*.nupkg
+BarcodeSystem/*.dll
+BarcodeSystem/*.pdb
+BarcodeSystem/*.xdt
+BarcodeSystem/bin
+BarcodeSystem/obj
+packages 
+.vs/* 
+/.vs
+/BarcodeSystem/Images/HomeMedia
+/BarcodeSystem/Images/ProductMedia
+/BarcodeSystem/BarcodeSystem/bin/roslyn/*.dll

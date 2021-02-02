@@ -82,3 +82,9 @@ D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSyste
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Release\BarcodeSystem.pdb
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Release\BarcodeSystem.csprojAssemblyReference.cache
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\QRCoder.dll
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Net.Http.Formatting.dll
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.Http.dll
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.Http.WebHost.dll
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Net.Http.Formatting.xml
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.Http.xml
+D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.Http.WebHost.xml

@@ -9,6 +9,7 @@
     <EntitySet Name="tbl_BarcodeSet" EntityType="BarcodeSystemDbModel.tbl_BarcodeSet" />
     <EntitySet Name="tbl_BarcodeUsers" EntityType="BarcodeSystemDbModel.tbl_BarcodeUsers" />
     <EntitySet Name="tbl_ClientUsers" EntityType="BarcodeSystemDbModel.tbl_ClientUsers" />
+    <EntitySet Name="tbl_BarcodeTransactions" EntityType="BarcodeSystemDbModel.tbl_BarcodeTransactions" />
   </EntityContainer>
   <EntityType Name="tbl_AdminRoles">
     <Key>
@@ -118,5 +119,22 @@
     <Property Name="AlternateMobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Prefix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="WalletAmt" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Birthdate" Type="DateTime" Precision="3" />
+    <Property Name="AdharNumber" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_BarcodeTransactions">
+    <Key>
+      <PropertyRef Name="BarcodeTransactionId" />
+    </Key>
+    <Property Name="BarcodeTransactionId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UserId" Type="Int64" />
+    <Property Name="QRCodeId" Type="Int64" />
+    <Property Name="IsDebit" Type="Boolean" />
+    <Property Name="Remarks" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="3" />
   </EntityType>
 </Schema>

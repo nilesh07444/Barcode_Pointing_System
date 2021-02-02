@@ -97,6 +97,11 @@
     <EntitySetMapping Name="tbl_ClientUsers">
       <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_ClientUsers">
         <MappingFragment StoreEntitySet="tbl_ClientUsers">
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="AdharNumber" ColumnName="AdharNumber" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
           <ScalarProperty Name="WalletAmt" ColumnName="WalletAmt" />
           <ScalarProperty Name="Prefix" ColumnName="Prefix" />
           <ScalarProperty Name="AlternateMobileNo" ColumnName="AlternateMobileNo" />
@@ -115,6 +120,19 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="ClientUserId" ColumnName="ClientUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_BarcodeTransactions">
+      <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_BarcodeTransactions">
+        <MappingFragment StoreEntitySet="tbl_BarcodeTransactions">
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IsDebit" ColumnName="IsDebit" />
+          <ScalarProperty Name="QRCodeId" ColumnName="QRCodeId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="BarcodeTransactionId" ColumnName="BarcodeTransactionId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

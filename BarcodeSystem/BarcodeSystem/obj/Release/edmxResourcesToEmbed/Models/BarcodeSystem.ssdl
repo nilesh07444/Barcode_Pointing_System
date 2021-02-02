@@ -46,6 +46,18 @@
     <Property Name="BarcodeSetId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" />
   </EntityType>
+  <EntityType Name="tbl_BarcodeTransactions">
+    <Key>
+      <PropertyRef Name="BarcodeTransactionId" />
+    </Key>
+    <Property Name="BarcodeTransactionId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="UserId" Type="bigint" />
+    <Property Name="QRCodeId" Type="bigint" />
+    <Property Name="IsDebit" Type="bit" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="550" />
+    <Property Name="TransactionDate" Type="datetime" />
+  </EntityType>
   <EntityType Name="tbl_BarcodeUsers">
     <Key>
       <PropertyRef Name="BarcodeUserId" />
@@ -81,6 +93,11 @@
     <Property Name="AlternateMobileNo" Type="nvarchar(max)" />
     <Property Name="Prefix" Type="nvarchar" MaxLength="10" />
     <Property Name="WalletAmt" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Birthdate" Type="datetime" />
+    <Property Name="AdharNumber" Type="nvarchar" MaxLength="26" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="6" />
+    <Property Name="City" Type="nvarchar" MaxLength="60" />
+    <Property Name="State" Type="nvarchar" MaxLength="60" />
   </EntityType>
   <EntityType Name="tbl_HomeImages">
     <Key>
@@ -114,6 +131,7 @@
     <EntitySet Name="tbl_AdminUsers" EntityType="Self.tbl_AdminUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_Barcodes" EntityType="Self.tbl_Barcodes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_BarcodeSet" EntityType="Self.tbl_BarcodeSet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_BarcodeTransactions" EntityType="Self.tbl_BarcodeTransactions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_BarcodeUsers" EntityType="Self.tbl_BarcodeUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_ClientUsers" EntityType="Self.tbl_ClientUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbl_HomeImages" EntityType="Self.tbl_HomeImages" Schema="dbo" store:Type="Tables" />

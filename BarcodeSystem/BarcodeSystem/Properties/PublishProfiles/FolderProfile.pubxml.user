@@ -11,7 +11,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/31/2021 15:14:28</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Dashboard/Index.cshtml">
-      <publishTime>01/31/2021 17:32:05</publishTime>
+      <publishTime>01/31/2021 23:23:14</publishTime>
     </File>
     <File Include="Areas/Admin/Views/HomeImages/Add.cshtml">
       <publishTime>01/30/2021 22:43:34</publishTime>
@@ -25,6 +25,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Areas/Admin/Views/Login/Index.cshtml">
       <publishTime>01/31/2021 22:27:28</publishTime>
     </File>
+    <File Include="Areas/Admin/Views/MyProfile/Index.cshtml">
+      <publishTime>02/01/2021 23:28:46</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/Product/Add.cshtml">
       <publishTime>01/31/2021 13:59:28</publishTime>
     </File>
@@ -32,7 +35,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/31/2021 14:16:59</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Product/Index.cshtml">
-      <publishTime>01/31/2021 14:18:24</publishTime>
+      <publishTime>02/01/2021 23:33:53</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QrCode/CreateQrCodes.cshtml">
       <publishTime>01/31/2021 01:03:12</publishTime>
@@ -41,10 +44,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/31/2021 01:03:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QrCode/Index.cshtml">
-      <publishTime>01/31/2021 01:03:12</publishTime>
+      <publishTime>02/01/2021 23:37:43</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Setting/ChangePassword.cshtml">
+      <publishTime>02/01/2021 23:13:30</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Setting/Index.cshtml">
+      <publishTime>02/01/2021 23:07:31</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/_Layout.cshtml">
-      <publishTime>01/31/2021 18:23:21</publishTime>
+      <publishTime>02/01/2021 23:23:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/web.config">
       <publishTime>01/30/2021 16:27:06</publishTime>
@@ -62,10 +71,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.dll">
-      <publishTime>01/31/2021 23:20:20</publishTime>
+      <publishTime>02/02/2021 23:19:23</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.pdb">
-      <publishTime>01/31/2021 23:20:20</publishTime>
+      <publishTime>02/02/2021 23:19:23</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
@@ -232,8 +241,17 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>11/28/2018 13:00:36</publishTime>
+    </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>11/28/2018 13:04:24</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>11/28/2018 13:01:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>11/28/2018 13:02:56</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>11/28/2018 12:59:46</publishTime>
@@ -10994,7 +11012,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/05/2021 18:39:52</publishTime>
     </File>
     <File Include="Models/BarcodeSystem.edmx.diagram">
-      <publishTime>01/31/2021 01:13:52</publishTime>
+      <publishTime>02/01/2021 22:12:10</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>01/05/2021 18:39:52</publishTime>
@@ -11129,7 +11147,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/30/2021 16:18:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/31/2021 17:37:48</publishTime>
+      <publishTime>02/02/2021 23:19:25</publishTime>
     </File>
   </ItemGroup>
 </Project>

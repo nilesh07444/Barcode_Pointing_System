@@ -184,6 +184,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeImagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MyProfileController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PrivacyPolicyController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\QrCodeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Areas\WebApi\Controllers\MyProfileController.cs" />
     <Compile Include="Areas\WebApi\WebApiAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Filters\AdminPermissionAttribute.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Filters\CustomClientAuthorize.cs" />
@@ -3869,6 +3871,7 @@
     <Content Include="Areas\Admin\Views\Setting\ChangePassword.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MyProfile\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PrivacyPolicy\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />
@@ -3918,6 +3921,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Privacy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

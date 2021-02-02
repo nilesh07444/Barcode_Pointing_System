@@ -70,9 +70,10 @@
                                     {
                                         <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active">InActive</span></td>
                                     }
-                                    <td>
-                                        <a href="/admin/qrcode/detail/@obj.BarcodeId"><i class="fa fa-eye font-success"></i></a>
-                                    </td>
+                                <td>
+                                    <a href="/admin/qrcode/detail/@obj.BarcodeId"><i class="fa fa-eye font-success"></i></a>
+                                    <a href="javascript:void(0);" onclick="fnDeleteProduct('@obj.BarcodeId')"><i class="fa fa-trash font-danger"></i></a>
+                                </td>
                                 </tr>
                                 counter++;
                             }
@@ -87,9 +88,52 @@
 
 </div>
 <script>
-   
+
     $(document).on("click", "#btnAddBarcode", function () {
         window.location.href = "/admin/qrcode/CreateQrCodes";
     });
-    
+
+
+    function fnDeleteProduct(HomeImage_Id) {
+        jQuery("#hdnDeleteHomeImage").val(HomeImage_Id);
+        $('#deleteHomeImageModal').modal('show');
+    }
+
+    jQuery(document).on("click", "#btnDeleteHomeImage", function () {
+
+        var Product_Id = jQuery("#hdnDeleteHomeImage").val();
+        if (Product_Id != "" && Product_Id != null) {
+            $('#deleteHomeImageModal').modal('hide');
+
+            StartLoading();
+
+            var URL = '@Url.Action("DeleteProduct", "product")';
+            $.ajax({
+                type: 'POST',
+                async: true,
+                url: URL + "?ProductId=" + Product_Id,
+                success: function (result) {
+                    if (result == "success") {
+                        alert("Product deleted successfully");
+                        window.location.reload();
+                    }
+                    else if (result == "notfound") {
+                        alert("Product Not Found");
+                    }
+                    else if (result == "alreadyused") {
+                        alert("Code is already used, so you can not delete it.");
+                    } 
+                    else {
+                        alert("Something went wrong. Please try again");
+                    }
+
+                   StopLoading();
+                },
+                error: function (resultData) {
+                    StopLoading();
+                }
+            });
+        }
+    });
+
 </script>

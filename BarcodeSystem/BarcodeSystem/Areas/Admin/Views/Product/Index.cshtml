@@ -170,18 +170,18 @@
 
             StartLoading();
 
-            var URL = '@Url.Action("DeleteProduct", "product")';
+            var URL = '@Url.Action("DeleteProduct", "QrCode")';
             $.ajax({
                 type: 'POST',
                 async: true,
                 url: URL + "?ProductId=" + Product_Id,
                 success: function (result) {
                     if (result == "success") {
-                        alert("Product deleted successfully");
+                        alert("Code deleted successfully");
                         window.location.reload();
                     }
                     else if (result == "notfound") {
-                        alert("Product Not Found");
+                        alert("Code Not Found");
                     }
                     else {
                         alert("Something went wrong. Please try again");

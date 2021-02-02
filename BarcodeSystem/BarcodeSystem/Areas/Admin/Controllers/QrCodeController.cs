@@ -20,7 +20,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         {
             _db = new BarcodeSystemDbEntities();
         }
-        
+
         public ActionResult Index()
         {
             List<tbl_Barcodes> lstBarcodes = _db.tbl_Barcodes.OrderByDescending(x => x.CreatedDate).ToList();
@@ -46,7 +46,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 for (int j = 0; j < QtyQ; j++)
                 {
                     string CodenumGuid = Guid.NewGuid().ToString();
-                    string Code = CodenumGuid.Substring(0,8) + DateTime.Now.ToString("mmHHss") + CodenumGuid.Substring(26,7);
+                    string Code = CodenumGuid.Substring(0, 8) + DateTime.Now.ToString("mmHHss") + CodenumGuid.Substring(26, 7);
                     tbl_Barcodes objBarcode = new tbl_Barcodes();
                     objBarcode.Amount = Amt;
                     objBarcode.BarcodeNumber = Code.ToUpper();
@@ -98,6 +98,40 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             ViewData["lstBarcodesstrImage"] = lstBarcodesstrImage;
             ViewBag.Amount = Amount;
             return View();
+        }
+
+        [HttpPost]
+        public string DeleteQRcode(int QRcodeId)
+        {
+            string ReturnMessage = "";
+
+            try
+            {
+                tbl_Barcodes objCode = _db.tbl_Barcodes.Where(x => x.BarcodeId == QRcodeId).FirstOrDefault();
+
+                if (objCode == null)
+                {
+                    ReturnMessage = "notfound";
+                }
+                else if (objCode.IsUsed)
+                {
+                    ReturnMessage = "alreadyused";
+                }
+                else
+                {
+                    _db.tbl_Barcodes.Remove(objCode);
+                    _db.SaveChanges();
+
+                    ReturnMessage = "success";
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message.ToString();
+                ReturnMessage = "exception";
+            }
+
+            return ReturnMessage;
         }
 
     }

@@ -137,6 +137,20 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                             _db.tbl_BarcodeTransactions.Add(objBarcTr);
                             _db.SaveChanges();
                             objGeneralVM.Message = "You have got Rs" + objBarcTr.Amount;
+                            
+                            var clientuser = _db.tbl_ClientUsers.Where(o => o.ClientUserId == UserId).FirstOrDefault();
+                            decimal currewalt = 0;
+                            if(clientuser != null)
+                            {
+                                if(clientuser.WalletAmt != null)
+                                {
+                                    currewalt = clientuser.WalletAmt.Value;
+                                }
+                            }
+                            currewalt = currewalt + objBarcode.Amount.Value;
+                            clientuser.WalletAmt = currewalt;
+                            _db.SaveChanges();
+                            response.Data = objGeneralVM;
                         }
                     }
                 }
@@ -189,6 +203,68 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
 
         }
 
+        [Route("WalletTransactionList"), HttpPost]
+        public ResponseDataModel<WalletTransactionVM> WalletTransactionList(GeneralVM objGen)
+        {
+            long UsrId = Convert.ToInt64(objGen.ClientUserId);
+            ResponseDataModel<WalletTransactionVM> response = new ResponseDataModel<WalletTransactionVM>();
+            List<QRTransactionVM> lstQRTransactionVM = new List<QRTransactionVM>();
+            string StartDate = objGen.startdate;
+            string EndDate = objGen.enddate;
+            DateTime dtStart = DateTime.MinValue;
+            DateTime dtEnd = DateTime.MaxValue;
+            try
+            {
+                if (!string.IsNullOrEmpty(StartDate))
+                {
+                    dtStart = DateTime.ParseExact(StartDate, "dd/MM/yyyy", null);
+                }
 
+                if (!string.IsNullOrEmpty(EndDate))
+                {
+                    dtEnd = DateTime.ParseExact(EndDate, "dd/MM/yyyy", null);
+                }
+                dtEnd = new DateTime(dtEnd.Year, dtEnd.Month, dtEnd.Day, 23, 59, 59);
+                lstQRTransactionVM = (from c in _db.tbl_BarcodeTransactions
+                                  select new QRTransactionVM
+                                  {
+                                      BarcodeTransactionId = c.BarcodeTransactionId,
+                                      Amount = c.Amount.Value,
+                                      UserId = c.UserId.Value,
+                                      IsDebit = c.IsDebit.Value,
+                                      Remarks = c.Remarks,
+                                      TransactionDate = c.TransactionDate.Value
+                                  }).Where(x => x.UserId == UsrId && x.TransactionDate >= dtStart && x.TransactionDate <= dtEnd).OrderByDescending(x => x.TransactionDate).ToList();
+                if(lstQRTransactionVM != null && lstQRTransactionVM.Count() > 0)
+                {
+                    lstQRTransactionVM.ForEach(x => x.TransactionDatestr = CommonMethod.ConvertFromUTCOnlyDate(x.TransactionDate));
+                }
+
+                var clientuser = _db.tbl_ClientUsers.Where(o => o.ClientUserId == UsrId).FirstOrDefault();
+                decimal currewalt = 0;
+                if (clientuser != null)
+                {
+                    if (clientuser.WalletAmt != null)
+                    {
+                        currewalt = clientuser.WalletAmt.Value;
+                    }
+                }
+                WalletTransactionVM objWalt = new WalletTransactionVM();
+                objWalt.lstTrans = lstQRTransactionVM;
+                objWalt.CurrentWallet = currewalt;
+                response.Data = objWalt;
+
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message.ToString());
+                return response;
+            }
+
+            return response;
+
+        }
+
+        
     }
 }

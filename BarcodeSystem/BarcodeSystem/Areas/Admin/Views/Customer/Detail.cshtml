@@ -1,0 +1,314 @@
+﻿@model  BarcodeSystem.ClientUserVM
+<style>
+    .label-wrapper {
+        display: table;
+        float: right;
+        min-height: 28px;
+    }
+
+    .form-horizontal .form-group {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+        .form-horizontal .form-group:before {
+            content: " ";
+            display: table
+        }
+
+        .form-horizontal .form-group:after {
+            clear: both !important
+        }
+
+    .form-horizontal .label-wrapper .control-label {
+        display: table-cell;
+        font-weight: bold;
+    }
+
+    .form-text-row {
+        /*padding-top: 6px;*/
+    }
+
+    .col-md-3 {
+        float: left;
+    }
+
+    @@media(max-width: 992px) {
+        .form-horizontal .label-wrapper {
+            float: none;
+            margin-bottom: 3px;
+            margin-top: 5px
+        }
+    }
+    input:focus {
+        outline-color: #291515 !important;
+    }
+</style>
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col">
+                    <div class="page-header-left">
+                        <h3>
+                            Customer Detail
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ol class="breadcrumb pull-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="/admin/Customer">Customer</a></li>
+                        <li class="breadcrumb-item active">Customer Detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Customer Detail</h5>
+                    </div>
+                    <div class="card-body form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="label-wrapper"><label class="control-label">Name</label></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-text-row">@Model.FirstName @Model.LastName</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="label-wrapper"><label class="control-label">Birth Date</label></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-text-row">@Model.BirthDate.ToString("dd/MM/yyyy")</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="label-wrapper"><label class="control-label">AAdhaar Card Number.</label></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-text-row">@Model.AdharNumber</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="label-wrapper"><label class="control-label">Mobile No.</label></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-text-row">@Model.MobileNo</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="label-wrapper"><label class="control-label">City</label></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-text-row">@Model.City - @Model.Pincode</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="label-wrapper"><label class="control-label">State</label></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-text-row">@Model.State</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                <div class="label-wrapper"><label class="control-label">Current Wallet Amount:</label></div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-text-row"><b>₹ @Model.WaltAmount</b></div>
+                                <input type="button" class="btn btn-primary" value="Use Wallet Amount" onclick="usewalletamt();" />
+                            </div>
+                        </div>                       
+                    </div>
+                   
+                    <div class="card-header" style="padding-bottom: 0px;">
+                        <h5>Wallet Transaction List</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body vendor-table">
+                            <table class="display" id="basic-1">
+                                <thead>
+                                    <tr>
+                                        <th>Transaction Date</th>
+                                        <th>Amount</th>
+                                        <th>Type</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.lstWalt != null && Model.lstWalt.Count > 0)
+                                    {
+                                        foreach (BarcodeSystem.QRTransactionVM objtr in Model.lstWalt)
+                                        {
+                                            <tr>
+                                                <td>@objtr.TransactionDatestr</td>
+                                                <td>₹ @Math.Round(objtr.Amount, 2)</td>
+                                                @if (objtr.IsDebit == true)
+                                                {
+                                                    <td>Debit</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>Credit</td>
+                                                }
+                                                <td>@objtr.Remarks</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<input type="hidden" id="hdnotptxt" value="" />
+<input type="hidden" id="hdnmobile" value="@Model.MobileNo" />
+<input type="hidden" id="waltamt" value="@Model.WaltAmount" />
+<input type="hidden" id="userid" value="@Model.ClientUserId" />
+<div class="modal fade open" id="usewalletmodal" tabindex="-1" role="dialog" aria-labelledby="itemactionmodal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Use Wallet Amount</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">               
+                <label>Amount:</label>
+                <input type="number" id="amtuse" value="0" /><br/>
+                <label>Remarks</label>
+                <textarea class="form-control" id="txtresn"></textarea>
+            </div>
+            <div class="modal-footer">                
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Close</button>
+                <button class="btn btn-primary" type="button" onclick="savewalletuse();">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade open" id="otpmodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">OTP For Update Wallet</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="$('#hdnotptxt').val('');$('#otptxt').val('');">&times;</button>
+            </div>
+            <div class="modal-body">
+                <label>Enter OTP</label><input type="text" id="otptxt" value="" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="hdnDeleteProductItem" />
+                <button data-dismiss="modal" class="btn btn-danger" type="button" onclick="$('#hdnotptxt').val('');$('#otptxt').val('');">Close</button>
+                <button class="btn btn-primary" type="button" onclick="savefinal();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function usewalletamt() {
+        $("#usewalletmodal").modal("show")
+    }
+    function savewalletuse() {
+        if ($("#amtuse").val() == "0" || $("#amtuse").val() == "") {
+            alert("Please Enter Amount");
+            return;
+        }
+        else {
+            if (parseFloat($("#amtuse").val()) > parseFloat($("#waltamt").val())) {
+                alert("Please Wallet Amount Low.");
+                return;
+            }
+        }
+        if ($("#txtresn").val().trim() == "") {
+            alert("Please enter remarks");
+            return;
+        }
+        var mobil = $("#hdnmobile").val();
+        var Amount = $("#amtuse").val();
+          if ($('#hdnotptxt').val() == "") {
+               var URL = '@Url.Action("SendOTP", "Customer")';
+               $.ajax({
+                type: 'POST',
+                async: true,
+                   url: URL + "?MobileNumber=" + mobil + "&Amount=" + Amount,
+                success: function (result) {
+                    if (result == "InvalidNumber") {
+                        alert("Mobile Number is invalid");
+                        return false;
+                    }
+                    else {
+                        $('#hdnotptxt').val(result);
+                        $("#otpmodal").modal();
+                    }
+                },
+                error: function (resultData) {
+                }
+            });
+                return false;
+         }
+
+    }
+
+    function savefinal() {
+        if ($("#otptxt").val() == "") {
+            alert("Please enter otp");
+            return false;
+        }
+
+        if ($("#otptxt").val() != $('#hdnotptxt').val()) {
+             alert("Invalid Mobile OTP");
+            return false;
+        }
+        var useid = $("#userid").val();
+        var Amount = $("#amtuse").val();
+         var strreson = encodeURIComponent($("#txtresn").val());
+
+         $("#otpmodal").modal('hide');
+        $("#usewalletmodal").modal("hide");
+
+          StartLoading();
+          var URL = '@Url.Action("UpdateWalletAmt", "Customer")';
+        jQuery.ajax({
+        type: 'POST',
+        async: true,
+        url: URL + "?Id=" + useid + "&Amount=" + Amount +"&Remarks="+strreson ,
+        success: function (result) {
+            if (result == "Success") {
+                alert("Save Successfully");
+                location.reload();
+            }        
+            else {
+                alert(result);
+                location.reload();
+            }
+               StopLoading();
+        },
+        error: function (resultData) {
+            StopLoading();
+            console.log("error");
+
+        }
+     });
+
+    }
+
+</script>

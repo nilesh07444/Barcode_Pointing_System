@@ -22,5 +22,7 @@ namespace BarcodeSystem
         public string Pincode { get; set; }
         public string ProfilePhoto { get; set; }
         public string BirthdateStr { get; set; }
+        public decimal WaltAmount { get; set; }
+        public List<QRTransactionVM> lstWalt { get; set; }
     }
 }

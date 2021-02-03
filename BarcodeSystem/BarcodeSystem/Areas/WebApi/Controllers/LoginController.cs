@@ -342,7 +342,24 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
 
         }
 
+        [Route("TestApi"), HttpGet]
+        public ResponseDataModel<OtpVM> TestApi()
+        {
+            ResponseDataModel<OtpVM> response = new ResponseDataModel<OtpVM>();
+            OtpVM objOtp = new OtpVM();
+            try
+            {
+                response.Data = objOtp;
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message.ToString());
+                return response;
+            }
 
+            return response;
+
+        }
 
     }
 }

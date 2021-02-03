@@ -178,6 +178,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
@@ -259,7 +260,9 @@
     <Compile Include="ViewModel\OtpVM.cs" />
     <Compile Include="ViewModel\ProductVM.cs" />
     <Compile Include="ViewModel\QrCodeVM.cs" />
+    <Compile Include="ViewModel\QRTransactionVM.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
+    <Compile Include="ViewModel\WalletTransactionVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\assets\css\admin.css" />
@@ -3872,6 +3875,7 @@
     <Content Include="Areas\Admin\Views\Setting\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MyProfile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PrivacyPolicy\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Detail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />

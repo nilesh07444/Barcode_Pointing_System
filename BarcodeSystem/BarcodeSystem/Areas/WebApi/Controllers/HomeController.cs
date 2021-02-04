@@ -33,7 +33,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                                    ProductImage = c.ProductImage,
                                    IsActive = c.IsActive,
                                    IsDeleted = c.IsDeleted
-                               }).Where(x => !x.IsDeleted && x.IsActive).OrderBy(x => Guid.NewGuid()).Take(5).ToList();
+                               }).Where(x => !x.IsDeleted && x.IsActive).OrderBy(x => Guid.NewGuid()).Take(10).ToList();
 
                 objHome.PopularProducts = lstPopularProductItem;
                 response.Data = objHome;

@@ -100,6 +100,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                         {
                             response.IsError = true;
                             response.AddError("Incorrect Password");
+                            iserrr = true;
                         }
                     }
                     if (iserrr == false)

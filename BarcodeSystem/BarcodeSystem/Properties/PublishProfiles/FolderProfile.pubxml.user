@@ -7,6 +7,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <_PublishTargetUrl>E:\Publish\BarcodeSystem</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
+    <File Include="Areas/Admin/Views/Customer/Detail.cshtml">
+      <publishTime>02/04/2021 12:29:51</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/Customer/Index.cshtml">
       <publishTime>01/31/2021 15:14:28</publishTime>
     </File>
@@ -28,6 +31,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Areas/Admin/Views/MyProfile/Index.cshtml">
       <publishTime>02/01/2021 23:28:46</publishTime>
     </File>
+    <File Include="Areas/Admin/Views/PrivacyPolicy/Index.cshtml">
+      <publishTime>02/02/2021 23:53:03</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/Product/Add.cshtml">
       <publishTime>01/31/2021 13:59:28</publishTime>
     </File>
@@ -44,7 +50,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/31/2021 01:03:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QrCode/Index.cshtml">
-      <publishTime>02/01/2021 23:37:43</publishTime>
+      <publishTime>02/04/2021 12:29:51</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Setting/ChangePassword.cshtml">
       <publishTime>02/01/2021 23:13:30</publishTime>
@@ -54,6 +60,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Areas/Admin/Views/Shared/_Layout.cshtml">
       <publishTime>02/01/2021 23:23:12</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/TermsCondition/Index.cshtml">
+      <publishTime>02/04/2021 23:33:17</publishTime>
     </File>
     <File Include="Areas/Admin/Views/web.config">
       <publishTime>01/30/2021 16:27:06</publishTime>
@@ -71,10 +80,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.dll">
-      <publishTime>02/02/2021 23:19:23</publishTime>
+      <publishTime>02/04/2021 23:37:28</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.pdb">
-      <publishTime>02/02/2021 23:19:23</publishTime>
+      <publishTime>02/04/2021 23:37:28</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
@@ -11133,6 +11142,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>01/30/2021 16:18:59</publishTime>
+    </File>
+    <File Include="Views/Privacy/Index.cshtml">
+      <publishTime>02/02/2021 23:21:45</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>01/30/2021 16:18:59</publishTime>

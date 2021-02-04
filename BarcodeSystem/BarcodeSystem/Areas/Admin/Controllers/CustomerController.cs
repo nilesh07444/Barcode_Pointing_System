@@ -36,6 +36,9 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                                      MobileNo = cu.MobileNo,
                                      IsActive = cu.IsActive,
                                      CreatedDate = cu.CreatedDate,
+                                     Pincode = cu.Pincode,
+                                     State = cu.State,
+                                     AdharNumber = cu.AdharNumber
                                  }).OrderByDescending(x => x.ClientUserId).ToList();
             }
             catch (Exception ex)

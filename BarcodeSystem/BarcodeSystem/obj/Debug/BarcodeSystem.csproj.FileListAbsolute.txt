@@ -85,6 +85,5 @@ D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSyste
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\System.Web.WebPages.Razor.xml
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\Antlr3.Runtime.pdb
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.csprojAssemblyReference.cache
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.csproj.CopyComplete
 D:\PROJECTS\Kamlesh Lalwani\Barcode Project\Barcode_Pointing_System\BarcodeSystem\BarcodeSystem\obj\Debug\BarcodeSystem.pdb

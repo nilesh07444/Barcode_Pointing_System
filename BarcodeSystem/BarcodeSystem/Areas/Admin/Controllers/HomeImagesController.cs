@@ -79,7 +79,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         }
 
                         // Save file in folder
-                        fileName = Guid.NewGuid() + "-" + Path.GetFileName(HomeImageFile.FileName);
+                        fileName = Guid.NewGuid() + ext;
                         HomeImageFile.SaveAs(path + fileName);
                     }
                     else
@@ -159,7 +159,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         }
 
                         // Save image in folder
-                        fileName = Guid.NewGuid() + "-" + Path.GetFileName(HomeImageFile.FileName);
+                        fileName = Guid.NewGuid() + ext;
                         HomeImageFile.SaveAs(path + fileName);
                     }
                     else

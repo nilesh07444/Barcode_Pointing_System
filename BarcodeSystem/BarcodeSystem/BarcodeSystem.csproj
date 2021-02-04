@@ -189,6 +189,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\QrCodeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TermsConditionController.cs" />
     <Compile Include="Areas\WebApi\Controllers\HomeController.cs" />
     <Compile Include="Areas\WebApi\Controllers\LoginController.cs" />
     <Compile Include="Areas\WebApi\Controllers\MyProfileController.cs" />
@@ -3876,6 +3877,7 @@
     <Content Include="Areas\Admin\Views\MyProfile\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PrivacyPolicy\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\TermsCondition\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />

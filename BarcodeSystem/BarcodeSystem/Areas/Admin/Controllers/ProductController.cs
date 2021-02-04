@@ -79,7 +79,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         }
 
                         // Save file in folder
-                        fileName = Guid.NewGuid().ToString();
+                        fileName = Guid.NewGuid().ToString() + ext;
                         ProductImageFile.SaveAs(path + fileName);
                     }
                     else

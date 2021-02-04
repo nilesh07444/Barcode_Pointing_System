@@ -1,0 +1,11 @@
+BarcodeSystem/*.nupkg
+BarcodeSystem/*.dll
+BarcodeSystem/*.pdb
+BarcodeSystem/*.xdt
+BarcodeSystem/bin
+BarcodeSystem/obj
+packages 
+.vs/* 
+/.vs
+/BarcodeSystem/Images/HomeMedia
+/BarcodeSystem/Images/ProductMedia

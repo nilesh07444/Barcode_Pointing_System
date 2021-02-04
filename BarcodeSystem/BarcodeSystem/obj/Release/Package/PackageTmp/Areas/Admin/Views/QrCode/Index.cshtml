@@ -48,6 +48,7 @@
                             <th>QR Code Number</th>
                             <th>Amount</th>
                             <th>Created Date</th>
+                            <th>Used/UnUsed</th>
                             <th width="15%;">Active</th>
                             <th>Actions</th>
                         </tr>
@@ -61,7 +62,16 @@
                                     <td>@counter.</td>
                                     <td>@obj.BarcodeNumber</td>
                                     <td>@obj.Amount</td>
-                                    <td>@obj.CreatedDate.Value.ToString("dd/MM/yyyy")</td>                                    
+                                    <td>@obj.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
+                                    @if(obj.IsUsed == true)
+                                    {
+                                         <td>Used</td>
+                                    }
+                                    else
+                                    {
+                                         <td>N/U</td>
+                                    }
+                                   
                                     @if (obj.IsActive == true)
                                     {
                                         <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive">Active</span></td>
@@ -70,10 +80,10 @@
                                     {
                                         <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active">InActive</span></td>
                                     }
-                                <td>
-                                    <a href="/admin/qrcode/detail/@obj.BarcodeId"><i class="fa fa-eye font-success"></i></a>
-                                    <a href="javascript:void(0);" onclick="fnDeleteProduct('@obj.BarcodeId')"><i class="fa fa-trash font-danger"></i></a>
-                                </td>
+                                    <td>
+                                        <a href="/admin/qrcode/detail/@obj.BarcodeId"><i class="fa fa-eye font-success"></i></a>
+                                        <a href="javascript:void(0);" onclick="fnDeleteQR('@obj.BarcodeId')"><i class="fa fa-trash font-danger"></i></a>
+                                    </td>
                                 </tr>
                                 counter++;
                             }
@@ -87,6 +97,26 @@
     <!-- Container-fluid Ends-->
 
 </div>
+<!-- Delete Modal -->
+<div class="modal fade open" id="deleteQRModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Confirm</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete ?
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="hdnDeleteHomeImage" />
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Close</button>
+                <button id="btnDeleteQR" class="btn btn-primary" type="button">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete modal -->
 <script>
 
     $(document).on("click", "#btnAddBarcode", function () {
@@ -94,35 +124,35 @@
     });
 
 
-    function fnDeleteProduct(HomeImage_Id) {
+    function fnDeleteQR(HomeImage_Id) {
         jQuery("#hdnDeleteHomeImage").val(HomeImage_Id);
-        $('#deleteHomeImageModal').modal('show');
+        $('#deleteQRModal').modal('show');
     }
 
-    jQuery(document).on("click", "#btnDeleteHomeImage", function () {
+    jQuery(document).on("click", "#btnDeleteQR", function () {
 
         var Product_Id = jQuery("#hdnDeleteHomeImage").val();
         if (Product_Id != "" && Product_Id != null) {
-            $('#deleteHomeImageModal').modal('hide');
+            $('#deleteQRModal').modal('hide');
 
             StartLoading();
 
-            var URL = '@Url.Action("DeleteProduct", "product")';
+            var URL = '@Url.Action("DeleteQRcode", "QrCode")';
             $.ajax({
                 type: 'POST',
                 async: true,
-                url: URL + "?ProductId=" + Product_Id,
+                url: URL + "?QRcodeId=" + Product_Id,
                 success: function (result) {
                     if (result == "success") {
-                        alert("Product deleted successfully");
+                        alert("QR Code deleted successfully");
                         window.location.reload();
                     }
                     else if (result == "notfound") {
-                        alert("Product Not Found");
+                        alert("QR Code Not Found");
                     }
                     else if (result == "alreadyused") {
                         alert("Code is already used, so you can not delete it.");
-                    } 
+                    }
                     else {
                         alert("Something went wrong. Please try again");
                     }

@@ -125,5 +125,41 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
             return response;
 
         }
+
+        [Route("SaveProfile"), HttpPost]
+        public ResponseDataModel<string> SaveProfile(ClientUserVM objClient)
+        {
+            ResponseDataModel<string> response = new ResponseDataModel<string>();
+            response.Data = "";
+            try
+            {
+                long userid = Convert.ToInt64(objClient.ClientUserId);
+                tbl_ClientUsers objClientUsr = _db.tbl_ClientUsers.Where(o => o.ClientUserId == userid).FirstOrDefault();
+                if(objClientUsr != null)
+                {
+                    string dob = objClient.BirthdateStr;
+                    DateTime dt = DateTime.ParseExact(dob, "dd/MM/yyyy", null);
+
+                    objClientUsr.Birthdate = dt;                                                            
+                    objClientUsr.FirstName = objClient.FirstName;
+                    objClientUsr.LastName = objClient.LastName;
+                    objClientUsr.City = objClient.City;
+                    objClientUsr.State = objClient.State;
+                    objClientUsr.Pincode = objClient.Pincode;
+                    objClientUsr.AdharNumber = objClient.AdharNumber;
+                    _db.SaveChanges();
+                }
+              
+                response.Data = "Success";
+            }
+            catch (Exception ex)
+            {
+                response.AddError(ex.Message.ToString());
+                return response;
+            }
+
+            return response;
+
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 for (int j = 0; j < QtyQ; j++)
                 {
                     string CodenumGuid = Guid.NewGuid().ToString();
-                    string Code = CodenumGuid.Substring(0, 8) + DateTime.Now.ToString("mmHHss") + CodenumGuid.Substring(26, 7);
+                    string Code = CodenumGuid.Substring(0,5) + DateTime.Now.ToString("ss")+ CodenumGuid.Substring(3,2) + CodenumGuid.Substring(26,6);
                     tbl_Barcodes objBarcode = new tbl_Barcodes();
                     objBarcode.Amount = Amt;
                     objBarcode.BarcodeNumber = Code.ToUpper();
@@ -86,7 +86,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     QRCodeData qrCodeData = qrGenerator.CreateQrCode(objBar.BarcodeNumber, QRCodeGenerator.ECCLevel.Q);
                     QRCode qrCode = new QRCode(qrCodeData);
 
-                    using (Bitmap bitMap = qrCode.GetGraphic(20))
+                    using (Bitmap bitMap = qrCode.GetGraphic(18))
                     {
                         bitMap.Save(ms, ImageFormat.Png);
                         lstBarcodesstrImage.Add("data:image/png;base64," + Convert.ToBase64String(ms.ToArray()));

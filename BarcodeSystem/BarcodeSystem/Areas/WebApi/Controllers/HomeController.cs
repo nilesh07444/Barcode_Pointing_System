@@ -211,20 +211,34 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
             List<QRTransactionVM> lstQRTransactionVM = new List<QRTransactionVM>();
             string StartDate = objGen.startdate;
             string EndDate = objGen.enddate;
+            string type = objGen.StatusId;
             DateTime dtStart = DateTime.MinValue;
             DateTime dtEnd = DateTime.MaxValue;
             try
             {
+                bool IsDebit = false;
+                if(type == "1")
+                {
+                    IsDebit = true;
+                }
                 if (!string.IsNullOrEmpty(StartDate))
                 {
                     dtStart = DateTime.ParseExact(StartDate, "dd/MM/yyyy", null);
                 }
 
+                dtStart = new DateTime(dtStart.Year, dtStart.Month, dtStart.Day,0,0,1);
                 if (!string.IsNullOrEmpty(EndDate))
                 {
                     dtEnd = DateTime.ParseExact(EndDate, "dd/MM/yyyy", null);
                 }
                 dtEnd = new DateTime(dtEnd.Year, dtEnd.Month, dtEnd.Day, 23, 59, 59);
+
+                DateTime currentTimestart = TimeZoneInfo.ConvertTime(dtStart, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+                DateTime dts = TimeZoneInfo.ConvertTimeToUtc(currentTimestart, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+
+                DateTime currentTimeend = TimeZoneInfo.ConvertTime(dtEnd, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+                DateTime dte = TimeZoneInfo.ConvertTimeToUtc(currentTimeend, TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
+
                 lstQRTransactionVM = (from c in _db.tbl_BarcodeTransactions
                                   select new QRTransactionVM
                                   {
@@ -234,7 +248,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                                       IsDebit = c.IsDebit.Value,
                                       Remarks = c.Remarks,
                                       TransactionDate = c.TransactionDate.Value
-                                  }).Where(x => x.UserId == UsrId && x.TransactionDate >= dtStart && x.TransactionDate <= dtEnd).OrderByDescending(x => x.TransactionDate).ToList();
+                                  }).Where(x => x.UserId == UsrId && (type == "-1" || x.IsDebit == IsDebit) && x.TransactionDate >= dts && x.TransactionDate <= dte).OrderByDescending(x => x.TransactionDate).ToList();
                 if(lstQRTransactionVM != null && lstQRTransactionVM.Count() > 0)
                 {
                     lstQRTransactionVM.ForEach(x => x.TransactionDatestr = CommonMethod.ConvertFromUTCOnlyDate(x.TransactionDate));

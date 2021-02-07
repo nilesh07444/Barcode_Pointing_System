@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Wallet Transaction Report";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";   
+}
+<style>
+    body {
+        padding-top: 60px;
+    }
+</style>
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h3>
+                            Wallet Transaction Report
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ol class="breadcrumb pull-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item active">Wallet Transaction Report</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h5>Wallet Transaction Report</h5>
+            </div>
+            <div class="card-body vendor-table">
+                <h3>Filter:</h3>
+                <div class="row" style="margin-top:25px;padding-bottom: 25px;margin-bottom: 10px;">
+                    <div class="col-sm-3">
+                        <label>Customer Mobile No.</label>
+                        <input class="form-control col-md-12 text-box single-line valid" id="MobileNo" name="MobileNo" maxlength="10" placeholder="Mobile No" type="text" value="">
+                    </div>
+                    @*<div class="col-sm-3">
+                        <label>Payment Method *</label>
+                        <select id="paymentmode" class="form-control">
+                            <option value="All">All</option>
+                            <option value="OnlinePayment">OnlinePayment</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Wallet">Wallet</option>
+                            <option value="Credit">Credit</option>
+                        </select>
+                    </div>*@
+                    <div class="col-sm-3">
+                        <label>Start Date *</label>
+                        <input class="form-control col-md-12 clsDatePicker text-box single-line valid" id="StartDate" name="StartDate" placeholder="DD/MM/YYY" readonly="readonly" type="text" value="">
+                    </div>
+                    <div class="col-sm-3">
+                        <label>End Date *</label>
+                        <input class="form-control col-md-12 clsDatePicker text-box single-line valid" id="EndDate" name="EndDate" placeholder="DD/MM/YYY" readonly="readonly" type="text" value="">
+                    </div>
+                </div>
+                <div class="row" style="margin-top:25px;border-bottom: 2px solid #f8f8f9;padding-bottom: 25px;margin-bottom: 10px;">
+                    <div class="col-sm-2">
+                        <input type="button" value="View Report" class="btn btn-info" onclick="viewreport();" style="position: absolute; bottom: 0;" />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="button" value="Export To Excel" class="btn btn-info" onclick="exporttoexcel();" style="position: absolute; bottom: 0;" />
+                    </div>
+                </div>
+
+                <a href="" id="export" target="_blank" style="display:none;">export</a>
+                <div id="dvreport">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+</div>
+
+<script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+
+    function viewreport() {
+        if ($("#MobileNo").val() == "") {
+            alert("Please enter mobile number");
+            return false;
+        }
+        if ($("#StartDate").val() == "") {
+            alert("Please select Start Date");
+            return false;
+        }
+
+        if ($("#EndDate").val() == "") {
+            alert("Please select End Date");
+            return false;
+        }
+        $("#dvreport").load("/admin/customer/GetWalletReport?StartDate=" + $("#StartDate").val() + "&EndDate=" + $("#EndDate").val() + "&MobileNo=" + $('#MobileNo').val(), function () {
+
+        });
+
+    }
+
+    function exporttoexcel() {
+        if ($("#StartDate").val() == "") {
+            alert("Please select Start Date");
+            return false;
+        }
+
+        if ($("#EndDate").val() == "") {
+            alert("Please select End Date");
+            return false;
+        }
+
+        $("#export").attr("href", "/admin/customer/ExportWalletReport?StartDate=" + $("#StartDate").val() + "&EndDate=" + $("#EndDate").val() + "&MobileNo=" + $('#MobileNo').val());
+        $("#export")[0].click();
+    }
+</script>

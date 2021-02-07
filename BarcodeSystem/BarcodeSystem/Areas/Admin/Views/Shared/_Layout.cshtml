@@ -186,8 +186,6 @@
                             <ul class="sidebar-submenu">
                                 <li class="@(ViewBag.Title == "Create QR Codes" ? "active" : "")"><a href="/admin/qrcode/createqrcodes"><i class="fa fa-circle"></i>Add New QR Code</a></li>
                                 <li class="@(ViewBag.Title == "QRCodeList" ? "active" : "")"><a href="/admin/qrcode"><i class="fa fa-circle"></i>QR Code List</a></li>
-                                <li class="@(ViewBag.Title == "Wallet Transaction Report" ? "active" : "")"><a href="/admin/WalletTransactionReport"><i class="fa fa-circle"></i>Wallet Transaction Report</a></li>
-                                
                             </ul>
                         </li>
 
@@ -204,6 +202,13 @@
                             <ul class="sidebar-submenu">
                                 <li class="@(ViewBag.Title == "AddNewHomeImage" ? "active" : "")"><a href="/admin/homeimages/add"><i class="fa fa-circle"></i>Add New Home Image</a></li>
                                 <li class="@(ViewBag.Title == "HomeImagesList" ? "active" : "")"><a href="/admin/homeimages"><i class="fa fa-circle"></i>Home Images List</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="sidebar-header" href=""><i data-feather="lock"></i><span>Reports</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li class="@(ViewBag.Title == "Wallet Transaction Report" ? "active" : "")"><a href="/admin/customer/wallettransactionreport"><i class="fa fa-circle"></i>Wallet Transaction Report</a></li>
                             </ul>
                         </li>
 

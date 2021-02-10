@@ -122,7 +122,7 @@
           </Key>
           <Property Name="ProductId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="ProductName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ProductImage" Type="nvarchar(max)" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
@@ -130,6 +130,13 @@
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="UpdatedBy" Type="bigint" />
           <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Setting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HomeRewardPointImage" Type="nvarchar(max)" />
         </EntityType>
         <EntityContainer Name="BarcodeSystemDbModelStoreContainer">
           <EntitySet Name="tbl_AdminRoles" EntityType="Self.tbl_AdminRoles" Schema="dbo" store:Type="Tables" />
@@ -141,6 +148,7 @@
           <EntitySet Name="tbl_ClientUsers" EntityType="Self.tbl_ClientUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_HomeImages" EntityType="Self.tbl_HomeImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Setting" EntityType="Self.tbl_Setting" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -156,6 +164,7 @@
           <EntitySet Name="tbl_BarcodeUsers" EntityType="BarcodeSystemDbModel.tbl_BarcodeUsers" />
           <EntitySet Name="tbl_ClientUsers" EntityType="BarcodeSystemDbModel.tbl_ClientUsers" />
           <EntitySet Name="tbl_BarcodeTransactions" EntityType="BarcodeSystemDbModel.tbl_BarcodeTransactions" />
+          <EntitySet Name="tbl_Setting" EntityType="BarcodeSystemDbModel.tbl_Setting" />
         </EntityContainer>
         <EntityType Name="tbl_AdminRoles">
           <Key>
@@ -198,7 +207,7 @@
           </Key>
           <Property Name="ProductId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductTitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ProductImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
@@ -282,6 +291,13 @@
           <Property Name="IsDebit" Type="Boolean" />
           <Property Name="Remarks" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
           <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Setting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="SettingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HomeRewardPointImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -421,6 +437,14 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="BarcodeTransactionId" ColumnName="BarcodeTransactionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Setting">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_Setting">
+              <MappingFragment StoreEntitySet="tbl_Setting">
+                <ScalarProperty Name="HomeRewardPointImage" ColumnName="HomeRewardPointImage" />
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

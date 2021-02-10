@@ -1,7 +1,9 @@
-﻿using BarcodeSystem.Model;
+﻿using BarcodeSystem.Helper;
+using BarcodeSystem.Model;
 using BarcodeSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -19,7 +21,65 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            GeneralSettingVM objGenSetting = (from s in _db.tbl_Setting
+                                              select new GeneralSettingVM
+                                              {
+                                                  SettingId = s.SettingId,
+                                                  RewardPointImage = s.HomeRewardPointImage
+                                              }).FirstOrDefault();
+            if(objGenSetting == null)
+            {
+                objGenSetting = new GeneralSettingVM();
+            }
+            return View(objGenSetting);
+        }
+
+        [HttpPost]
+        public ActionResult UploadAdvertiseBanner(GeneralSettingVM settingVM, HttpPostedFileBase HomeRewardPointImage)
+        {
+            try
+            {
+                IEnumerable<ModelError> allErrors = ModelState.Values.SelectMany(v => v.Errors);
+                if (ModelState.IsValid)
+                {
+                    long LoggedInUserId = Int64.Parse(clsAdminSession.UserID.ToString());
+
+                    string fileName = string.Empty;
+                    string path = Server.MapPath(ErrorMessage.HomeDirectoryPath);
+                    if (HomeRewardPointImage != null)
+                    {
+                        fileName = Guid.NewGuid() + "-" + Path.GetFileName(HomeRewardPointImage.FileName);
+                        HomeRewardPointImage.SaveAs(path + fileName);
+                    }
+                    else
+                    {
+                        fileName = settingVM.RewardPointImage;
+                    }
+
+                    tbl_Setting objSetting = _db.tbl_Setting.FirstOrDefault();
+                    if(objSetting == null)
+                    {
+                        objSetting = new tbl_Setting();
+                        objSetting.HomeRewardPointImage = fileName;
+                        _db.tbl_Setting.Add(objSetting);
+                        _db.SaveChanges();
+                    }
+                    else
+                    {
+                        objSetting.HomeRewardPointImage = fileName;
+                        _db.SaveChanges();
+                    }
+
+                    return RedirectToAction("Index");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                string ErrorMessage = ex.Message.ToString();
+            }
+
+            return View(settingVM);
         }
 
         public ActionResult ChangePassword()

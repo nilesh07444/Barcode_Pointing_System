@@ -51,15 +51,14 @@
                                 <lable class="col-xl-3 col-md-4"></lable>
                                 @Html.ValidationMessageFor(model => model.ProductTitle, "", new { @class = "text-danger" })
                             </div>
-
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "col-xl-3 col-md-4" })
-                                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control col-md-8", @placeholder = "Enter Product Name", maxlength = "200" } })
+
+                                @Html.TextAreaFor(model => model.ProductName, new { @class = "form-control col-md-8", @placeholder = "Enter Description", maxlength = "10000", cols = 35, @rows = 4, @style = "width:600px;height:80px;" })
 
                                 <lable class="col-xl-3 col-md-4"></lable>
                                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
                             </div>
-
                             <div class="form-group row">
                                 @Html.LabelFor(model => model.ProductImageFile, htmlAttributes: new { @class = "col-xl-3 col-md-4" })
                                 @Html.TextBoxFor(model => model.ProductImageFile, new { type = "file", @class = "form-control col-md-8" })

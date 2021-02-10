@@ -108,6 +108,10 @@
     }
 
     function exporttoexcel() {
+        if ($("#MobileNo").val() == "") {
+            alert("Please enter mobile number");
+            return false;
+        }
         if ($("#StartDate").val() == "") {
             alert("Please select Start Date");
             return false;

@@ -254,10 +254,14 @@
     <Compile Include="Models\tbl_Product.cs">
       <DependentUpon>BarcodeSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_Setting.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AdminUserVM.cs" />
     <Compile Include="ViewModel\ClientUserVM.cs" />
     <Compile Include="ViewModel\DashboardCountVM.cs" />
+    <Compile Include="ViewModel\GeneralSettingVM.cs" />
     <Compile Include="ViewModel\GeneralVM.cs" />
     <Compile Include="ViewModel\HomeImageVM.cs" />
     <Compile Include="ViewModel\HomePageVM.cs" />
@@ -3944,6 +3948,7 @@
     <Folder Include="Areas\WebApi\Views\Login\" />
     <Folder Include="Areas\WebApi\Views\MyProfile\" />
     <Folder Include="Areas\WebApi\Views\Shared\" />
+    <Folder Include="Documents\" />
     <Folder Include="Images\HomeMedia\" />
     <Folder Include="Images\ProductMedia\" />
   </ItemGroup>

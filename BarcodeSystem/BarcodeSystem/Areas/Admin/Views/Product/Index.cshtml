@@ -47,7 +47,7 @@
                             <th width="10%">#</th>
                             <th width="15%">Image</th>
                             <th>Product Title</th>
-                            <th>Product Name</th>
+                            <th>Desciption</th>
                             <th width="15%">Active</th>
                             <th width="15%">Action</th>
                         </tr>
@@ -58,41 +58,50 @@
                         {
                             foreach (ProductVM obj in Model)
                             {
-                                <tr class="gradeX">
-                                    <td>@counter.</td>
-                                    <td>
-                                        @if (!string.IsNullOrEmpty(obj.ProductImage))
-                                        {
-                                            if (File.Exists(Server.MapPath(ErrorMessage.ProductDirectoryPath + obj.ProductImage)))
-                                            {
-                                                <img src="@ErrorMessage.ProductDirectoryPath/@obj.ProductImage" alt="" class="img-fluid img-40 blur-up lazyloaded" style="width: 40px; height:40px;" />
-                                            }
-                                            else
-                                            {
-                                                <img src="@ErrorMessage.DefaultImagePath" alt="" class="img-fluid img-40 blur-up lazyloaded" style="width: 40px; height: 40px;" />
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <img src="@ErrorMessage.DefaultImagePath" alt="" class="img-fluid img-40 blur-up lazyloaded" style="width: 40px; height: 40px;" />
-                                        }
-                                    </td>
-                                    <td>@obj.ProductTitle</td>
-                                    <td>@obj.ProductName</td>
-                                    @if (obj.IsActive == true)
+                        <tr class="gradeX">
+                            <td>@counter.</td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(obj.ProductImage))
+                                {
+                                    if (File.Exists(Server.MapPath(ErrorMessage.ProductDirectoryPath + obj.ProductImage)))
                                     {
-                                        <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive" onclick="fnChangeStatus('@obj.ProductId','InActive');">Active</span></td>
+                                        <img src="@ErrorMessage.ProductDirectoryPath/@obj.ProductImage" alt="" class="img-fluid img-40 blur-up lazyloaded" style="width: 40px; height:40px;" />
                                     }
                                     else
                                     {
-                                        <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active" onclick="fnChangeStatus('@obj.ProductId','Active');">InActive</span></td>
+                                        <img src="@ErrorMessage.DefaultImagePath" alt="" class="img-fluid img-40 blur-up lazyloaded" style="width: 40px; height: 40px;" />
                                     }
+                                }
+                                else
+                                {
+                                    <img src="@ErrorMessage.DefaultImagePath" alt="" class="img-fluid img-40 blur-up lazyloaded" style="width: 40px; height: 40px;" />
+                                }
+                            </td>
+                            <td>@obj.ProductTitle</td>
+                            @if (obj.ProductName.Length > 100)
+                            {
+                                string strdesc = obj.ProductName.Substring(0, 99) + "...";
+                                <td>@strdesc</td>
+                            }
+                            else
+                            {
+                                <td>@obj.ProductName</td>
+                            }
 
-                                    <td>
-                                        <a href="/admin/product/edit/@obj.ProductId"><i class="fa fa-edit mr-2 font-success"></i></a>
-                                        <a href="javascript:void(0);" onclick="fnDeleteProduct('@obj.ProductId')"><i class="fa fa-trash font-danger"></i></a>
-                                    </td>
-                                </tr>
+                            @if (obj.IsActive == true)
+                            {
+                                <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive" onclick="fnChangeStatus('@obj.ProductId','InActive');">Active</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active" onclick="fnChangeStatus('@obj.ProductId','Active');">InActive</span></td>
+                            }
+
+                            <td>
+                                <a href="/admin/product/edit/@obj.ProductId"><i class="fa fa-edit mr-2 font-success"></i></a>
+                                <a href="javascript:void(0);" onclick="fnDeleteProduct('@obj.ProductId')"><i class="fa fa-trash font-danger"></i></a>
+                            </td>
+                        </tr>
                                 counter++;
                             }
                         }

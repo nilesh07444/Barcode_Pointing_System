@@ -11,7 +11,7 @@ namespace BarcodeSystem
         public long ProductId { get; set; }
         [Required, Display(Name = "Product Title *")]
         public string ProductTitle { get; set; }
-        [Required, Display(Name = "Product Name *")]
+        [Required, Display(Name = "Product Description *")]
         public string ProductName { get; set; }
         [Display(Name = "Product Image")]
         public HttpPostedFileBase ProductImageFile { get; set; }

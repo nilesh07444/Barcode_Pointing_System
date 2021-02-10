@@ -34,5 +34,6 @@ namespace BarcodeSystem.Models
         public virtual DbSet<tbl_BarcodeUsers> tbl_BarcodeUsers { get; set; }
         public virtual DbSet<tbl_ClientUsers> tbl_ClientUsers { get; set; }
         public virtual DbSet<tbl_BarcodeTransactions> tbl_BarcodeTransactions { get; set; }
+        public virtual DbSet<tbl_Setting> tbl_Setting { get; set; }
     }
 }

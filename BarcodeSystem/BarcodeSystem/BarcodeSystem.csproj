@@ -1187,6 +1187,12 @@
     <Content Include="Content\assets\images\email-temp\twitter.png" />
     <Content Include="Content\assets\images\email-temp\wr-code.png" />
     <Content Include="Content\assets\images\email-temp\youtube.png" />
+    <Content Include="Content\assets\images\eon\eonlogonew.png" />
+    <Content Include="Content\assets\images\eon\footer-logo.png" />
+    <Content Include="Content\assets\images\eon\logo.jpeg" />
+    <Content Include="Content\assets\images\eon\logo.png" />
+    <Content Include="Content\assets\images\eon\privacy_policy_bg.png" />
+    <Content Include="Content\assets\images\eon\terms_condition_bg.png" />
     <Content Include="Content\assets\images\fashion\1.jpg" />
     <Content Include="Content\assets\images\fashion\2.jpg" />
     <Content Include="Content\assets\images\fashion\3.jpg" />

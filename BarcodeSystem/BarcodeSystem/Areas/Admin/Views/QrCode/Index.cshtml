@@ -63,25 +63,25 @@
                                     <td>@obj.BarcodeNumber</td>
                                     <td>@obj.Amount</td>
                                     <td>@obj.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
-                                    @if(obj.IsUsed == true)
+                                    @if (obj.IsUsed == true)
                                     {
-                                         <td>Used</td>
+                                        <td>Used</td>
                                     }
                                     else
                                     {
-                                         <td>N/U</td>
+                                        <td>N/U</td>
                                     }
-                                   
+
                                     @if (obj.IsActive == true)
                                     {
-                                        <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive">Active</span></td>
+                                        <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive" onclick="fnChangeStatus('@obj.BarcodeId','InActive');">Active</span></td>
                                     }
                                     else
                                     {
-                                        <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active">InActive</span></td>
+                                        <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active" onclick="fnChangeStatus('@obj.BarcodeId','Active');">InActive</span></td>
                                     }
                                     <td>
-                                        <a href="/admin/qrcode/detail/@obj.BarcodeId"><i class="fa fa-eye font-success"></i></a>
+                                        <a href="/admin/qrcode/view/@obj.BarcodeId"><i class="fa fa-eye font-success"></i></a>
                                         <a href="javascript:void(0);" onclick="fnDeleteQR('@obj.BarcodeId')"><i class="fa fa-trash font-danger"></i></a>
                                     </td>
                                 </tr>
@@ -117,6 +117,28 @@
     </div>
 </div>
 <!-- Delete modal -->
+
+
+<div class="modal fade open" id="activeinactiveModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to active ?
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="hdndataId" />
+                <input type="hidden" id="hdnstatus" />
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Close</button>
+                <button id="btnChangeStatus" class="btn btn-primary" type="button">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 
     $(document).on("click", "#btnAddBarcode", function () {
@@ -152,6 +174,54 @@
                     }
                     else if (result == "alreadyused") {
                         alert("Code is already used, so you can not delete it.");
+                    }
+                    else {
+                        alert("Something went wrong. Please try again");
+                    }
+
+                   StopLoading();
+                },
+                error: function (resultData) {
+                    StopLoading();
+                }
+            });
+        }
+    });
+
+
+
+     function fnChangeStatus(HomeImage_Id,status) {
+         jQuery("#hdndataId").val(HomeImage_Id);
+         jQuery("#hdnstatus").val(status);
+         if (status == "Active") {
+             $('#activeinactiveModal .modal-body').html(" Are you sure you want to make active ?");
+         }
+         else {
+             $('#activeinactiveModal .modal-body').html(" Are you sure you want to make inactive ?");
+         }
+        $('#activeinactiveModal').modal('show');
+    }
+
+       jQuery(document).on("click", "#btnChangeStatus", function () {
+
+        var Id = jQuery("#hdndataId").val();
+        if (Id != "" && Id != null) {
+            $('#activeinactiveModal').modal('hide');
+
+            StartLoading();
+
+            var URL = '@Url.Action("ChangeStatus", "qrcode")';
+            $.ajax({
+                type: 'POST',
+                async: true,
+                url: URL + "?Id=" + Id+"&Status="+jQuery("#hdnstatus").val(),
+                success: function (result) {
+                    if (result == "success") {
+                        alert("Status change Successfully...");
+                        window.location.reload();
+                    }
+                    else if (result == "used") {
+                        alert("This code is already used. so you can not change status.");
                     }
                     else {
                         alert("Something went wrong. Please try again");

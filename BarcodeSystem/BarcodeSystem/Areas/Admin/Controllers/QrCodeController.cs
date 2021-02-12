@@ -46,7 +46,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 for (int j = 0; j < QtyQ; j++)
                 {
                     string CodenumGuid = Guid.NewGuid().ToString();
-                    string Code = CodenumGuid.Substring(0,5) + DateTime.Now.ToString("ss")+ CodenumGuid.Substring(3,2) + CodenumGuid.Substring(26,6);
+                    string Code = CodenumGuid.Substring(0, 5) + DateTime.Now.ToString("ss") + CodenumGuid.Substring(3, 2) + CodenumGuid.Substring(26, 6);
                     tbl_Barcodes objBarcode = new tbl_Barcodes();
                     objBarcode.Amount = Amt;
                     objBarcode.BarcodeNumber = Code.ToUpper();
@@ -132,6 +132,91 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             }
 
             return ReturnMessage;
+        }
+
+        [HttpPost]
+        public string ChangeStatus(long Id, string Status)
+        {
+            string ReturnMessage = "";
+            try
+            {
+                tbl_Barcodes objBarcode = _db.tbl_Barcodes.Where(x => x.BarcodeId == Id).FirstOrDefault();
+
+                if (objBarcode != null)
+                {
+                    if (objBarcode.IsUsed)
+                    {
+                        ReturnMessage = "used";
+                    }
+                    else
+                    {
+                        long LoggedInUserId = Int64.Parse(clsAdminSession.UserID.ToString());
+                        if (Status == "Active")
+                        {
+                            objBarcode.IsActive = true;
+                        }
+                        else
+                        {
+                            objBarcode.IsActive = false;
+                        }
+
+                        objBarcode.ModifiedBy = LoggedInUserId;
+                        objBarcode.ModifiedDate = DateTime.UtcNow;
+
+                        _db.SaveChanges();
+                        ReturnMessage = "success";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message.ToString();
+                ReturnMessage = "exception";
+            }
+
+            return ReturnMessage;
+        }
+
+        public ActionResult View(long Id)
+        {
+            QrCodeVM objQrCode = new QrCodeVM();
+
+            try
+            {
+                objQrCode = (from q in _db.tbl_Barcodes
+                             where q.BarcodeId == Id
+                             select new QrCodeVM
+                             {
+                                 QRCodeId = q.BarcodeId,
+                                 QRCode = q.BarcodeNumber,
+                                 Amount = q.Amount,
+                                 IsUsed = q.IsUsed,
+                                 UsedBy = q.UsedBy
+                             }
+                    ).FirstOrDefault();
+
+                if (objQrCode != null && objQrCode.IsUsed)
+                {
+
+                    var userdata = (from b in _db.tbl_BarcodeUsers
+                                    join c in _db.tbl_ClientUsers on b.UserId equals c.ClientUserId
+                                    where b.BarcodeId == Id
+                                    select c
+                        ).FirstOrDefault();
+
+                    if (userdata != null)
+                    {
+                        objQrCode.UsedByName = userdata.FirstName + " " + userdata.LastName;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return View(objQrCode);
         }
 
     }

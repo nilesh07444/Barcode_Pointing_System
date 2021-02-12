@@ -13,6 +13,12 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Areas/Admin/Views/Customer/Index.cshtml">
       <publishTime>02/04/2021 23:44:06</publishTime>
     </File>
+    <File Include="Areas/Admin/Views/Customer/WalletTransactionReport.cshtml">
+      <publishTime>02/11/2021 22:24:27</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Customer/_WalletTrans.cshtml">
+      <publishTime>02/07/2021 18:38:33</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/Dashboard/Index.cshtml">
       <publishTime>01/31/2021 23:23:14</publishTime>
     </File>
@@ -26,46 +32,58 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/30/2021 22:42:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Login/Index.cshtml">
-      <publishTime>01/31/2021 22:27:28</publishTime>
+      <publishTime>02/09/2021 23:45:43</publishTime>
     </File>
     <File Include="Areas/Admin/Views/MyProfile/Index.cshtml">
       <publishTime>02/01/2021 23:28:46</publishTime>
     </File>
     <File Include="Areas/Admin/Views/PrivacyPolicy/Index.cshtml">
-      <publishTime>02/02/2021 23:53:03</publishTime>
+      <publishTime>02/12/2021 00:12:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Product/Add.cshtml">
-      <publishTime>01/31/2021 13:59:28</publishTime>
+      <publishTime>02/11/2021 22:24:27</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Product/Edit.cshtml">
-      <publishTime>01/31/2021 14:16:59</publishTime>
+      <publishTime>02/11/2021 22:24:27</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Product/Index.cshtml">
-      <publishTime>02/01/2021 23:33:53</publishTime>
+      <publishTime>02/11/2021 22:24:27</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QrCode/CreateQrCodes.cshtml">
       <publishTime>01/31/2021 01:03:12</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QrCode/DisplayBarcodes.cshtml">
-      <publishTime>01/31/2021 01:03:12</publishTime>
+      <publishTime>02/07/2021 18:38:33</publishTime>
     </File>
     <File Include="Areas/Admin/Views/QrCode/Index.cshtml">
-      <publishTime>02/04/2021 12:29:51</publishTime>
+      <publishTime>02/12/2021 14:33:33</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/QrCode/View.cshtml">
+      <publishTime>02/12/2021 20:03:13</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Setting/ChangePassword.cshtml">
       <publishTime>02/01/2021 23:13:30</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Setting/Index.cshtml">
-      <publishTime>02/01/2021 23:07:31</publishTime>
+      <publishTime>02/11/2021 22:24:27</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shared/_Layout.cshtml">
-      <publishTime>02/01/2021 23:23:12</publishTime>
+      <publishTime>02/12/2021 14:16:00</publishTime>
     </File>
     <File Include="Areas/Admin/Views/TermsCondition/Index.cshtml">
-      <publishTime>02/04/2021 23:33:17</publishTime>
+      <publishTime>02/12/2021 00:01:23</publishTime>
     </File>
     <File Include="Areas/Admin/Views/web.config">
       <publishTime>01/30/2021 16:27:06</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Webview/AboutUs.cshtml">
+      <publishTime>02/12/2021 22:57:47</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Webview/PrivacyPolicy.cshtml">
+      <publishTime>02/12/2021 20:26:28</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/Webview/TermsCondition.cshtml">
+      <publishTime>02/12/2021 22:57:44</publishTime>
     </File>
     <File Include="Areas/Admin/Views/_ViewStart.cshtml">
       <publishTime>01/05/2021 18:39:49</publishTime>
@@ -80,16 +98,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.dll">
-      <publishTime>02/05/2021 00:30:29</publishTime>
+      <publishTime>02/12/2021 22:58:22</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.pdb">
-      <publishTime>02/05/2021 00:30:29</publishTime>
+      <publishTime>02/12/2021 22:58:22</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>04/16/2020 20:38:56</publishTime>
+    </File>
+    <File Include="bin/EPPlus.dll">
+      <publishTime>02/07/2021 18:38:33</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>09/05/2018 16:10:50</publishTime>
@@ -3069,6 +3090,24 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     </File>
     <File Include="Content/assets/images/email-temp/youtube.png">
       <publishTime>01/05/2021 18:39:49</publishTime>
+    </File>
+    <File Include="Content/assets/images/eon/eonlogonew.png">
+      <publishTime>02/11/2021 22:24:27</publishTime>
+    </File>
+    <File Include="Content/assets/images/eon/footer-logo.png">
+      <publishTime>01/05/2021 18:39:50</publishTime>
+    </File>
+    <File Include="Content/assets/images/eon/logo.jpeg">
+      <publishTime>01/30/2021 23:40:49</publishTime>
+    </File>
+    <File Include="Content/assets/images/eon/logo.png">
+      <publishTime>01/05/2021 18:39:50</publishTime>
+    </File>
+    <File Include="Content/assets/images/eon/privacy_policy_bg.png">
+      <publishTime>02/11/2021 23:21:31</publishTime>
+    </File>
+    <File Include="Content/assets/images/eon/terms_condition_bg.png">
+      <publishTime>02/11/2021 23:55:27</publishTime>
     </File>
     <File Include="Content/assets/images/fashion/1.jpg">
       <publishTime>01/05/2021 18:39:49</publishTime>
@@ -11021,7 +11060,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/05/2021 18:39:52</publishTime>
     </File>
     <File Include="Models/BarcodeSystem.edmx.diagram">
-      <publishTime>02/01/2021 22:12:10</publishTime>
+      <publishTime>02/11/2021 22:24:27</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>01/05/2021 18:39:52</publishTime>
@@ -11159,7 +11198,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/30/2021 16:18:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/02/2021 23:19:25</publishTime>
+      <publishTime>02/12/2021 12:45:24</publishTime>
     </File>
   </ItemGroup>
 </Project>

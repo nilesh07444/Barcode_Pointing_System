@@ -303,6 +303,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                 {
                     IsDebit = true;
                 }
+                bool hasrecord = false;
                 DateTime dtStart = DateTime.ParseExact(StartDate, "dd/MM/yyyy", null);
                 DateTime dtEnd = DateTime.ParseExact(EndDate, "dd/MM/yyyy", null);
                 dtEnd = new DateTime(dtEnd.Year, dtEnd.Month, dtEnd.Day, 23, 59, 59);
@@ -345,8 +346,9 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
 
                         if (lstAllTransaction != null && lstAllTransaction.Count() > 0)
                         {
+                            hasrecord = true;
                             foreach (var objTrn in lstAllTransaction)
-                            {
+                            {                                
                                 double RoundAmt = CommonMethod.GetRoundValue(Convert.ToDouble(objTrn.Amount));
                                 objTrn.Amount = Convert.ToDecimal(RoundAmt);
                                 workSheet.Cells[row1 + 2, 1].Style.Font.Bold = false;
@@ -445,8 +447,15 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
 
                 string flname = "WalletReport_" + clientuserid + "_" + Guid.NewGuid().ToString() + ".xlsx";
                 excel.SaveAs(new FileInfo(HttpContext.Current.Server.MapPath("~/Documents/") + flname));
-
-                response.Data = flname;
+                if(hasrecord == true)
+                {
+                    response.Data = flname;
+                }
+                else
+                {
+                    response.Data = "";
+                }
+                
             }
             catch (Exception ex)
             {

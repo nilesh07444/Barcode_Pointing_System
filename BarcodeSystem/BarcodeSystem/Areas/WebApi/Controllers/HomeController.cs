@@ -444,8 +444,9 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                         }
                     }
                 }
-
-                string flname = "WalletReport_" + clientuserid + "_" + Guid.NewGuid().ToString() + ".xlsx";
+                string guidstr = Guid.NewGuid().ToString();
+                guidstr = guidstr.Substring(0, 5);
+                string flname = "Eon_WalletReport_"+ dtStart.ToString("dd-MM-yyyy")+"_"+ dtEnd.ToString("dd-MM-yyyy") + guidstr + ".xlsx";
                 excel.SaveAs(new FileInfo(HttpContext.Current.Server.MapPath("~/Documents/") + flname));
                 if(hasrecord == true)
                 {

@@ -36,8 +36,13 @@
         <div class="card">
             <div class="card-header">
                 <h5>Customer List</h5>
+                @if (Model != null && Model.Count > 0)
+                {
+                    <input type="button" value="Export To Excel" class="btn btn-info" onclick="exporttoexcel();" style="float: right;" />
+                }
             </div>
             <div class="card-body vendor-table">
+
 
                 <table class="display" id="basic-1">
                     <thead>
@@ -155,5 +160,12 @@
         }
        });
 
+    function exporttoexcel() {
+        $("#export").attr("href", "/admin/customer/Export");
+        //$("#export")[0].click();
+
+        var url = "/admin/customer/Export";
+        window.location.href = url;
+    }
 
 </script>

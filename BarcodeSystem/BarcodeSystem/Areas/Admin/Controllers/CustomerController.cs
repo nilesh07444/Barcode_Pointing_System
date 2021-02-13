@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -102,10 +103,10 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                                                 IsActive = cu.IsActive,
                                                 City = cu.City,
                                                 State = cu.State,
-                                                WaltAmount = cu.WalletAmt.HasValue? cu.WalletAmt.Value : 0,
+                                                WaltAmount = cu.WalletAmt.HasValue ? cu.WalletAmt.Value : 0,
                                                 BirthDate = cu.Birthdate.Value,
                                                 AdharNumber = cu.AdharNumber,
-                                                Pincode = cu.Pincode                                              
+                                                Pincode = cu.Pincode
                                             }).FirstOrDefault();
 
             List<QRTransactionVM> lstQRTransactionVM = new List<QRTransactionVM>();
@@ -128,7 +129,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public string UpdateWalletAmt(long Id, string Amount,string Remarks)
+        public string UpdateWalletAmt(long Id, string Amount, string Remarks)
         {
             string ReturnMessage = "";
             try
@@ -143,7 +144,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     {
                         currewalt = objtbl_ClientUsers.WalletAmt.Value;
                     }
-                    if(currewalt >= amt)
+                    if (currewalt >= amt)
                     {
                         tbl_BarcodeTransactions objBarcTr = new tbl_BarcodeTransactions();
                         objBarcTr.Amount = amt;
@@ -163,7 +164,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     {
                         ReturnMessage = "Wallet Amount Low";
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -175,7 +176,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             return ReturnMessage;
         }
 
-        public string SendOTP(string MobileNumber,string Amount)
+        public string SendOTP(string MobileNumber, string Amount)
         {
             try
             {
@@ -183,10 +184,10 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 {
                     Random random = new Random();
                     int num = random.Next(555555, 999999);
-                    string msg = "Your Otp code for Use Wallet Amount Rs"+ Amount+" is " + num +"\n Eon Stars";
-                    
+                    string msg = "Your Otp code for Use Wallet Amount Rs" + Amount + " is " + num + "\n Eon Stars";
+
                     clsCommon objcm = new clsCommon();
-                  //  string msg = objcm.GetSmsContent(SmsId);
+                    //  string msg = objcm.GetSmsContent(SmsId);
                     //msg = msg.Replace("{{OTP}}", num + "");
                     msg = HttpUtility.UrlEncode(msg);
                     //string url = "http://sms.unitechcenter.com/sendSMS?username=krupab&message=" + msg + "&sendername=KRUPAB&smstype=TRANS&numbers=" + MobileNumber + "&apikey=e8528131-b45b-4f49-94ef-d94adb1010c4";
@@ -219,19 +220,19 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         public void ExportWalletReport(string StartDate, string EndDate, string MobileNo)
         {
             ExcelPackage excel = new ExcelPackage();
-          
+
             DateTime dtStart = DateTime.ParseExact(StartDate, "dd/MM/yyyy", null);
             DateTime dtEnd = DateTime.ParseExact(EndDate, "dd/MM/yyyy", null);
             dtEnd = new DateTime(dtEnd.Year, dtEnd.Month, dtEnd.Day, 23, 59, 59);
             List<tbl_ClientUsers> lstClients = new List<tbl_ClientUsers>();
-            string[] arrycolmns = new string[] { "Date", "Opening", "Credit", "Debit", "Closing","Remarks"};
+            string[] arrycolmns = new string[] { "Date", "Opening", "Credit", "Debit", "Closing", "Remarks" };
             if (!string.IsNullOrEmpty(MobileNo))
             {
                 lstClients = _db.tbl_ClientUsers.Where(o => o.MobileNo == MobileNo).ToList();
                 if (lstClients != null && lstClients.Count() > 0)
                 {
                     foreach (var client in lstClients)
-                    {                       
+                    {
                         var workSheet = excel.Workbook.Worksheets.Add("Report");
                         workSheet.Cells[1, 1].Style.Font.Bold = true;
                         workSheet.Cells[1, 1].Style.Font.Size = 20;
@@ -361,7 +362,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         }
                     }
                 }
-            }          
+            }
 
             using (var memoryStream = new MemoryStream())
             {
@@ -382,7 +383,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             dtEnd = new DateTime(dtEnd.Year, dtEnd.Month, dtEnd.Day, 23, 59, 59);
             List<tbl_ClientUsers> lstClients = new List<tbl_ClientUsers>();
             List<ReportVM> lstReportVm = new List<ReportVM>();
-            string[] arrycolmns = new string[] { "Date", "Opening", "Credit", "Debit", "Closing","Remarks"};
+            string[] arrycolmns = new string[] { "Date", "Opening", "Credit", "Debit", "Closing", "Remarks" };
             if (!string.IsNullOrEmpty(MobileNo))
             {
                 lstClients = _db.tbl_ClientUsers.Where(o => o.MobileNo == MobileNo).ToList();
@@ -390,7 +391,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 {
                     var client = lstClients.FirstOrDefault();
                     List<tbl_BarcodeTransactions> lstCrdt = _db.tbl_BarcodeTransactions.Where(o => o.UserId == client.ClientUserId && o.TransactionDate < dtStart && o.IsDebit == false).ToList();
-                    List<tbl_BarcodeTransactions> lstDebt = _db.tbl_BarcodeTransactions.Where(o => o.UserId == client.ClientUserId  && o.TransactionDate < dtStart && o.IsDebit == true).ToList();
+                    List<tbl_BarcodeTransactions> lstDebt = _db.tbl_BarcodeTransactions.Where(o => o.UserId == client.ClientUserId && o.TransactionDate < dtStart && o.IsDebit == true).ToList();
                     decimal TotalCredit = 0;
                     decimal TotalDebit = 0;
                     TotalCredit = lstCrdt.Sum(x => x.Amount.HasValue ? x.Amount.Value : 0);
@@ -438,5 +439,144 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             }
             return PartialView("~/Areas/Admin/Views/Customer/_WalletTrans.cshtml", lstReportVm);
         }
+
+        public void Export(int Status = -1, string StartDate = "", string EndDate = "")
+        {
+            ExcelPackage excel = new ExcelPackage();
+            List<ClientUserVM> lstClientUser = new List<ClientUserVM>();
+            DateTime dtStart = DateTime.MinValue;
+            if (!string.IsNullOrEmpty(StartDate))
+            {
+                dtStart = DateTime.ParseExact(StartDate, "dd/MM/yyyy", null);
+            }
+
+            DateTime dtEnd = DateTime.MaxValue;
+            if (!string.IsNullOrEmpty(StartDate))
+            {
+                dtEnd = DateTime.ParseExact(EndDate, "dd/MM/yyyy", null);
+            }
+
+            lstClientUser = (from cu in _db.tbl_ClientUsers
+                             where !cu.IsDelete //&& cu.ClientRoleId == 1 && cu.CreatedDate >= dtStart && cu.CreatedDate <= dtEnd
+                             select new ClientUserVM
+                             {
+                                 ClientUserId = cu.ClientUserId,
+                                 FirstName = cu.FirstName,
+                                 LastName = cu.LastName,
+                                 Password = cu.Password,
+                                 RoleId = cu.ClientRoleId,
+                                 MobileNo = cu.MobileNo,
+                                 IsActive = cu.IsActive,
+                                 AdharNumber = cu.AdharNumber,
+                                 CreatedDate = cu.CreatedDate,
+                                 BirthDate = cu.Birthdate,
+                                 City = cu.City,
+                                 Pincode = cu.Pincode,
+                                 State = cu.State,
+                             }).OrderBy(x => x.FirstName).ToList();
+
+            StringBuilder sb = new StringBuilder();
+            string[] arrycolmns = new string[] { "First Name", "Last Name", "Mobile Number", "Birth Date", "Aadhar Number", "Pincode", "City", "State", "Created Date", "IsActive" };
+            var workSheet = excel.Workbook.Worksheets.Add("Customers");
+            workSheet.Cells[1, 1].Style.Font.Bold = true;
+            workSheet.Cells[1, 1].Style.Font.Size = 20;
+            workSheet.Cells[1, 1].Style.VerticalAlignment = ExcelVerticalAlignment.Top;
+            workSheet.Cells[1, 1].Value = "Customer List";
+
+            for (var col = 1; col < arrycolmns.Length + 1; col++)
+            {
+                workSheet.Cells[2, col].Style.Font.Bold = true;
+                workSheet.Cells[2, col].Style.Font.Size = 12;
+                workSheet.Cells[2, col].Value = arrycolmns[col - 1];
+                workSheet.Cells[2, col].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                workSheet.Cells[2, col].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                workSheet.Cells[2, col].AutoFitColumns(30, 70);
+                workSheet.Cells[2, col].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[2, col].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[2, col].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[2, col].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                workSheet.Cells[2, col].Style.WrapText = true;
+            }
+             
+            int row1 = 1;
+            if (lstClientUser != null && lstClientUser.Count() > 0)
+            {
+                foreach (var objj in lstClientUser)
+                {
+                    for (int j = 1; j < arrycolmns.Length + 1; j++)
+                    {
+                        workSheet.Cells[row1 + 2, j].Style.Font.Bold = false;
+                        workSheet.Cells[row1 + 2, j].Style.Font.Size = 12;
+                        workSheet.Cells[row1 + 2, j].Style.HorizontalAlignment = ExcelHorizontalAlignment.Left;
+                        workSheet.Cells[row1 + 2, j].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+                        workSheet.Cells[row1 + 2, j].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        workSheet.Cells[row1 + 2, j].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        workSheet.Cells[row1 + 2, j].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        workSheet.Cells[row1 + 2, j].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        workSheet.Cells[row1 + 2, j].Style.WrapText = true;
+                        workSheet.Cells[row1 + 2, j].AutoFitColumns(30, 70);
+                        string vl = "";
+                        if (arrycolmns[j - 1] == "First Name")
+                        {
+                            vl = objj.FirstName;
+                        }
+                        else if (arrycolmns[j - 1] == "Last Name")
+                        {
+                            vl = objj.LastName;
+                        }
+                        else if (arrycolmns[j - 1] == "Mobile Number")
+                        {
+                            vl = objj.MobileNo;
+                        }
+                        else if (arrycolmns[j - 1] == "Birth Date")
+                        {
+                            vl = objj.BirthDate != null ? Convert.ToDateTime(objj.BirthDate).ToString("dd-MMM-yyyy") : "";
+                        }
+                        else if (arrycolmns[j - 1] == "Pincode")
+                        {
+                            vl = objj.Pincode;
+                        }
+                        else if (arrycolmns[j - 1] == "Aadhar Number")
+                        {
+                            vl = objj.AdharNumber;
+                        }
+                        else if (arrycolmns[j - 1] == "City")
+                        {
+                            vl = objj.City;
+                        }
+                        else if (arrycolmns[j - 1] == "State")
+                        {
+                            vl = objj.State;
+                        }
+                        else if (arrycolmns[j - 1] == "Created Date")
+                        {
+                            vl = objj.CreatedDate.ToString("dd-MMM-yyyy");
+                        }
+                        else if (arrycolmns[j - 1] == "IsActive")
+                        {
+                            vl = objj.IsActive == true ? "Active" : "Inactive";
+                        }
+                        workSheet.Cells[row1 + 2, j].Value = vl;
+
+                    }
+
+
+
+                    row1 = row1 + 1;
+                }
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                //excel.Workbook.Worksheets.MoveToStart("Summary");  //move sheet from last to first : Code by Gunjan
+                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.AddHeader("content-disposition", "attachment;  filename=Customers List.xlsx");
+                excel.SaveAs(memoryStream);
+                memoryStream.WriteTo(Response.OutputStream);
+                Response.Flush();
+                Response.End();
+            }
+        }
+
     }
 }

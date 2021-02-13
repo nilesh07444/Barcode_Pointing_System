@@ -198,7 +198,6 @@
     <Compile Include="Areas\WebApi\Controllers\MyProfileController.cs" />
     <Compile Include="Areas\WebApi\WebApiAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PrivacyController.cs" />
     <Compile Include="Filters\AdminPermissionAttribute.cs" />
     <Compile Include="Filters\CustomAuthorize.cs" />
     <Compile Include="Filters\CustomClientAuthorize.cs" />
@@ -3945,7 +3944,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Privacy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

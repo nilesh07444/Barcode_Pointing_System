@@ -3895,6 +3895,7 @@
     <Content Include="Areas\Admin\Views\Webview\AboutUs.cshtml" />
     <Content Include="Areas\Admin\Views\Webview\TermsCondition.cshtml" />
     <Content Include="Areas\Admin\Views\Webview\PrivacyPolicy.cshtml" />
+    <Content Include="Areas\Admin\Views\QrCode\DisplayUnUsedBarcodes.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />

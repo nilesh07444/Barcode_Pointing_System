@@ -41,9 +41,26 @@
                 <div class="btn-popup pull-right">
                     <button type="button" class="btn btn-primary" id="btnAddBarcode">Create New QR Codes</button>
                 </div>
-                <table class="display" id="basic-1">
+                <div class="row" style="margin-top:25px;padding-bottom: 25px;margin-bottom: 10px;">
+                    <div class="col-sm-3">
+                        <label>Used/UnUsed</label>
+                        <select class="form-control" id="selectused" style="width:150px;">
+                            <option value="-1">All</option>
+                            <option value="1">Used</option>
+                            <option value="2">Not Used</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1" style="margin-right:25px;">
+                        <input type="button" value="View" class="btn btn-info" onclick="viewbarcodes();" style="position: absolute; bottom: 0;" />
+                    </div>
+                    <div class="col-sm-1" style="margin-left:25px;">
+                        <input type="button" value="View Barcodes" class="btn btn-info" onclick="viewbarcodesselected();" style="position: absolute; bottom: 0;" />
+                    </div>
+                </div>              
+                <table class="display" id="basic-1a0">
                     <thead>
                         <tr>
+                            <th><input type="checkbox" class="chkall"/></th>
                             <th></th>
                             <th>QR Code Number</th>
                             <th>Amount</th>
@@ -59,6 +76,7 @@
                             foreach (var obj in lstBarcodes)
                             {
                                 <tr class="gradeX">
+                                    <td><input type="checkbox" class="chkbrk" data-attids="@obj.BarcodeId" /></td>
                                     <td>@counter.</td>
                                     <td>@obj.BarcodeNumber</td>
                                     <td>@obj.Amount</td>
@@ -141,6 +159,17 @@
 
 <script>
 
+    $(document).ready(function () {
+        $("#selectused").val('@ViewBag.used')
+        $('#basic-1a0').DataTable({
+            "pageLength": 100,
+            "order": [],
+            "columnDefs": [
+                { "orderable": false, "targets": 0 }
+            ]
+        });
+    });
+   
     $(document).on("click", "#btnAddBarcode", function () {
         window.location.href = "/admin/qrcode/CreateQrCodes";
     });
@@ -188,7 +217,10 @@
         }
     });
 
-
+    function viewbarcodes() {
+        var statusid = $("#selectused").val();
+        location.href = "/admin/qrcode?used=" + statusid;
+    }
 
      function fnChangeStatus(HomeImage_Id,status) {
          jQuery("#hdndataId").val(HomeImage_Id);
@@ -236,4 +268,27 @@
         }
     });
 
+
+    function viewbarcodesselected() {
+        if ($(".chkbrk:checked").length == 0) {
+            alert("Please select at least 1 barcode");
+        }
+        else {
+            var valuesArray = $('input:checkbox:checked').map(function () {
+                return $(this).attr("data-attids");
+            }).get().join('^');
+            setCookie("eonbarcode", valuesArray, 1);
+            window.open('/admin/qrcode/DisplayUnUsedBarcodes');
+        }
+    }
+
+    $(".chkall").click(function () {
+        $(".chkbrk").prop('checked', $(this).prop('checked'));
+    });
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
 </script>

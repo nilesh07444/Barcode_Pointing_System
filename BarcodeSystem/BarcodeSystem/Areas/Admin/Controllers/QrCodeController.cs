@@ -21,10 +21,17 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             _db = new BarcodeSystemDbEntities();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int used = -1)
         {
-            List<tbl_Barcodes> lstBarcodes = _db.tbl_Barcodes.OrderByDescending(x => x.CreatedDate).ToList();
+            bool IsUsd = false;
+            if(used == 1)
+            {
+                IsUsd = true;
+            }
+           
+            List<tbl_Barcodes> lstBarcodes = _db.tbl_Barcodes.Where(o => (used == -1 || o.IsUsed == IsUsd)).OrderByDescending(x => x.CreatedDate).ToList();
             ViewData["lstBarcodes"] = lstBarcodes;
+            ViewBag.used = used;
             return View();
         }
 
@@ -74,9 +81,11 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             decimal Amount = 0;
             List<string> lstBarcodesstr = new List<string>();
             List<string> lstBarcodesstrImage = new List<string>();
+            List<string> lstBarcodesamt = new List<string>();
             foreach (var objBar in lstBarcodes)
             {
                 Amount = objBar.Amount.Value;
+                lstBarcodesamt.Add(Convert.ToInt32(Amount) + "");
                 using (MemoryStream ms = new MemoryStream())
                 {
                     lstBarcodesstr.Add(objBar.BarcodeNumber);
@@ -96,6 +105,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
 
             ViewData["lstBarcodesstr"] = lstBarcodesstr;
             ViewData["lstBarcodesstrImage"] = lstBarcodesstrImage;
+            ViewData["lstBarcodesamt"] = lstBarcodesamt;
             ViewBag.Amount = Amount;
             return View();
         }
@@ -217,6 +227,56 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             }
 
             return View(objQrCode);
+        }
+
+        public ActionResult DisplayUnUsedBarcodes()
+        {
+            HttpCookie reqCookies = Request.Cookies["eonbarcode"];
+            List<string> lstBarcodesstr = new List<string>();
+            List<string> lstBarcodesamt = new List<string>();
+            List<string> lstBarcodesstrImage = new List<string>();
+            string valuebarcodes = "";
+            if(reqCookies != null)
+            {
+                valuebarcodes = reqCookies.Value;
+            }
+
+            if(!string.IsNullOrEmpty(valuebarcodes))
+            {
+                string[] arrybarcode = valuebarcodes.Split('^');
+                long[] ints = Array.ConvertAll(arrybarcode, s => Int64.Parse(s));
+                List<tbl_Barcodes> lstBarcodes = _db.tbl_Barcodes.Where(o => ints.Contains(o.BarcodeId)).ToList();
+                decimal Amount = 0;
+
+                foreach (var objBar in lstBarcodes)
+                {
+                    Amount = objBar.Amount.Value;
+                    lstBarcodesamt.Add(Convert.ToInt32(Amount) + "");
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        lstBarcodesstr.Add(objBar.BarcodeNumber);
+                        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                        //QRCodeGenerator.QRCode qrCode = qrGenerator.CreateQrCode(objBar.BarcodeNumber, QRCodeGenerator.ECCLevel.Q);
+
+                        QRCodeData qrCodeData = qrGenerator.CreateQrCode(objBar.BarcodeNumber, QRCodeGenerator.ECCLevel.Q);
+                        QRCode qrCode = new QRCode(qrCodeData);
+
+                        using (Bitmap bitMap = qrCode.GetGraphic(18))
+                        {
+                            bitMap.Save(ms, ImageFormat.Png);
+                            lstBarcodesstrImage.Add("data:image/png;base64," + Convert.ToBase64String(ms.ToArray()));
+                        }
+                    }
+                }
+            }
+          
+
+            ViewData["lstBarcodesstr"] = lstBarcodesstr;
+            ViewData["lstBarcodesstrImage"] = lstBarcodesstrImage;
+            ViewData["lstBarcodesamt"] = lstBarcodesamt;
+            
+           // ViewBag.Amount = Amount;
+            return View();
         }
 
     }

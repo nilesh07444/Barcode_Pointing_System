@@ -6,7 +6,14 @@
     int counter = 1;
     List<tbl_Barcodes> lstBarcodes = ViewData["lstBarcodes"] as List<tbl_Barcodes>;
 }
-
+<style>
+    #basic-1a0 th:nth-child(1) {
+        width: 80px !important;
+    }
+    #basic-1a0 td:nth-child(1) {
+        width: 80px !important;
+    } 
+</style>
 <div class="page-body">
 
     <!-- Container-fluid starts-->
@@ -60,8 +67,8 @@
                 <table class="display" id="basic-1a0">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" class="chkall"/></th>
-                            <th></th>
+                            <th style="width:60px;"><input type="checkbox" class="chkall"/></th>
+                            <th style="width:90px;"></th>
                             <th>QR Code Number</th>
                             <th>Amount</th>
                             <th>Created Date</th>
@@ -75,11 +82,26 @@
                         {
                             foreach (var obj in lstBarcodes)
                             {
+                                int amts = Convert.ToInt32(obj.Amount.Value);
+                                string brcodimg = "₹50";
+                                if (amts == 150)
+                                {
+                                    brcodimg = "₹20";
+                                }
+                                else if (amts == 220)
+                                {
+                                    brcodimg = "₹30";
+                                }
+                                else
+                                {
+                                    brcodimg = "₹50";
+                                }
+
                                 <tr class="gradeX">
-                                    <td><input type="checkbox" class="chkbrk" data-attids="@obj.BarcodeId" /></td>
-                                    <td>@counter.</td>
+                                    <td style="width:60px;"><input type="checkbox" class="chkbrk" data-attids="@obj.BarcodeId" /></td>
+                                    <td style="width:90px;">@counter.</td>
                                     <td>@obj.BarcodeNumber</td>
-                                    <td>@obj.Amount</td>
+                                    <td>@brcodimg - @obj.Amount</td>
                                     <td>@obj.CreatedDate.Value.ToString("dd/MM/yyyy")</td>
                                     @if (obj.IsUsed == true)
                                     {
@@ -165,7 +187,7 @@
             "pageLength": 100,
             "order": [],
             "columnDefs": [
-                { "orderable": false, "targets": 0 }
+                { "orderable": false, "width": "5%", "targets": 0 }
             ]
         });
     });

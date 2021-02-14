@@ -85,7 +85,20 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             foreach (var objBar in lstBarcodes)
             {
                 Amount = objBar.Amount.Value;
-                lstBarcodesamt.Add(Convert.ToInt32(Amount) + "");
+                string brcodimg = "30";
+                if(Amount == 150)
+                {
+                    brcodimg = "20";
+                }
+                else if(Amount == 220)
+                {
+                    brcodimg = "30";
+                }
+                else
+                {
+                    brcodimg = "50";
+                }
+                lstBarcodesamt.Add(brcodimg);
                 using (MemoryStream ms = new MemoryStream())
                 {
                     lstBarcodesstr.Add(objBar.BarcodeNumber);
@@ -251,7 +264,20 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 foreach (var objBar in lstBarcodes)
                 {
                     Amount = objBar.Amount.Value;
-                    lstBarcodesamt.Add(Convert.ToInt32(Amount) + "");
+                    string brcodimg = "30";
+                    if (Amount == 150)
+                    {
+                        brcodimg = "20";
+                    }
+                    else if (Amount == 220)
+                    {
+                        brcodimg = "30";
+                    }
+                    else
+                    {
+                        brcodimg = "50";
+                    }
+                    lstBarcodesamt.Add(brcodimg);                    
                     using (MemoryStream ms = new MemoryStream())
                     {
                         lstBarcodesstr.Add(objBar.BarcodeNumber);

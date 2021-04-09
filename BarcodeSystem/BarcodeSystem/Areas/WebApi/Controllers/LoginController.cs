@@ -228,7 +228,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                         clsCommon objcm = new clsCommon();
                         // string msg = objcm.GetSmsContent(SmsId);
                         // msg = msg.Replace("{{OTP}}", num + "");
-                        string msg = "Registration's OTP Code Is " + num + "\n Thanks \n Eon Enterprise";
+                        string msg = "Registration's OTP Code Is " + num + " Thanks Eon Enterprise ";
                         msg = HttpUtility.UrlEncode(msg);
                         //string url = "http://sms.unitechcenter.com/sendSMS?username=krupab&message=" + msg + "&sendername=KRUPAB&smstype=TRANS&numbers=" + MobileNum + "&apikey=e8528131-b45b-4f49-94ef-d94adb1010c4";
                         string url = CommonMethod.GetSMSUrl().Replace("--MOBILE--", MobileNum).Replace("--MSG--", msg);

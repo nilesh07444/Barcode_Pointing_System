@@ -35,7 +35,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         public ActionResult Index(LoginVM userLogin)
         {
             try
-            {                
+            {
                 var data = _db.tbl_AdminUsers.Where(x => x.MobileNo == userLogin.MobileNo && x.Password == userLogin.Password).FirstOrDefault();
 
                 if (data != null)
@@ -107,10 +107,10 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 using (WebClient webClient = new WebClient())
                 {
                     Random random = new Random();
-                    int num = random.Next(555555, 999999);  
+                    int num = random.Next(555555, 999999);
                     clsCommon objcm = new clsCommon();
-                    string msg = "Login OTP Code is " + num; 
-                    msg = HttpUtility.UrlEncode(msg);                    
+                    string msg = "Your Otp code for Login is " + num;
+                    msg = HttpUtility.UrlEncode(msg);
                     string url = CommonMethod.GetSMSUrl().Replace("--MOBILE--", MobileNumber).Replace("--MSG--", msg);
                     var json = webClient.DownloadString(url);
                     if (json.Contains("invalidnumber"))
@@ -118,10 +118,9 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         return "InvalidNumber";
                     }
                     else
-                    {                        
-                        return num.ToString(); 
+                    {
+                        return num.ToString();
                     }
-
                 }
             }
             catch (WebException ex)

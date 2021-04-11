@@ -144,7 +144,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                             objBarcTr.TransactionDate = DateTime.UtcNow;
                             _db.tbl_BarcodeTransactions.Add(objBarcTr);
                             _db.SaveChanges();
-                            objGeneralVM.Message = "You have got Rs" + objBarcTr.Amount;
+                            objGeneralVM.Message = "You have got points " + objBarcTr.Amount;
                             
                             var clientuser = _db.tbl_ClientUsers.Where(o => o.ClientUserId == UserId).FirstOrDefault();
                             decimal currewalt = 0;

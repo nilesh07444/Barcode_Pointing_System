@@ -28,16 +28,16 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             obj.TotalProducts = _db.tbl_Product.Where(x => x.IsActive && !x.IsDeleted).ToList().Count;
 
             List<tbl_Barcodes> lstBarcodes = _db.tbl_Barcodes.ToList();
-            int Rs20TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 150.00).ToList().Count;
-            int Rs20TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 150.00 && x.IsUsed).ToList().Count;
+            int Rs20TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 15.00).ToList().Count;
+            int Rs20TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 15.00 && x.IsUsed).ToList().Count;
             int Rs20TotalUnUsedBarcodes = Rs20TotalBarcodes - Rs20TotalUsedBarcodes;
 
-            int Rs30TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 220).ToList().Count;
-            int Rs30TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 220 && x.IsUsed).ToList().Count;
+            int Rs30TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 22).ToList().Count;
+            int Rs30TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 22 && x.IsUsed).ToList().Count;
             int Rs30TotalUnUsedBarcodes = Rs30TotalBarcodes - Rs30TotalUsedBarcodes;
 
-            int Rs50TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 350).ToList().Count;
-            int Rs50TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 350 && x.IsUsed).ToList().Count;
+            int Rs50TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 35).ToList().Count;
+            int Rs50TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 35 && x.IsUsed).ToList().Count;
             int Rs50TotalUnUsedBarcodes = Rs50TotalBarcodes - Rs50TotalUsedBarcodes;
 
             obj.Total20RsQRCodes = Rs20TotalBarcodes;

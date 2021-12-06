@@ -86,11 +86,11 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             {
                 Amount = objBar.Amount.Value;
                 string brcodimg = "30";
-                if(Amount == 150)
+                if(Amount == 15)
                 {
                     brcodimg = "20";
                 }
-                else if(Amount == 220)
+                else if(Amount == 22)
                 {
                     brcodimg = "30";
                 }
@@ -265,11 +265,11 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 {
                     Amount = objBar.Amount.Value;
                     string brcodimg = "30";
-                    if (Amount == 150)
+                    if (Amount == 15)
                     {
                         brcodimg = "20";
                     }
-                    else if (Amount == 220)
+                    else if (Amount == 22)
                     {
                         brcodimg = "30";
                     }

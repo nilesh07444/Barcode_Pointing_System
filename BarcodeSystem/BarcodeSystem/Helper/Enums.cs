@@ -96,5 +96,12 @@ namespace BarcodeSystem.Helper
         Edit = 3,
         Full = 4
     }
+    public enum RedeemItemStatusEnum
+    {
+        Pending = 1,
+        Accepted = 2,
+        Delivered = 3,
+        Deleted = 4
+    }
 
 }

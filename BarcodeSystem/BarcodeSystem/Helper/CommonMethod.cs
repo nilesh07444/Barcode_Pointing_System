@@ -49,7 +49,7 @@ namespace BarcodeSystem
             DateTime utcDateTime = TimeZoneInfo.ConvertTimeToUtc(dateTime, nzTimeZone);
             return utcDateTime;
         }
-         
+
         public static List<List<T>> Split<T>(this List<T> items, int sliceSize = 30)
         {
             List<List<T>> list = new List<List<T>>();
@@ -335,7 +335,28 @@ namespace BarcodeSystem
             string smsurl = WebConfigurationManager.AppSettings["SMSUrl"];
             return smsurl;
         }
-         
-         
+
+        public static string GetRedeemItemStatusText(int statusvalue)
+        {
+            string statusText = string.Empty;
+            if (statusvalue == 1)
+            {
+                statusText = "Pending";
+            }
+            else if (statusvalue == 2)
+            {
+                statusText = "Accepted";
+            }
+            else if (statusvalue == 3)
+            {
+                statusText = "Delivered";
+            }
+            else if (statusvalue == 4)
+            {
+                statusText = "Deleted";
+            }
+            return statusText;
+        }
+
     }
 }

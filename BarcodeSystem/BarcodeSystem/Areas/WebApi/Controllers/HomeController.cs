@@ -86,7 +86,6 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
             return lstImages;
         }
 
-
         [Route("ScanQRCodeSave"), HttpPost]
         public ResponseDataModel<GeneralVM> ScanQRCodeSave(GeneralVM objGen)
         {

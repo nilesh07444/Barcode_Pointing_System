@@ -131,6 +131,42 @@
           <Property Name="UpdatedBy" Type="bigint" />
           <Property Name="UpdatedDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="tbl_RedeemClientPointHistory">
+          <Key>
+            <PropertyRef Name="RedeemClientPointHistoryId" />
+          </Key>
+          <Property Name="RedeemClientPointHistoryId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RedeemItemId" Type="bigint" Nullable="false" />
+          <Property Name="UserId" Type="bigint" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AcceptedDate" Type="datetime" />
+          <Property Name="DeliveredDate" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="bigint" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_RedeemItem">
+          <Key>
+            <PropertyRef Name="RedeemItemId" />
+          </Key>
+          <Property Name="RedeemItemId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedBy" Type="bigint" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="tbl_Setting">
           <Key>
             <PropertyRef Name="SettingId" />
@@ -148,6 +184,8 @@
           <EntitySet Name="tbl_ClientUsers" EntityType="Self.tbl_ClientUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_HomeImages" EntityType="Self.tbl_HomeImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RedeemClientPointHistory" EntityType="Self.tbl_RedeemClientPointHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_RedeemItem" EntityType="Self.tbl_RedeemItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Setting" EntityType="Self.tbl_Setting" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -165,6 +203,8 @@
           <EntitySet Name="tbl_ClientUsers" EntityType="BarcodeSystemDbModel.tbl_ClientUsers" />
           <EntitySet Name="tbl_BarcodeTransactions" EntityType="BarcodeSystemDbModel.tbl_BarcodeTransactions" />
           <EntitySet Name="tbl_Setting" EntityType="BarcodeSystemDbModel.tbl_Setting" />
+          <EntitySet Name="tbl_RedeemItem" EntityType="BarcodeSystemDbModel.tbl_RedeemItem" />
+          <EntitySet Name="tbl_RedeemClientPointHistory" EntityType="BarcodeSystemDbModel.tbl_RedeemClientPointHistory" />
         </EntityContainer>
         <EntityType Name="tbl_AdminRoles">
           <Key>
@@ -298,6 +338,42 @@
           </Key>
           <Property Name="SettingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HomeRewardPointImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_RedeemItem">
+          <Key>
+            <PropertyRef Name="RedeemItemId" />
+          </Key>
+          <Property Name="RedeemItemId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_RedeemClientPointHistory">
+          <Key>
+            <PropertyRef Name="RedeemClientPointHistoryId" />
+          </Key>
+          <Property Name="RedeemClientPointHistoryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RedeemItemId" Type="Int64" Nullable="false" />
+          <Property Name="UserId" Type="Int64" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AcceptedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeliveredDate" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -445,6 +521,44 @@
               <MappingFragment StoreEntitySet="tbl_Setting">
                 <ScalarProperty Name="HomeRewardPointImage" ColumnName="HomeRewardPointImage" />
                 <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RedeemItem">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_RedeemItem">
+              <MappingFragment StoreEntitySet="tbl_RedeemItem">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="RedeemItemId" ColumnName="RedeemItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_RedeemClientPointHistory">
+            <EntityTypeMapping TypeName="BarcodeSystemDbModel.tbl_RedeemClientPointHistory">
+              <MappingFragment StoreEntitySet="tbl_RedeemClientPointHistory">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DeliveredDate" ColumnName="DeliveredDate" />
+                <ScalarProperty Name="AcceptedDate" ColumnName="AcceptedDate" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RedeemItemId" ColumnName="RedeemItemId" />
+                <ScalarProperty Name="RedeemClientPointHistoryId" ColumnName="RedeemClientPointHistoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

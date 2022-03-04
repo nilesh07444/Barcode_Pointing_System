@@ -183,11 +183,13 @@
     <Compile Include="Areas\Admin\Controllers\MyProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\QrCodeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RedeemItemController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Admin\Controllers\WebviewController.cs" />
     <Compile Include="Areas\WebApi\Controllers\HomeController.cs" />
     <Compile Include="Areas\WebApi\Controllers\LoginController.cs" />
     <Compile Include="Areas\WebApi\Controllers\MyProfileController.cs" />
+    <Compile Include="Areas\WebApi\Controllers\RedeemItemController.cs" />
     <Compile Include="Areas\WebApi\WebApiAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\AdminPermissionAttribute.cs" />
@@ -244,6 +246,12 @@
     <Compile Include="Models\tbl_Product.cs">
       <DependentUpon>BarcodeSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tbl_RedeemClientPointHistory.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_RedeemItem.cs">
+      <DependentUpon>BarcodeSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbl_Setting.cs">
       <DependentUpon>BarcodeSystem.tt</DependentUpon>
     </Compile>
@@ -260,6 +268,7 @@
     <Compile Include="ViewModel\ProductVM.cs" />
     <Compile Include="ViewModel\QrCodeVM.cs" />
     <Compile Include="ViewModel\QRTransactionVM.cs" />
+    <Compile Include="ViewModel\RedeemItemVM.cs" />
     <Compile Include="ViewModel\RegisterVM.cs" />
     <Compile Include="ViewModel\ReportVM.cs" />
     <Compile Include="ViewModel\WalletTransactionVM.cs" />
@@ -3888,6 +3897,7 @@
     <Content Include="Areas\Admin\Views\Webview\TermsCondition.cshtml" />
     <Content Include="Areas\Admin\Views\Webview\PrivacyPolicy.cshtml" />
     <Content Include="Areas\Admin\Views\QrCode\DisplayUnUsedBarcodes.cshtml" />
+    <Content Include="Areas\Admin\Views\RedeemItem\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />
@@ -3945,10 +3955,12 @@
     <Folder Include="Areas\WebApi\Views\Home\" />
     <Folder Include="Areas\WebApi\Views\Login\" />
     <Folder Include="Areas\WebApi\Views\MyProfile\" />
+    <Folder Include="Areas\WebApi\Views\ReedemItem\" />
     <Folder Include="Areas\WebApi\Views\Shared\" />
     <Folder Include="Documents\" />
     <Folder Include="Images\HomeMedia\" />
     <Folder Include="Images\ProductMedia\" />
+    <Folder Include="Images\RedeemItem\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

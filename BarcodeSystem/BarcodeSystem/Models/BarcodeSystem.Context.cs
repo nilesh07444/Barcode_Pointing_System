@@ -35,5 +35,7 @@ namespace BarcodeSystem.Models
         public virtual DbSet<tbl_ClientUsers> tbl_ClientUsers { get; set; }
         public virtual DbSet<tbl_BarcodeTransactions> tbl_BarcodeTransactions { get; set; }
         public virtual DbSet<tbl_Setting> tbl_Setting { get; set; }
+        public virtual DbSet<tbl_RedeemItem> tbl_RedeemItem { get; set; }
+        public virtual DbSet<tbl_RedeemClientPointHistory> tbl_RedeemClientPointHistory { get; set; }
     }
 }

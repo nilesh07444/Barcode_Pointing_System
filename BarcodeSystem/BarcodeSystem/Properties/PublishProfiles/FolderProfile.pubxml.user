@@ -64,6 +64,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Areas/Admin/Views/QrCode/View.cshtml">
       <publishTime>10/16/2021 18:28:21</publishTime>
     </File>
+    <File Include="Areas/Admin/Views/RedeemItem/Index.cshtml">
+      <publishTime>03/04/2022 12:18:16</publishTime>
+    </File>
     <File Include="Areas/Admin/Views/Setting/ChangePassword.cshtml">
       <publishTime>02/01/2021 23:13:30</publishTime>
     </File>
@@ -101,10 +104,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/10/2013 16:29:20</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.dll">
-      <publishTime>10/16/2021 18:47:07</publishTime>
+      <publishTime>03/05/2022 00:49:55</publishTime>
     </File>
     <File Include="bin/BarcodeSystem.pdb">
-      <publishTime>10/16/2021 18:47:07</publishTime>
+      <publishTime>03/05/2022 00:49:55</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>04/16/2020 20:38:42</publishTime>
@@ -11063,7 +11066,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/05/2021 18:39:52</publishTime>
     </File>
     <File Include="Models/BarcodeSystem.edmx.diagram">
-      <publishTime>02/11/2021 22:24:27</publishTime>
+      <publishTime>03/04/2022 13:12:48</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>01/05/2021 18:39:52</publishTime>
@@ -11201,7 +11204,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/30/2021 16:18:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/16/2021 18:47:08</publishTime>
+      <publishTime>03/04/2022 23:17:39</publishTime>
     </File>
   </ItemGroup>
 </Project>

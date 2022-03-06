@@ -1,0 +1,116 @@
+﻿@model RedeemClientPointHistoryVM
+@{
+    ViewBag.Title = "RedeemItemList";
+}
+
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h3>
+                            Redeem Customer Point History List
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ol class="breadcrumb pull-right">
+                        <li class="breadcrumb-item"><a href="/"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item active">Redeem Customer Point History View</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h5>Redeem Customer Point History View - @Model.ClientName</h5>
+            </div>
+            <div class="card-body vendor-table">
+
+                <div class="table-responsive profile-table">
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td style="width: 250px;"><strong>Redeem Date:</strong></td>
+                                <td>@Model.CreatedDate.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Customer Name:</strong></td>
+                                <td>@Model.ClientName</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Item Description:</strong></td>
+                                <td>@Model.Description</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Amount:</strong></td>
+                                <td>@Model.Amount</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Status:</strong></td>
+                                <td>@Model.StatusText</td>
+                            </tr>
+
+                            @if (Model.AcceptedDate != null)
+                            {
+                                <tr>
+                                    <td><strong>Accepted Date:</strong></td>
+                                    <td>@Model.AcceptedDate.Value.ToString("dd/MM/yyyy")</td>
+                                </tr>
+                            }
+
+                            @if (Model.DeliveredDate != null)
+                            {
+                                <tr>
+                                    <td><strong>Delivered Date:</strong></td>
+                                    <td>@Model.DeliveredDate.Value.ToString("dd/MM/yyyy")</td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+        @if (Model.Status == 1 || Model.Status == 2)
+        {
+            <div class="card">
+                <div class="card-header">
+                    <h5>Update Status</h5>
+                </div>
+                <div class="card-body vendor-table" style="padding-top: 0px;">
+
+                    <select class="form-control col-md-2">
+                        <option>-Select-</option>
+                        @if (Model.Status == 1)
+                        {
+                            <option>Accepted</option>
+                        }
+                        @if (Model.Status == 2)
+                        {
+                            <option>Delivered</option>
+                        }
+                    </select>
+
+                    <div class="form-group row col-md-2" style="margin-top:20px;">
+                        <button type="button" class="btn btn-primary" style="margin-right:10px;">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        }
+        <!-- Container-fluid Ends-->
+
+    </div>
+
+
+

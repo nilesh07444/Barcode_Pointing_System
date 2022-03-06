@@ -183,6 +183,7 @@
     <Compile Include="Areas\Admin\Controllers\MyProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\QrCodeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RedeemCustomerHistoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\RedeemItemController.cs" />
     <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
     <Compile Include="Areas\Admin\Controllers\WebviewController.cs" />
@@ -3898,6 +3899,10 @@
     <Content Include="Areas\Admin\Views\Webview\PrivacyPolicy.cshtml" />
     <Content Include="Areas\Admin\Views\QrCode\DisplayUnUsedBarcodes.cshtml" />
     <Content Include="Areas\Admin\Views\RedeemItem\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RedeemItem\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\RedeemItem\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RedeemCustomerHistory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RedeemCustomerHistory\View.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\cart.js" />
     <Content Include="Scripts\Chat.js" />

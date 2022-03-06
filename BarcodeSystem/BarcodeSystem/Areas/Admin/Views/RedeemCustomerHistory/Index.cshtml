@@ -1,0 +1,86 @@
+﻿@model List<RedeemClientPointHistoryVM>
+@{
+    ViewBag.Title = "RedeemItemList";
+    int counter = 1;
+}
+
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="page-header-left">
+                        <h3>
+                            Redeem Customer Point History List
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <ol class="breadcrumb pull-right">
+                        <li class="breadcrumb-item"><a href="/"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item active">Redeem Customer Point History List</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h5>Redeem Customer Point History List</h5>
+            </div>
+            <div class="card-body vendor-table">
+
+                <table class="display" id="basic-1">
+                    <thead>
+                        <tr>
+                            <th width="10%">#</th>
+                            <th width="15%">Redeem Date</th>
+                            <th width="15%">Customer Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            <th width="15%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            foreach (RedeemClientPointHistoryVM obj in Model)
+                            {
+                                <tr class="gradeX">
+                                    <td>@counter.</td>
+                                    <td>@obj.CreatedDate.ToString("dd/MM/yyyy")</td>
+                                    <td>@obj.ClientName</td>
+                                    <td>@obj.Description</td>
+                                    <td>@obj.StatusText</td>
+                                    <td>@obj.Amount</td>
+                                    <td>
+                                        <a href="/admin/redeemcustomerhistory/view/@obj.RedeemClientPointHistoryId"><i class="fa fa-edit mr-2 font-success"></i></a>
+                                    </td>
+                                </tr>
+                                counter++;
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+</div>
+
+<script>
+
+    jQuery(document).ready(function () {
+        jQuery('html, body').animate({ scrollTop: 0 }, 1000);
+    });
+
+</script>

@@ -74,7 +74,8 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     clsAdminSession.ImagePath = ""; //data.ProfilePicture;
                     clsAdminSession.MobileNumber = data.MobileNo;
 
-                    return RedirectToAction("Index", "Dashboard");
+                    //return RedirectToAction("Index", "Dashboard"); // TODO
+                    return RedirectToAction("Index", "RedeemItem");
                 }
                 else
                 {

@@ -16,10 +16,12 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
     {
         BarcodeSystemDbEntities _db;
         string domainUrl = string.Empty;
+        string RedeemItemDirectoryPath = string.Empty;
         public RedeemItemController()
         {
             _db = new BarcodeSystemDbEntities();
             domainUrl = ConfigurationManager.AppSettings["DomainUrl"].ToString();
+            RedeemItemDirectoryPath = ErrorMessage.RedeemItemDirectoryPath;
         }
 
         [Route("GetRedeemItemList"), HttpGet]
@@ -48,7 +50,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                     lstRedeemItems.ForEach(x =>
                     {
                         if (!string.IsNullOrEmpty(x.ImageName))
-                            x.ImageName = domainUrl + "Images/RedeemItemMedia/" + x.ImageName;
+                            x.ImageName = domainUrl + RedeemItemDirectoryPath + x.ImageName;
                     });
                 }
 
@@ -74,6 +76,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
             try
             {
                 lstRedeemHistory = (from c in _db.tbl_RedeemClientPointHistory
+                                    join i in _db.tbl_RedeemItem on c.RedeemItemId equals i.RedeemItemId
                                     where c.UserId == requestVM.UserId
                                     && (requestVM.Status == null || c.Status == requestVM.Status.Value)
                                     select new RedeemClientPointHistoryVM
@@ -82,13 +85,13 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                                         RedeemItemId = c.RedeemItemId,
                                         Description = c.Description,
                                         Amount = c.Amount,
-                                        ImageName = c.ImageName,
+                                        ImageName = i.ImageName,
                                         IsDeleted = c.IsDeleted,
                                         Status = c.Status,
                                         AcceptedDate = c.AcceptedDate,
                                         UserId = requestVM.UserId,
                                         DeliveredDate = c.DeliveredDate,
-                                        CreatedDate = c.CreatedDate,
+                                        CreatedDate = c.CreatedDate
                                     }).OrderByDescending(x => x.CreatedDate).ToList();
 
                 if (lstRedeemHistory != null && lstRedeemHistory.Count > 0)
@@ -96,9 +99,12 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                     lstRedeemHistory.ForEach(x =>
                     {
                         x.StatusText = CommonMethod.GetRedeemItemStatusText(x.Status);
+                        x.strCreatedDate = x.CreatedDate.ToString("dd-MM-yyyy");
+                        x.strAcceptedDate = x.AcceptedDate != null ? x.AcceptedDate.Value.ToString("dd-MM-yyyy") : "";
+                        x.strDeliveredDate = x.DeliveredDate != null ? x.DeliveredDate.Value.ToString("dd-MM-yyyy") : "";
 
                         if (!string.IsNullOrEmpty(x.ImageName))
-                            x.ImageName = domainUrl + "Images/RedeemItemMedia/" + x.ImageName;
+                            x.ImageName = domainUrl + RedeemItemDirectoryPath + x.ImageName;
                     });
                 }
 
@@ -202,7 +208,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
 
                 #region deduct amount from user wallet balance
 
-                objUser.WalletAmt = objUser.WalletAmt - objRedeemItem.Amount; 
+                objUser.WalletAmt = objUser.WalletAmt - objRedeemItem.Amount;
                 _db.SaveChanges();
 
                 #endregion deduct amount from user wallet balance
@@ -226,8 +232,8 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                 _db.SaveChanges();
 
                 #endregion Update redeem history
-                  
-                response.Data = true;                
+
+                response.Data = true;
             }
             catch (Exception ex)
             {
@@ -238,6 +244,6 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
             return response;
 
         }
-         
+
     }
 }

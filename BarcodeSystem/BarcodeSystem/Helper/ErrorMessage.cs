@@ -30,6 +30,7 @@ namespace BarcodeSystem.Helper
         // Folder Directory Path
         public static string HomeDirectoryPath = "/Images/HomeMedia/"; 
         public static string ProductDirectoryPath = "/Images/ProductMedia/";
+        public static string RedeemItemDirectoryPath = "/Images/RedeemItemMedia/";
         public static string DefaultImagePath = "/Images/default_image.jpg"; 
     }
 }

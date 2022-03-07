@@ -47,19 +47,19 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 int QtyQ = Convert.ToInt32(Qty);
                 decimal Amt = Convert.ToDecimal(Amount);
                 tbl_BarcodeSet objSet = new tbl_BarcodeSet();
-                objSet.CreatedDate = DateTime.Now;
+                objSet.CreatedDate = CommonMethod.CurrentIndianDateTime();
                 _db.tbl_BarcodeSet.Add(objSet);
                 _db.SaveChanges();
                 for (int j = 0; j < QtyQ; j++)
                 {
                     string CodenumGuid = Guid.NewGuid().ToString();
-                    string Code = CodenumGuid.Substring(0, 5) + DateTime.Now.ToString("ss") + CodenumGuid.Substring(3, 2) + CodenumGuid.Substring(26, 6);
+                    string Code = CodenumGuid.Substring(0, 5) + CommonMethod.CurrentIndianDateTime().ToString("ss") + CodenumGuid.Substring(3, 2) + CodenumGuid.Substring(26, 6);
                     tbl_Barcodes objBarcode = new tbl_Barcodes();
                     objBarcode.Amount = Amt;
                     objBarcode.BarcodeNumber = Code.ToUpper();
                     objBarcode.IsUsed = false;
                     objBarcode.IsActive = true;
-                    objBarcode.CreatedDate = DateTime.UtcNow;
+                    objBarcode.CreatedDate = CommonMethod.CurrentIndianDateTime();
                     objBarcode.CreatedBy = clsAdminSession.UserID;
                     objBarcode.UsedBy = 0;
                     objBarcode.SetId = objSet.BarcodeSetId;
@@ -184,7 +184,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         }
 
                         objBarcode.ModifiedBy = LoggedInUserId;
-                        objBarcode.ModifiedDate = DateTime.UtcNow;
+                        objBarcode.ModifiedDate = CommonMethod.CurrentIndianDateTime();
 
                         _db.SaveChanges();
                         ReturnMessage = "success";

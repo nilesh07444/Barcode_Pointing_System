@@ -150,7 +150,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
 
                 objHistory.IsDeleted = true;
                 objHistory.Status = (int)RedeemItemStatusEnum.Deleted;
-                objHistory.UpdatedDate = DateTime.Now;
+                objHistory.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                 _db.SaveChanges();
 
                 #endregion Update redeem history
@@ -222,11 +222,10 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                 objHistory.Amount = objRedeemItem.Amount;
                 objHistory.Description = objRedeemItem.Description;
                 objHistory.Title = objRedeemItem.Title;
-                objHistory.IsDeleted = false;
-                objHistory.Status = (int)RedeemItemStatusEnum.Deleted;
-                objHistory.CreatedDate = DateTime.Now;
+                objHistory.IsDeleted = false; 
+                objHistory.CreatedDate = CommonMethod.CurrentIndianDateTime();
                 objHistory.CreatedBy = -1;
-                objHistory.UpdatedDate = DateTime.Now;
+                objHistory.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                 objHistory.UpdatedBy = -1;
                 _db.tbl_RedeemClientPointHistory.Add(objHistory);
                 _db.SaveChanges();

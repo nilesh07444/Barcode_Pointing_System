@@ -1,4 +1,5 @@
-﻿@model RedeemClientPointHistoryVM
+﻿@using BarcodeSystem.Helper;
+@model RedeemClientPointHistoryVM
 @{
     ViewBag.Title = "RedeemItemList";
 }
@@ -12,13 +13,13 @@
                 <div class="col-lg-6">
                     <div class="page-header-left">
                         <h3>
-                            Redeem Customer Point History List
+                            Redeem Customer Point History View
                         </h3>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <ol class="breadcrumb pull-right">
-                        <li class="breadcrumb-item"><a href="/"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="/admin/redeemcustomerhistory"><i data-feather="home"></i></a></li>
                         <li class="breadcrumb-item active">Redeem Customer Point History View</li>
                     </ol>
                 </div>
@@ -30,7 +31,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-header">
-                <h5>Redeem Customer Point History View - @Model.ClientName</h5>
+                <h5>View - @Model.ClientName</h5>
             </div>
             <div class="card-body vendor-table">
 
@@ -81,7 +82,7 @@
             </div>
         </div>
 
-        @if (Model.Status == 1 || Model.Status == 2)
+        @if (Model.Status == (int)RedeemItemStatusEnum.Pending || Model.Status == (int)RedeemItemStatusEnum.Accepted)
         {
             <div class="card">
                 <div class="card-header">
@@ -89,20 +90,21 @@
                 </div>
                 <div class="card-body vendor-table" style="padding-top: 0px;">
 
-                    <select class="form-control col-md-2">
-                        <option>-Select-</option>
-                        @if (Model.Status == 1)
+                    <select id="ddlStatus" class="form-control col-md-2">
+                        <option value="">-Select-</option>
+                        @if (Model.Status == (int)RedeemItemStatusEnum.Pending)
                         {
-                            <option>Accepted</option>
+                            <option value="2">Accepted</option>
                         }
-                        @if (Model.Status == 2)
+                        @if (Model.Status == (int)RedeemItemStatusEnum.Accepted)
                         {
-                            <option>Delivered</option>
+                            <option value="3">Delivered</option>
                         }
                     </select>
 
                     <div class="form-group row col-md-2" style="margin-top:20px;">
-                        <button type="button" class="btn btn-primary" style="margin-right:10px;">Submit</button>
+                        @Html.HiddenFor(x => x.RedeemClientPointHistoryId)
+                        <button id="btnSubmit" type="button" class="btn btn-primary" style="margin-right:10px;">Submit</button>
                     </div>
 
                 </div>
@@ -112,5 +114,39 @@
 
     </div>
 
+    <script>
 
+        $(document).on("click", "#btnSubmit", function () {
 
+            var redeemClientPointHistoryId = $("#RedeemClientPointHistoryId").val();
+            var selectedValue = $("#ddlStatus option:selected").val();
+
+            if (selectedValue == "") {
+                alert("Please select status");
+                return false;
+            }
+
+            StartLoading();
+            var URL = '@Url.Action("UpdateHistoryStatus", "RedeemCustomerHistory")';
+            $.ajax({
+                type: 'POST',
+                async: true,
+                url: URL + "?Id=" + redeemClientPointHistoryId + "&Status=" + selectedValue,
+                success: function (result) {
+                    if (result == "success") {
+                        alert("Status updated Successfully...");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Something went wrong. Please try again");
+                    }
+                   StopLoading();
+                },
+                error: function (resultData) {
+                    StopLoading();
+                }
+            });
+
+        });
+
+    </script>

@@ -10,6 +10,13 @@ namespace BarcodeSystem
 {
     public static class CommonMethod
     {
+        public static DateTime CurrentIndianDateTime()
+        {
+            DateTime DT = DateTime.UtcNow;
+            TimeZoneInfo indTimeZone = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
+            DateTime dateTimeAsTimeZone = TimeZoneInfo.ConvertTimeFromUtc(DT, indTimeZone);
+            return dateTimeAsTimeZone;
+        }
         public static string ConvertFromUTC(DateTime? utcDateTime)
         {
             if (utcDateTime == null)

@@ -42,7 +42,8 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                                      CreatedDate = cu.CreatedDate,
                                      Pincode = cu.Pincode,
                                      State = cu.State,
-                                     AdharNumber = cu.AdharNumber
+                                     AdharNumber = cu.AdharNumber,
+                                     WaltAmount = cu.WalletAmt != null ? cu.WalletAmt.Value : 0
                                  }).OrderByDescending(x => x.ClientUserId).ToList();
             }
             catch (Exception ex)
@@ -73,7 +74,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     }
 
                     objtbl_ClientUsers.UpdatedBy = LoggedInUserId;
-                    objtbl_ClientUsers.UpdatedDate = DateTime.UtcNow;
+                    objtbl_ClientUsers.UpdatedDate = CommonMethod.CurrentIndianDateTime();
 
                     _db.SaveChanges();
                     ReturnMessage = "success";
@@ -152,7 +153,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                         objBarcTr.QRCodeId = 0;
                         objBarcTr.IsDebit = true;
                         objBarcTr.Remarks = Remarks;
-                        objBarcTr.TransactionDate = DateTime.UtcNow;
+                        objBarcTr.TransactionDate = CommonMethod.CurrentIndianDateTime();
                         _db.tbl_BarcodeTransactions.Add(objBarcTr);
                         _db.SaveChanges();
                         currewalt = currewalt - amt;

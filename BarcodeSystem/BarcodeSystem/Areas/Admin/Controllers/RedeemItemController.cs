@@ -99,9 +99,9 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     objItem.IsActive = true;
                     objItem.IsDeleted = false;
                     objItem.CreatedBy = LoggedInUserId;
-                    objItem.CreatedDate = DateTime.UtcNow;
+                    objItem.CreatedDate = CommonMethod.CurrentIndianDateTime();
                     objItem.UpdatedBy = LoggedInUserId;
-                    objItem.UpdatedDate = DateTime.UtcNow;
+                    objItem.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                     _db.tbl_RedeemItem.Add(objItem);
                     _db.SaveChanges();
 
@@ -184,7 +184,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     objItem.Description = requestVM.Description;
                     objItem.Amount = requestVM.Amount;
                     objItem.UpdatedBy = LoggedInUserId;
-                    objItem.UpdatedDate = DateTime.UtcNow;
+                    objItem.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                     _db.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -219,7 +219,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
 
                     objRedeemItem.IsDeleted = true;
                     objRedeemItem.UpdatedBy = LoggedInUserId;
-                    objRedeemItem.UpdatedDate = DateTime.UtcNow;
+                    objRedeemItem.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                     _db.SaveChanges();
 
                     ReturnMessage = "success";
@@ -255,7 +255,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     }
 
                     objRedeemItem.UpdatedBy = LoggedInUserId;
-                    objRedeemItem.UpdatedDate = DateTime.UtcNow;
+                    objRedeemItem.UpdatedDate = CommonMethod.CurrentIndianDateTime();
 
                     _db.SaveChanges();
                     ReturnMessage = "success";

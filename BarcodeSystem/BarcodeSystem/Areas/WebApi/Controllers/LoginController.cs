@@ -175,7 +175,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                     objClientUsr.Birthdate = dt;
                     objClientUsr.ClientRoleId = 1;
                     objClientUsr.CreatedBy = 0;
-                    objClientUsr.CreatedDate = DateTime.UtcNow;
+                    objClientUsr.CreatedDate = CommonMethod.CurrentIndianDateTime();
                     objClientUsr.FirstName = firstnm;
                     objClientUsr.LastName = lastnm;
                     objClientUsr.MobileNo = mobileno;

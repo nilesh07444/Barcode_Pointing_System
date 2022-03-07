@@ -130,7 +130,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                             objBarcodUser.UserId = UserId;
                             objBarcodUser.BarcodeId = objBarcode.BarcodeId;
                             objBarcodUser.Amount = Convert.ToInt64(objBarcode.Amount.Value);
-                            objBarcodUser.ScanDate = DateTime.UtcNow;
+                            objBarcodUser.ScanDate = CommonMethod.CurrentIndianDateTime();
                             _db.tbl_BarcodeUsers.Add(objBarcodUser);
                             _db.SaveChanges();
 
@@ -140,7 +140,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                             objBarcTr.QRCodeId = objBarcode.BarcodeId;
                             objBarcTr.IsDebit = false;
                             objBarcTr.Remarks = "Barcode Scanned:" + objBarcode.BarcodeNumber;
-                            objBarcTr.TransactionDate = DateTime.UtcNow;
+                            objBarcTr.TransactionDate = CommonMethod.CurrentIndianDateTime();
                             _db.tbl_BarcodeTransactions.Add(objBarcTr);
                             _db.SaveChanges();
                             objGeneralVM.Message = "You have got points " + objBarcTr.Amount;

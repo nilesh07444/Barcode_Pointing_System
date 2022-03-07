@@ -92,9 +92,9 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     objHome.HomeImageName = fileName;
                     objHome.IsActive = true;
                     objHome.CreatedBy = LoggedInUserId;
-                    objHome.CreatedDate = DateTime.UtcNow;
+                    objHome.CreatedDate = CommonMethod.CurrentIndianDateTime();
                     objHome.UpdatedBy = LoggedInUserId;
-                    objHome.UpdatedDate = DateTime.UtcNow;
+                    objHome.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                     _db.tbl_HomeImages.Add(objHome);
                     _db.SaveChanges();
 
@@ -169,7 +169,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
 
                     objHome.HomeImageName = fileName;
                     objHome.UpdatedBy = LoggedInUserId;
-                    objHome.UpdatedDate = DateTime.UtcNow;
+                    objHome.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                     _db.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -235,7 +235,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     }
 
                     objHome.UpdatedBy = LoggedInUserId;
-                    objHome.UpdatedDate = DateTime.UtcNow;
+                    objHome.UpdatedDate = CommonMethod.CurrentIndianDateTime();
 
                     _db.SaveChanges();
                     ReturnMessage = "success";

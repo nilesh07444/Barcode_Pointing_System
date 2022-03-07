@@ -95,9 +95,9 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     objProduct.IsActive = true;
                     objProduct.IsDeleted = false;
                     objProduct.CreatedBy = LoggedInUserId;
-                    objProduct.CreatedDate = DateTime.UtcNow;
+                    objProduct.CreatedDate = CommonMethod.CurrentIndianDateTime();
                     objProduct.UpdatedBy = LoggedInUserId;
-                    objProduct.UpdatedDate = DateTime.UtcNow;
+                    objProduct.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                     _db.tbl_Product.Add(objProduct);
                     _db.SaveChanges();
 
@@ -177,7 +177,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     objProduct.ProductName = productVM.ProductName;
                     objProduct.ProductImage = fileName; 
                     objProduct.UpdatedBy = LoggedInUserId;
-                    objProduct.UpdatedDate = DateTime.UtcNow; 
+                    objProduct.UpdatedDate = CommonMethod.CurrentIndianDateTime();
                     _db.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -244,7 +244,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     }
 
                     objProduct.UpdatedBy = LoggedInUserId;
-                    objProduct.UpdatedDate = DateTime.UtcNow;
+                    objProduct.UpdatedDate = CommonMethod.CurrentIndianDateTime();
 
                     _db.SaveChanges();
                     ReturnMessage = "success";

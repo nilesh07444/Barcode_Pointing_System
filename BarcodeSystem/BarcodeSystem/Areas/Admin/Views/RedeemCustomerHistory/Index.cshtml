@@ -1,9 +1,14 @@
-﻿@model List<RedeemClientPointHistoryVM>
+﻿@using BarcodeSystem.Helper;
+@model List<RedeemClientPointHistoryVM>
 @{
     ViewBag.Title = "RedeemItemList";
     int counter = 1;
 }
-
+<style>
+    body {
+        padding-top: 60px;
+    }
+</style>
 <div class="page-body">
 
     <!-- Container-fluid starts-->
@@ -33,18 +38,42 @@
             <div class="card-header">
                 <h5>Redeem Customer Point History List</h5>
             </div>
-            <div class="card-body vendor-table">
+            <div class="card-body vendor-table" style="padding-top: 0px;">
+
+                <div class="row" style="margin-top:25px;padding-bottom: 25px;margin-bottom: 10px;">
+                    <div class="col-sm-2">
+                        <label>Start Date *</label>
+                        <input class="form-control col-md-12 clsDatePicker text-box single-line valid" id="StartDate" name="StartDate" placeholder="DD/MM/YYY" readonly="readonly" type="text" value="@ViewBag.startDateFilter">
+                    </div>
+                    <div class="col-sm-2">
+                        <label>End Date *</label>
+                        <input class="form-control col-md-12 clsDatePicker text-box single-line valid" id="EndDate" name="EndDate" placeholder="DD/MM/YYY" readonly="readonly" type="text" value="@ViewBag.endDateFilter">
+                    </div>
+                    <div class="col-sm-1">
+                        <label>Status:</label>
+                        <select id="ddlStatus" class="form-control" style="width:150px;">
+                            <option value="">All</option>
+                            <option value="1" @(ViewBag.searchFilter == 1 ? "selected" : "")>Pending</option>
+                            <option value="2" @(ViewBag.searchFilter == 2 ? "selected" : "")>Accepted</option>
+                            <option value="3" @(ViewBag.searchFilter == 3 ? "selected" : "")>Delivered</option>
+                            <option value="4" @(ViewBag.searchFilter == 4 ? "selected" : "")>Deleted</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <input id="btnSearch" type="button" value="Search" class="btn btn-info" style="position: absolute; bottom: 0; margin-left: 30px;" />
+                    </div>
+                </div>
 
                 <table class="display" id="basic-1">
                     <thead>
                         <tr>
-                            <th width="10%">#</th>
-                            <th width="15%">Redeem Date</th>
+                            <th width="4%">#</th>
+                            <th width="8%">Redeem Date</th>
                             <th width="15%">Customer Name</th>
                             <th>Description</th>
                             <th>Status</th>
                             <th>Amount</th>
-                            <th width="15%">Action</th>
+                            <th width="5%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +90,14 @@
                                     <td>@obj.StatusText</td>
                                     <td>@obj.Amount</td>
                                     <td>
-                                        <a href="/admin/redeemcustomerhistory/view/@obj.RedeemClientPointHistoryId"><i class="fa fa-edit mr-2 font-success"></i></a>
+                                        @{
+                                            string iconName = "fa-edit";
+                                            if (obj.Status != (int)RedeemItemStatusEnum.Pending)
+                                            {
+                                                iconName = "fa-eye";
+                                            }
+                                        }
+                                        <a href="/admin/redeemcustomerhistory/view/@obj.RedeemClientPointHistoryId"><i class="fa @iconName mr-2 font-success"></i></a>
                                     </td>
                                 </tr>
                                 counter++;
@@ -81,6 +117,25 @@
 
     jQuery(document).ready(function () {
         jQuery('html, body').animate({ scrollTop: 0 }, 1000);
+    });
+
+    $(document).on("click", "#btnSearch", function () {
+        StartLoading;
+        var selectedStaus = jQuery("#ddlStatus option:selected").val();
+        var startDate = $("#StartDate").val();
+        var endDate = $("#EndDate").val();
+
+        //if (startDate == "") {
+        //    alert("Please select Start Date");
+        //    return false;
+        //}
+
+        //if (endDate == "") {
+        //    alert("Please select End Date");
+        //    return false;
+        //}
+
+        location.href = "/admin/redeemcustomerhistory?status=" + selectedStaus + "&startDate=" + startDate + "&endDate=" + endDate;
     });
 
 </script>

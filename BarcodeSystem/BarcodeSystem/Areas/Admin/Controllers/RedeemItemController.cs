@@ -39,7 +39,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                                 CreatedDate = c.CreatedDate,
                                 IsActive = c.IsActive,
                                 IsDeleted = c.IsDeleted
-                            }).Where(x => !x.IsDeleted).OrderByDescending(x => x.RedeemItemId).ToList();
+                            }).Where(x => !x.IsDeleted).OrderBy(x => x.Amount).ToList();
             }
             catch (Exception ex)
             {

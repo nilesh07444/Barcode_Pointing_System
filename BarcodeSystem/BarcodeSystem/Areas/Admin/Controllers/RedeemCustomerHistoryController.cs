@@ -67,7 +67,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                                         DeliveredDate = c.DeliveredDate,
                                         CreatedDate = c.CreatedDate,
                                         ClientName = u.FirstName + " " + u.LastName,
-                                    }).OrderByDescending(x => x.CreatedDate).ToList();
+                                    }).OrderBy(x => x.Amount).ToList();
 
                 if (lstRedeemHistory != null && lstRedeemHistory.Count > 0)
                 {
@@ -128,6 +128,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             string ReturnMessage = "";
             try
             {
+                Status = Status + 1;
                 tbl_RedeemClientPointHistory objHistory = _db.tbl_RedeemClientPointHistory.Where(x => x.RedeemClientPointHistoryId == Id).FirstOrDefault();
 
                 if (objHistory != null)
@@ -158,7 +159,6 @@ namespace BarcodeSystem.Areas.Admin.Controllers
 
             return ReturnMessage;
         }
-
 
     }
 }

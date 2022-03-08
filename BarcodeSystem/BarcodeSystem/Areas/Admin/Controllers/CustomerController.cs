@@ -4,6 +4,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,14 +22,33 @@ namespace BarcodeSystem.Areas.Admin.Controllers
         {
             _db = new BarcodeSystemDbEntities();
         }
-        public ActionResult Index()
+        public ActionResult Index(string startDate, string endDate)
         {
             List<ClientUserVM> lstClientUser = new List<ClientUserVM>();
 
             try
             {
+                ViewBag.startDateFilter = startDate;
+                ViewBag.endDateFilter = endDate;
+
+                DateTime? dtStartDate = null;
+                if (!string.IsNullOrEmpty(startDate))
+                {
+                    dtStartDate = DateTime.ParseExact(startDate, "dd/MM/yyyy", null);
+                }
+
+                DateTime? dtEndDate = null;
+                if (!string.IsNullOrEmpty(startDate))
+                {
+                    dtEndDate = DateTime.ParseExact(endDate, "dd/MM/yyyy", null);
+                }
+
                 lstClientUser = (from cu in _db.tbl_ClientUsers
                                  where !cu.IsDelete && cu.ClientRoleId == 1
+
+                                 && (dtStartDate == null || DbFunctions.TruncateTime(cu.CreatedDate) >= DbFunctions.TruncateTime(dtStartDate))
+                                 && (dtEndDate == null || DbFunctions.TruncateTime(cu.CreatedDate) <= DbFunctions.TruncateTime(dtEndDate))
+
                                  select new ClientUserVM
                                  {
                                      ClientUserId = cu.ClientUserId,
@@ -42,7 +62,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                                      CreatedDate = cu.CreatedDate,
                                      Pincode = cu.Pincode,
                                      State = cu.State,
-                                     AdharNumber = cu.AdharNumber,
+                                     AdharNumber = cu.AdharNumber, 
                                      WaltAmount = cu.WalletAmt != null ? cu.WalletAmt.Value : 0
                                  }).OrderByDescending(x => x.ClientUserId).ToList();
             }
@@ -456,7 +476,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             {
                 dtEnd = DateTime.ParseExact(EndDate, "dd/MM/yyyy", null);
             }
-
+                
             lstClientUser = (from cu in _db.tbl_ClientUsers
                              where !cu.IsDelete //&& cu.ClientRoleId == 1 && cu.CreatedDate >= dtStart && cu.CreatedDate <= dtEnd
                              select new ClientUserVM
@@ -498,7 +518,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 workSheet.Cells[2, col].Style.Border.Right.Style = ExcelBorderStyle.Thin;
                 workSheet.Cells[2, col].Style.WrapText = true;
             }
-             
+
             int row1 = 1;
             if (lstClientUser != null && lstClientUser.Count() > 0)
             {

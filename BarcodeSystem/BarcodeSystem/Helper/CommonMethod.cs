@@ -365,5 +365,28 @@ namespace BarcodeSystem
             return statusText;
         }
 
+        public static string getBadgeClassFromRedeedStatus(int status)
+        {
+            string badgeClass = "";
+            if (status == (int)RedeemItemStatusEnum.Pending)
+            {
+                badgeClass = "badge-primary";
+            }
+            else if (status == (int)RedeemItemStatusEnum.Accepted)
+            {
+                badgeClass = "badge-warning";
+            }
+            else if (status == (int)RedeemItemStatusEnum.Delivered)
+            {
+                badgeClass = "badge-success";
+            }
+            else if (status == (int)RedeemItemStatusEnum.Deleted)
+            {
+                badgeClass = "badge-danger";
+            } 
+            return badgeClass;
+        }
+
+
     }
 }

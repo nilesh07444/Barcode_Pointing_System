@@ -92,7 +92,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                                         UserId = requestVM.UserId,
                                         DeliveredDate = c.DeliveredDate,
                                         CreatedDate = c.CreatedDate
-                                    }).OrderByDescending(x => x.CreatedDate).ToList();
+                                    }).OrderBy(x => x.Amount).ToList();
 
                 if (lstRedeemHistory != null && lstRedeemHistory.Count > 0)
                 {

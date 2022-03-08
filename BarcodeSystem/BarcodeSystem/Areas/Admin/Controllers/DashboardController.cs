@@ -32,8 +32,8 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             int Rs20TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 15.00 && x.IsUsed).ToList().Count;
             int Rs20TotalUnUsedBarcodes = Rs20TotalBarcodes - Rs20TotalUsedBarcodes;
 
-            int Rs30TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 22).ToList().Count;
-            int Rs30TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 22 && x.IsUsed).ToList().Count;
+            int Rs30TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 25).ToList().Count;
+            int Rs30TotalUsedBarcodes = lstBarcodes.Where(x => (long)x.Amount == 25 && x.IsUsed).ToList().Count;
             int Rs30TotalUnUsedBarcodes = Rs30TotalBarcodes - Rs30TotalUsedBarcodes;
 
             int Rs50TotalBarcodes = lstBarcodes.Where(x => (long)x.Amount == 35).ToList().Count;

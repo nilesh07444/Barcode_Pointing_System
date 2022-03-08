@@ -60,7 +60,7 @@
                         </select>
                     </div>
                     <div class="col-sm-3">
-                        <input id="btnSearch" type="button" value="Search" class="btn btn-info" style="position: absolute; bottom: 0; margin-left: 30px;" />
+                        <input id="btnSearch" type="button" value="Search" class="btn btn-info" style="position: absolute; bottom: 0; margin-left: 70px;" />
                     </div>
                 </div>
 
@@ -87,17 +87,25 @@
                                     <td>@obj.CreatedDate.ToString("dd/MM/yyyy")</td>
                                     <td>@obj.ClientName</td>
                                     <td>@obj.Description</td>
-                                    <td>@obj.StatusText</td>
+                                    @{
+                                        string badgeClassName = CommonMethod.getBadgeClassFromRedeedStatus(obj.Status);
+                                    }
+                                    <td id="tdStatus_@obj.RedeemClientPointHistoryId">
+                                        @if (obj.Status == (int)RedeemItemStatusEnum.Delivered || obj.Status == (int)RedeemItemStatusEnum.Deleted)
+                                        {
+                                            <span class="badge @badgeClassName" style="font-size:14px;">@obj.StatusText</span>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:void(0);" onclick="fnChangeStatus(@obj.Status, @obj.RedeemClientPointHistoryId, '@obj.ClientName')">
+                                                <span class="badge @badgeClassName" style="font-size:14px;">@obj.StatusText</span>
+                                            </a>
+                                        }
+
+                                    </td>
                                     <td>@obj.Amount</td>
                                     <td>
-                                        @{
-                                            string iconName = "fa-edit";
-                                            if (obj.Status != (int)RedeemItemStatusEnum.Pending)
-                                            {
-                                                iconName = "fa-eye";
-                                            }
-                                        }
-                                        <a href="/admin/redeemcustomerhistory/view/@obj.RedeemClientPointHistoryId"><i class="fa @iconName mr-2 font-success"></i></a>
+                                        <a href="/admin/redeemcustomerhistory/view/@obj.RedeemClientPointHistoryId"><i class="fa fa-eye mr-2 font-success"></i></a>
                                     </td>
                                 </tr>
                                 counter++;
@@ -113,6 +121,28 @@
 
 </div>
 
+<!-- Change Status Modal -->
+<div class="modal fade open" id="statusHistoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="hdnHistoryId" />
+                <input type="hidden" id="hdnStatus" />
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Close</button>
+                <button id="btnUpdateStatus" class="btn btn-primary" type="button">Update</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Change Status modal -->
+
 <script>
 
     jQuery(document).ready(function () {
@@ -125,17 +155,74 @@
         var startDate = $("#StartDate").val();
         var endDate = $("#EndDate").val();
 
-        //if (startDate == "") {
-        //    alert("Please select Start Date");
-        //    return false;
-        //}
-
-        //if (endDate == "") {
-        //    alert("Please select End Date");
-        //    return false;
-        //}
-
         location.href = "/admin/redeemcustomerhistory?status=" + selectedStaus + "&startDate=" + startDate + "&endDate=" + endDate;
+    });
+
+    function fnChangeStatus(status, historyId, clientName) {
+
+        jQuery("#hdnHistoryId").val(historyId);
+        jQuery("#hdnStatus").val(status);
+
+        var headerText = "";
+        var bodyText = "";
+        var buttonText = ""
+        if (status == 1) {
+            headerText = "Change Status - " + clientName;
+            bodyText = "Are you sure you want to Accept ?";
+            buttonText = "Accept"
+        }
+        else if (status == 2) {
+            headerText = "Change Status - " + clientName;
+            bodyText = "Are you sure you want to Deliver ?";
+            buttonText = "Deliver"
+        }
+        if (buttonText != "") {
+            $("#statusHistoryModal .modal-title").text(headerText);
+            $("#statusHistoryModal .modal-body").text(bodyText);
+            $("#btnUpdateStatus").text(buttonText);
+
+            $('#statusHistoryModal').modal('show');
+        }
+        else {
+            alert("Something went wrong");
+        }
+    }
+
+    $(document).on("click", "#btnUpdateStatus", function () {
+
+        var hdnHistoryId = jQuery("#hdnHistoryId").val();
+        var hdnStatus = jQuery("#hdnStatus").val();
+
+        if (hdnHistoryId != "" && hdnHistoryId != null) {
+            $('#statusHistoryModal').modal('hide');
+
+            StartLoading();
+
+            var URL = '@Url.Action("UpdateHistoryStatus", "RedeemCustomerHistory")';
+            $.ajax({
+                type: 'POST',
+                async: true,
+                url: URL + "?Id=" + hdnHistoryId + "&Status=" + hdnStatus,
+                success: function (result) {
+                    if (result == "success") {
+                        alert("Status updated successfully");
+                        window.location.reload();
+                    }
+                    else if (result == "notfound") {
+                        alert("Record Not Found");
+                    }
+                    else {
+                        alert("Something went wrong. Please try again");
+                    }
+
+                   StopLoading();
+                },
+                error: function (resultData) {
+                    StopLoading();
+                }
+            });
+        }
+
     });
 
 </script>

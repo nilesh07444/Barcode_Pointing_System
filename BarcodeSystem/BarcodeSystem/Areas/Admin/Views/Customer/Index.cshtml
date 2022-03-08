@@ -1,13 +1,14 @@
-﻿@using BarcodeSystem.Helper;
-@using BarcodeSystem.Models;
-
-@model List<ClientUserVM>
+﻿@model List<ClientUserVM>
 @{
     ViewBag.Title = "CustomerList";
 
     int counter = 1;
 }
-
+<style>
+    body {
+        padding-top: 60px;
+    }
+</style>
 <div class="page-body">
 
     <!-- Container-fluid starts-->
@@ -43,19 +44,33 @@
             </div>
             <div class="card-body vendor-table">
 
+                <div class="row" style="margin-top:25px;padding-bottom: 25px;margin-bottom: 10px;">
+                    <div class="col-sm-2">
+                        <label>Start Date *</label>
+                        <input class="form-control col-md-12 clsDatePicker text-box single-line valid" id="StartDate" name="StartDate" placeholder="DD/MM/YYY" readonly="readonly" type="text" value="@ViewBag.startDateFilter">
+                    </div>
+                    <div class="col-sm-2">
+                        <label>End Date *</label>
+                        <input class="form-control col-md-12 clsDatePicker text-box single-line valid" id="EndDate" name="EndDate" placeholder="DD/MM/YYY" readonly="readonly" type="text" value="@ViewBag.endDateFilter">
+                    </div>
+                    <div class="col-sm-3">
+                        <input id="btnSearch" type="button" value="Search" class="btn btn-info" style="position: absolute; bottom: 0; margin-left: 30px;" />
+                    </div>
+                </div>
 
                 <table class="display" id="basic-1">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th width="5%"></th>
+                            <th>Reg. Date</th>
                             <th>Customer Name</th>
                             <th>Mobile No.</th>
                             <th>Pincode</th>
                             <th>City</th>
                             <th>State</th>
                             <th>Wallet Balance</th>
-                            <th width="15%">Active</th>
-                            <th>Actions</th>
+                            <th width="5%">Active</th>
+                            <th width="5%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,26 +78,27 @@
                         {
                             foreach (ClientUserVM objusr in Model)
                             {
-                                <tr class="gradeX">
-                                    <td>@counter.</td>
-                                    <td>@objusr.FirstName @objusr.LastName</td>
-                                    <td>@objusr.MobileNo</td>
-                                    <td>@objusr.Pincode</td>
-                                    <td>@objusr.City</td>
-                                    <td>@objusr.State</td>
-                                    <td>@objusr.WaltAmount</td>
-                                    @if (objusr.IsActive == true)
-                                    {
-                                        <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive" onclick="fnChangeStatus('@objusr.ClientUserId','InActive');">Active</span></td>
-                                    }
-                                    else
-                                    {
-                                        <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active" onclick="fnChangeStatus('@objusr.ClientUserId','Active');">InActive</span></td>
-                                    }
-                                    <td>
-                                        <a href="/admin/customer/detail/@objusr.ClientUserId"><i class="fa fa-eye font-success"></i></a>
-                                    </td>
-                                </tr>
+                        <tr class="gradeX">
+                            <td>@counter.</td>
+                            <td>@objusr.CreatedDate.ToString("dd/MM/yyyy")</td>
+                            <td>@objusr.FirstName @objusr.LastName</td>
+                            <td>@objusr.MobileNo</td>
+                            <td>@objusr.Pincode</td>
+                            <td>@objusr.City</td>
+                            <td>@objusr.State</td>
+                            <td>@objusr.WaltAmount</td>
+                            @if (objusr.IsActive == true)
+                            {
+                                <td><span class="badge badge-success" style="cursor:pointer;" title="Click to Inactive" onclick="fnChangeStatus('@objusr.ClientUserId','InActive');">Active</span></td>
+                            }
+                            else
+                            {
+                                <td><span class="badge badge-danger" style="cursor:pointer;" title="Click to Active" onclick="fnChangeStatus('@objusr.ClientUserId','Active');">InActive</span></td>
+                            }
+                            <td>
+                                <a href="/admin/customer/detail/@objusr.ClientUserId"><i class="fa fa-eye font-success"></i></a>
+                            </td>
+                        </tr>
                                 counter++;
                             }
 
@@ -162,10 +178,17 @@
 
     function exporttoexcel() {
         $("#export").attr("href", "/admin/customer/Export");
-        //$("#export")[0].click();
 
         var url = "/admin/customer/Export";
         window.location.href = url;
     }
+
+    $(document).on("click", "#btnSearch", function () {
+        StartLoading;
+        var startDate = $("#StartDate").val();
+        var endDate = $("#EndDate").val();
+
+        location.href = "/admin/customer?startDate=" + startDate + "&endDate=" + endDate;
+    });
 
 </script>

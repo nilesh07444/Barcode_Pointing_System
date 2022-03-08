@@ -2,6 +2,8 @@
 @model RedeemClientPointHistoryVM
 @{
     ViewBag.Title = "RedeemItemList";
+
+    string badgeClassName = CommonMethod.getBadgeClassFromRedeedStatus(Model.Status);
 }
 
 <div class="page-body">
@@ -56,7 +58,7 @@
                             </tr>
                             <tr>
                                 <td><strong>Status:</strong></td>
-                                <td>@Model.StatusText</td>
+                                <td><span class="badge @badgeClassName" style="font-size:14px;">@Model.StatusText</span></td>
                             </tr>
 
                             @if (Model.AcceptedDate != null)
@@ -84,37 +86,38 @@
 
         @if (Model.Status == (int)RedeemItemStatusEnum.Pending || Model.Status == (int)RedeemItemStatusEnum.Accepted)
         {
-            <div class="card">
-                <div class="card-header">
-                    <h5>Update Status</h5>
-                </div>
-                <div class="card-body vendor-table" style="padding-top: 0px;">
-
-                    <select id="ddlStatus" class="form-control col-md-2">
-                        <option value="">-Select-</option>
-                        @if (Model.Status == (int)RedeemItemStatusEnum.Pending)
-                        {
-                            <option value="2">Accepted</option>
-                        }
-                        @if (Model.Status == (int)RedeemItemStatusEnum.Accepted)
-                        {
-                            <option value="3">Delivered</option>
-                        }
-                    </select>
-
-                    <div class="form-group row col-md-2" style="margin-top:20px;">
-                        @Html.HiddenFor(x => x.RedeemClientPointHistoryId)
-                        <button id="btnSubmit" type="button" class="btn btn-primary" style="margin-right:10px;">Submit</button>
+            @*<div class="card">
+                    <div class="card-header">
+                        <h5>Update Status</h5>
                     </div>
+                    <div class="card-body vendor-table" style="padding-top: 0px;">
 
-                </div>
-            </div>
+                        <select id="ddlStatus" class="form-control col-md-2">
+                            <option value="">-Select-</option>
+                            @if (Model.Status == (int)RedeemItemStatusEnum.Pending)
+                            {
+                                <option value="2">Accepted</option>
+                            }
+                            @if (Model.Status == (int)RedeemItemStatusEnum.Accepted)
+                            {
+                                <option value="3">Delivered</option>
+                            }
+                        </select>
+
+                        <div class="form-group row col-md-2" style="margin-top:20px;">
+                            @Html.HiddenFor(x => x.RedeemClientPointHistoryId)
+                            <button id="btnSubmit" type="button" class="btn btn-primary" style="margin-right:10px;">Submit</button>
+                        </div>
+
+                    </div>
+                </div>*@
         }
         <!-- Container-fluid Ends-->
 
     </div>
 
-    <script>
+</div>
+<script>
 
         $(document).on("click", "#btnSubmit", function () {
 
@@ -149,4 +152,4 @@
 
         });
 
-    </script>
+</script>

@@ -90,7 +90,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                 {
                     brcodimg = "20";
                 }
-                else if(Amount == 22)
+                else if(Amount == 25)
                 {
                     brcodimg = "30";
                 }
@@ -269,7 +269,7 @@ namespace BarcodeSystem.Areas.Admin.Controllers
                     {
                         brcodimg = "20";
                     }
-                    else if (Amount == 22)
+                    else if (Amount == 25)
                     {
                         brcodimg = "30";
                     }

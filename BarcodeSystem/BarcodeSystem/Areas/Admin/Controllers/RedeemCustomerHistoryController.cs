@@ -160,5 +160,59 @@ namespace BarcodeSystem.Areas.Admin.Controllers
             return ReturnMessage;
         }
 
+        [HttpPost]
+        public string DeleteRedeemCustomerHistory(int Id)
+        {
+            string ReturnMessage = "";
+
+            try
+            {
+                tbl_RedeemClientPointHistory objRedeemHistory = _db.tbl_RedeemClientPointHistory.Where(x => x.RedeemClientPointHistoryId == Id).FirstOrDefault();
+
+                if (objRedeemHistory == null)
+                {
+                    ReturnMessage = "notfound";
+                }
+                else if (objRedeemHistory.Status != (int)RedeemItemStatusEnum.Pending)
+                {
+                    ReturnMessage = "notpendingstatus";
+                }
+                else
+                {
+                    #region Update redeem history status
+
+                    long LoggedInUserId = Int64.Parse(clsAdminSession.UserID.ToString());
+
+                    objRedeemHistory.IsDeleted = true;
+                    objRedeemHistory.Status = (int)RedeemItemStatusEnum.Deleted;
+                    objRedeemHistory.UpdatedBy = LoggedInUserId;
+                    objRedeemHistory.UpdatedDate = CommonMethod.CurrentIndianDateTime();
+                    _db.SaveChanges();
+
+                    #endregion Update redeem history
+
+                    #region Update customer wallet
+
+                    tbl_ClientUsers objUser = _db.tbl_ClientUsers.Where(x => x.ClientUserId == objRedeemHistory.UserId).FirstOrDefault();
+                    if (objUser != null)
+                    {
+                        objUser.WalletAmt = objUser.WalletAmt + objRedeemHistory.Amount;
+                        _db.SaveChanges();
+                    }
+
+                    #endregion Update customer wallet
+
+                    ReturnMessage = "success";
+                }
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message.ToString();
+                ReturnMessage = "exception";
+            }
+
+            return ReturnMessage;
+        }
+
     }
 }

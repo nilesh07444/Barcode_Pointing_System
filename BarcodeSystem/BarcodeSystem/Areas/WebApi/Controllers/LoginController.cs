@@ -42,7 +42,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                         objclientuser.FirstName = data.FirstName;
                         objclientuser.LastName = data.LastName;
                         objclientuser.MobileNo = data.MobileNo;
-                        objclientuser.RoleId = data.ClientRoleId;                     
+                        objclientuser.RoleId = data.ClientRoleId;
                         objclientuser.ClientUserId = data.ClientUserId;
                         objclientuser.ProfilePhoto = data.ProfilePicture;
                         objclientuser.BirthdateStr = data.Birthdate.Value.ToString("dd/MM/yyyy");
@@ -50,8 +50,8 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                         objclientuser.State = data.State;
                         objclientuser.Pincode = data.Pincode;
                         objclientuser.AdharNumber = data.AdharNumber;
-                        long ClientUsrId = data.ClientUserId;                      
-                     
+                        long ClientUsrId = data.ClientUserId;
+
                         response.Data = objclientuser;
                     }
                 }
@@ -109,8 +109,14 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                         {
                             Random random = new Random();
                             int num = random.Next(555555, 999999);
-                            
-                         //   int SmsId = (int)SMSType.LoginOtp;
+
+                            // This is for google to validate app in google play store after submit.
+                            if (MobileNum == "9824936252")
+                            {
+                                num = 123456;
+                            }
+
+                            //   int SmsId = (int)SMSType.LoginOtp;
                             clsCommon objcm = new clsCommon();
                             //string msg = objcm.GetSmsContent(SmsId);
                             //  msg = msg.Replace("{{OTP}}", num + "");
@@ -124,7 +130,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                                 response.AddError("Invalid Mobile Number");
                             }
                             else
-                            {                              
+                            {
                                 objOtp.Otp = num.ToString();
                                 response.Data = objOtp;
                             }
@@ -150,7 +156,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
             ResponseDataModel<ClientUserVM> response = new ResponseDataModel<ClientUserVM>();
             ClientUserVM objclientuser = new ClientUserVM();
             try
-            {                
+            {
                 string firstnm = objRegisterVM.FirstName;
                 string lastnm = objRegisterVM.LastName;
                 string mobileno = objRegisterVM.MobileNo;
@@ -161,13 +167,13 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                 string AdharNum = objRegisterVM.AdharNumber;
                 string dob = objRegisterVM.BirthDatestr;
                 DateTime dt = DateTime.ParseExact(dob, "dd/MM/yyyy", null);
-           
+
                 tbl_ClientUsers objClientUsr = _db.tbl_ClientUsers.Where(o => o.MobileNo.ToLower() == mobileno.ToLower() && o.ClientRoleId == 1).FirstOrDefault();
                 if (objClientUsr != null)
                 {
                     response.IsError = true;
                     response.AddError("Your Account is already exist.Please go to Login or Contact to support");
-                }         
+                }
                 else
                 {
                     string EncyptedPassword = clsCommon.EncryptString(password); // Encrypt(userLogin.Password);
@@ -280,7 +286,7 @@ namespace BarcodeSystem.Areas.WebApi.Controllers
                         Random random = new Random();
                         int num = random.Next(310450, 789899);
                         //string msg = "Your forgot password OTP code is " + num;
-                       // int SmsId = (int)SMSType.ForgotPwdOtp;
+                        // int SmsId = (int)SMSType.ForgotPwdOtp;
                         clsCommon objcm = new clsCommon();
                         // string msg = objcm.GetSmsContent(SmsId);
                         //msg = msg.Replace("{{OTP}}", num + "");

@@ -106,6 +106,10 @@
                                     <td>@obj.Amount</td>
                                     <td>
                                         <a href="/admin/redeemcustomerhistory/view/@obj.RedeemClientPointHistoryId"><i class="fa fa-eye mr-2 font-success"></i></a>
+                                        @if (obj.Status == (int)RedeemItemStatusEnum.Pending)
+                                        {
+                                            <a href="javascript:void(0);" onclick="fnDeleteRedeemHistoryItem('@obj.RedeemClientPointHistoryId')"><i class="fa fa-trash font-danger"></i></a>
+                                        }
                                     </td>
                                 </tr>
                                 counter++;
@@ -142,6 +146,26 @@
     </div>
 </div>
 <!-- Change Status modal -->
+<!-- Delete Modal -->
+<div class="modal fade open" id="deleteRedeemHistoryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete Confirm</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete ?
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="hdnDeleteRedeemItem" />
+                <button data-dismiss="modal" class="btn btn-danger" type="button">Close</button>
+                <button id="btnDeleteRedeemHistory" class="btn btn-primary" type="button">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete modal -->
 
 <script>
 
@@ -223,6 +247,49 @@
             });
         }
 
+    });
+
+    function fnDeleteRedeemHistoryItem(RedeemHistory_Id) {
+        jQuery("#hdnDeleteRedeemItem").val(RedeemHistory_Id);
+        $('#deleteRedeemHistoryModal').modal('show');
+    }
+
+    jQuery(document).on("click", "#btnDeleteRedeemHistory", function () {
+
+        var RedeemHistory_Id = jQuery("#hdnDeleteRedeemItem").val();
+        if (RedeemHistory_Id != "" && RedeemHistory_Id != null) {
+            $('#deleteRedeemHistoryModal').modal('hide');
+
+            StartLoading();
+
+            var URL = '@Url.Action("DeleteRedeemCustomerHistory", "RedeemCustomerHistory")';
+            $.ajax({
+                type: 'POST',
+                async: true,
+                url: URL + "?Id=" + RedeemHistory_Id,
+                success: function (result) {
+                    if (result == "success") {
+                        alert("Redeem History deleted successfully");
+                        window.location.reload();
+                    }
+                    else if (result == "notfound") {
+                        alert("Redeem History Not Found");
+                    }
+                    else if (result == "notpendingstatus") {
+                        alert("Status is not pending, so you can not delete.");
+                        window.location.reload();
+                    }
+                    else {
+                        alert("Something went wrong. Please try again");
+                    }
+
+                   StopLoading();
+                },
+                error: function (resultData) {
+                    StopLoading();
+                }
+            });
+        }
     });
 
 </script>
